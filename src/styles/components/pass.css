@@ -107,8 +107,20 @@
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .pass__row dd.todo { color: rgb(32 37 75 / 0.32); font-weight: 400; }
-.pass__row dd.hot { color: var(--rouge-badge); font-weight: 700; }
-.pass__row dd.hot s { color: rgb(32 37 75 / 0.42); font-weight: 400; margin-right: 7px; }
+/* La ligne « Valeur » porte l'offre : sur cette direction, c'est elle
+   l'ancre de prix. Elle ne peut pas être de la même taille qu'une mention. */
+.pass__row dd.hot {
+  display: inline-flex; align-items: baseline; gap: 9px;
+  font-family: var(--f-display); font-size: 1.7rem; line-height: 1;
+  color: var(--rouge-badge); font-weight: 400;
+  transform: skewX(-6deg);
+}
+.pass__row dd.hot s {
+  font-size: 0.62em; color: rgb(32 37 75 / 0.45);
+  text-decoration-thickness: 1.5px;
+}
+.pass__row--valeur { align-items: center; }
+.pass__row--valeur dt { font-size: 10.5px; color: var(--navy-logo); }
 
 /* — pied : code-barres + mention — */
 .pass__foot {

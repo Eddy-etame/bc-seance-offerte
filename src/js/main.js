@@ -37,7 +37,7 @@ function passHTML(cls) {
       <p class="pass__title">Laissez-passer<br>une séance</p>
       <p class="pass__sub">Valable une entrée · toutes disciplines</p>
       <dl class="pass__lines">
-        <div class="pass__row"><dt>Valeur</dt><i class="lead"></i><dd class="hot"><s>10 €</s>0 €</dd></div>
+        <div class="pass__row pass__row--valeur"><dt>Valeur</dt><i class="lead"></i><dd class="hot"><s>10 €</s>0 €</dd></div>
         <div class="pass__row"><dt>Salle</dt><i class="lead"></i><dd class="todo" data-pass="salle">à compléter</dd></div>
         <div class="pass__row"><dt>Jour</dt><i class="lead"></i><dd class="todo" data-pass="jour">à compléter</dd></div>
         <div class="pass__row"><dt>Au nom de</dt><i class="lead"></i><dd class="todo" data-pass="nom">à compléter</dd></div>

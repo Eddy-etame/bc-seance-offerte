@@ -15,8 +15,8 @@ html[data-dir="b"] .hero__media img { object-position: 74% 34%; }
 html[data-dir="b"] .hero__scrim {
   background:
     linear-gradient(104deg, transparent 16%, rgb(var(--light) / 0.09) 44%, transparent 70%),
-    linear-gradient(to top, var(--noir) 2%, rgb(8 8 8 / 0.74) 32%, rgb(8 8 8 / 0.2) 72%),
-    linear-gradient(to right, rgb(8 8 8 / 0.9) 8%, rgb(8 8 8 / 0.36) 50%, transparent 86%),
+    linear-gradient(to top, var(--noir) 2%, rgb(8 8 8 / 0.8) 34%, rgb(8 8 8 / 0.26) 76%),
+    linear-gradient(to right, rgb(8 8 8 / 0.94) 2%, rgb(8 8 8 / 0.7) 26%, rgb(8 8 8 / 0.3) 54%, transparent 88%),
     radial-gradient(122% 84% at 50% 44%, transparent 22%, rgb(3 5 11 / 0.88) 100%);
 }
 
@@ -24,13 +24,17 @@ html[data-dir="b"] .hero__scrim {
    deux calés sur la même ligne de base optique. Le pass est borné à
    420 px et centré verticalement — dans la version précédente il flottait
    en haut, chevauchait les outils, et poussait le titre hors de l'écran. */
-html[data-dir="b"] .hero h1 { font-size: min(clamp(2.9rem, 7.4vw, 5.6rem), 17vh); }
+html[data-dir="b"] .hero h1 { font-size: min(clamp(3.1rem, 8.2vw, 6.4rem), 19vh); }
 html[data-dir="b"] .hero__body { padding-bottom: clamp(34px, 5vw, 64px); }
 
 @media (min-width: 1000px) {
   html[data-dir="b"] .hero__body {
     display: grid;
-    grid-template-columns: minmax(0, 1.06fr) minmax(300px, 420px);
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 430px);
+    /* Cinq lignes explicites. Sans elles, `grid-row: 1 / -1` ne couvre
+       qu'une ligne — la fin de la grille explicite, qui est vide — et le
+       pass restait accroché en haut au lieu de longer la colonne de texte. */
+    grid-template-rows: repeat(5, auto);
     column-gap: clamp(44px, 5vw, 84px); row-gap: 16px;
     align-items: end; align-content: end;
     max-width: 1240px;
@@ -38,11 +42,10 @@ html[data-dir="b"] .hero__body { padding-bottom: clamp(34px, 5vw, 64px); }
   html[data-dir="b"] .hero__body > *:not(.pass) { grid-column: 1; }
   html[data-dir="b"] .hero__body > .pass {
     grid-column: 2; grid-row: 1 / -1;
-    align-self: center; justify-self: end;
+    align-self: end; justify-self: end;
     width: 100%;
   }
-  /* le pass ne doit jamais remonter sous les outils de maquette */
-  html[data-dir="b"] .hero { padding-top: 68px; }
+  html[data-dir="b"] .hero { padding-top: 56px; }
 }
 @media (max-width: 999px) {
   html[data-dir="b"] .pass-hero { width: min(100%, 460px); }

@@ -11,6 +11,7 @@ import { SALLES, JOURS } from "./data.js";
 import { track } from "./track.js";
 import { thud } from "./audio.js";
 import { esc, pic } from "./ui.js";
+import { mountImages } from "./reveal.js";
 
 export const state = {
   salle: "", jour: "",
@@ -191,11 +192,22 @@ export function formHTML() {
       ).join("")}
 
       <section class="done" data-step="${STEPS.length}" hidden aria-live="polite">
-        <p class="eyebrow">C'est enregistré</p>
-        <h3 id="done-h"></h3>
-        <p id="done-p"></p>
-        <dl class="done__recap" id="done-recap"></dl>
-        <p class="step__why">Maquette : aucune donnée n'est envoyée. En production, cette étape crée la fiche Deciplus, écrit « SEANCE D ESSAI GRATUITE WEB » dans « Info compte / paiement » et déclenche l'email de confirmation.</p>
+        <div class="done__media" id="done-media"></div>
+        <div class="done__body">
+          <p class="eyebrow">C'est enregistré</p>
+          <h3 id="done-h"></h3>
+          <p id="done-p"></p>
+          <dl class="done__recap" id="done-recap"></dl>
+          <div class="done__kit">
+            <p class="done__kit-t">Ce que tu apportes</p>
+            <ul>
+              <li>Une tenue de sport</li>
+              <li>Une bouteille d'eau</li>
+              <li>Rien d'autre — le matériel est prêté</li>
+            </ul>
+          </div>
+          <p class="step__why">Maquette : aucune donnée n'est envoyée. En production, cette étape crée la fiche Deciplus, écrit « SEANCE D ESSAI GRATUITE WEB » dans « Info compte / paiement » et déclenche l'email de confirmation.</p>
+        </div>
       </section>
     </form>
   </div>`;
@@ -307,6 +319,14 @@ export function mountForm(root, onChange) {
     ]
       .map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`)
       .join("");
+
+    const media = root.querySelector("#done-media");
+    if (media) {
+      media.innerHTML = salle ? pic(salle.img, { sizes: "(min-width:820px) 320px, 100vw" }) : "";
+      // Une image injectée après coup n'a pas d'écouteur de chargement :
+      // sans ce rappel, elle reste à opacité 0 et le panneau paraît vide.
+      mountImages(media);
+    }
 
     track("formulaire_valide", { salle: state.salle, jour: state.jour, ami: !!state.ami });
   };
