@@ -22,6 +22,12 @@ const app = document.getElementById("app");
 const dock = document.getElementById("dock");
 const DIRS = ["a", "b", "c"];
 
+/* Mode propre : `?nu=1` retire le sélecteur de direction et le bouton son.
+   C'est la page telle qu'elle sera en ligne — de quoi la montrer au client
+   sans lui expliquer que ces boutons n'existeront pas. */
+const NU = new URLSearchParams(location.search).get("nu") === "1";
+if (NU) document.documentElement.classList.add("nu");
+
 /* ============================================================
    BLOCS
    ============================================================ */
@@ -663,7 +669,7 @@ function setDir(dir, remember = true) {
   window.scrollTo({ top: Math.min(y, document.body.scrollHeight), behavior: "auto" });
 }
 
-document.querySelector(".tools").addEventListener("click", (e) => {
+document.querySelector(".tools")?.addEventListener("click", (e) => {
   const d = e.target.closest("[data-set-dir]");
   if (d) { setDir(d.dataset.setDir); return; }
   const s = e.target.closest("[data-sound]");

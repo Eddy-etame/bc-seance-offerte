@@ -60,7 +60,10 @@ export const HEROS = {
     titre: ["Tu pousses", "la porte."],
     lede:
       "Personne ne se retourne. On te donne des gants, on te montre où poser ton sac. Voilà les quarante-cinq minutes qui suivent.",
-    img: "groupe-rang",
+    // Un cours au sol, mixte, sans casque ni affiche de gala : le registre
+    // « permission » exigé ici. Le coach au ring montrait une affiche de
+    // combat professionnel au mur — exactement ce que C2 interdit.
+    img: "groupe-sol",
   },
 };
 
@@ -130,7 +133,7 @@ export const PEURS = [
 
 /* Direction C — les mêmes peurs, horodatées. Horaires illustratifs, à valider. */
 export const CHAPITRES = [
-  { t: "19:02", h: "Tu te présentes à l'accueil.", p: "On t'attend : ton nom est sur la liste du jour. Tenue de sport, c'est tout ce qu'on t'a demandé.", q: "Je ne saurai pas où aller.", img: "groupe-rang" },
+  { t: "19:02", h: "Tu te présentes à l'accueil.", p: "On t'attend : ton nom est sur la liste du jour. Tenue de sport, c'est tout ce qu'on t'a demandé.", q: "Je ne saurai pas où aller.", img: "salle-minimes" },
   { t: "19:06", h: "On te prête les gants.", p: "Le matériel est prêté. Rien à acheter, rien à prévoir, rien à savoir choisir.", q: "Je n'ai pas de matériel.", img: "portrait-gants" },
   { t: "19:12", h: "Le coach ouvre le cours.", p: "Le cours est encadré du début à la fin. Tu n'as qu'à suivre — il corrige au fur et à mesure.", q: "Personne ne va s'occuper de moi.", img: "coach-ring" },
   { t: "19:20", h: "Tout le monde reprend la garde.", p: "Aucune expérience n'est demandée. On repart des bases à chaque cours.", q: "Je n'ai jamais mis un gant.", img: "coin" },

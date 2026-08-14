@@ -30,6 +30,7 @@ Sort dans `dist/` — HTML, CSS et JS statiques, rien d'autre. Prêt pour Vercel
 | Sélecteur | en haut à droite |
 | Clavier | **1** Le coin · **2** Le laissez-passer · **3** La première fois |
 | URL | `?dir=a` · `?dir=b` · `?dir=c` |
+| **Mode propre** | `?nu=1` — retire le sélecteur et le bouton son. C'est la page telle qu'elle sera en ligne, à montrer au client. |
 
 Le choix est mémorisé. Le bouton **♪** active la cloche de fin de round
 (désactivée par défaut — « sons opt-in uniquement »). Le sélecteur et le son
@@ -77,7 +78,8 @@ Chaque chapitre tue une peur nommée par la recherche.
 | Barre collante | +11 à +20,4 % mesurés · cible ≥ 52 px |
 | Formulaire | 6 respirations · les 2 premières se touchent, aucune frappe · 13,85 % contre 4,53 % pour un formulaire d'un bloc |
 | Champs coûteux | naissance et sexe en **dernier**, après l'engagement, avec leur raison affichée |
-| Objections | 8 peurs dites dans les mots du prospect, puis rayées |
+| Objections | 8 peurs dites dans les mots du prospect, puis rayées ligne à ligne |
+| Plannings | l'affiche officielle de la salle retenue, agrandissable · les jours ne servent qu'au choix, jamais d'horaire inventé |
 | Binôme | section propre — « venir seul » est le frein social documenté n°1 |
 | Un seul rouge | le rouge appartient au 0 € et au bouton principal. Rien d'autre. |
 
@@ -106,6 +108,20 @@ src/styles/
   directions/  a b c
 ```
 
+## Mesuré, pas supposé
+
+| | mobile 390 | desktop 1280 |
+|---|---|---|
+| Premier écran | 384 Ko | 316 Ko |
+| LCP | 1 640 ms | 296 ms |
+
+Contraste : 12/12 au niveau AA. Clavier : 14 éléments parcourus, tous avec
+contour visible. Mouvement réduit : rien ne reste caché.
+
+Trois scripts d'audit vivent dans le dossier de travail (non versionnés) :
+un audit de rendu sur 3 directions × 2 formats, un rejeu du tunnel complet
+dans un vrai navigateur, et un contrôle contraste/clavier/poids.
+
 ## Règles de robustesse tenues ici
 
 1. **Rien ne se cache sans certitude de pouvoir se montrer.** Les états masqués
@@ -123,8 +139,8 @@ src/styles/
 
 | | |
 |---|---|
-| ✅ Réel | Les 5 visuels et les faits des salles (cartes officielles de la boutique) · les 18 photos de salle · les avis Google Minimes (4,3/5 · 157 avis) · les 8 champs Deciplus · palette et polices du brand book |
-| ⚠️ Exemple | Les plannings des 5 salles (bannière visible sur la page) · les horaires des chapitres de la direction C |
+| ✅ Réel | Les 5 visuels et faits des salles (cartes officielles de la boutique) · **les 9 affiches planning officielles du club** (saison 2026-2027, couleur par discipline, sans nom de coach) · les 18 photos de salle · les avis Google Minimes (4,3/5 · 157 avis) · les 8 champs Deciplus · palette, logo et polices du brand book |
+| ⚠️ Exemple | Les horaires des chapitres de la direction C (illustratifs, à valider) |
 | ❌ Écarté | Les 3 images générées par IA du dossier source — interdites par le brand book p.5 · les photos de sparring casqué — registre « combattants » interdit sur cette page · les adresses des salles — aucune source fiable pour les cinq, donc rien d'inventé |
 
 Aucune donnée n'est envoyée : la validation du formulaire est simulée.

@@ -81,3 +81,6 @@
   .tools__lab { display: none; }
   .tools__b { min-width: 28px; height: 28px; line-height: 28px; font-size: 0.9rem; }
 }
+
+/* Mode propre (`?nu=1`) : la page telle qu'elle sera livrée. */
+html.nu .tools { display: none; }

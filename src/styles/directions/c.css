@@ -12,8 +12,9 @@ html[data-dir="c"] #app { padding-left: 0; }
 html[data-dir="c"] .hero__media img { object-position: 50% 46%; }
 html[data-dir="c"] .hero__scrim {
   background:
-    linear-gradient(to top, var(--noir) 1%, rgb(8 8 8 / 0.68) 34%, rgb(8 8 8 / 0.14) 72%),
-    radial-gradient(128% 84% at 46% 44%, transparent 24%, rgb(3 5 11 / 0.92) 100%);
+    linear-gradient(to top, var(--noir) 1%, rgb(8 8 8 / 0.8) 32%, rgb(8 8 8 / 0.3) 70%),
+    linear-gradient(to right, rgb(8 8 8 / 0.82) 4%, rgb(8 8 8 / 0.4) 46%, rgb(8 8 8 / 0.1) 86%),
+    radial-gradient(128% 84% at 46% 44%, transparent 20%, rgb(3 5 11 / 0.94) 100%);
 }
 
 .ts {
