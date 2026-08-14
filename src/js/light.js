@@ -18,8 +18,8 @@ let stopFns = [];
 export function strikeLight(el) {
   if (!el || prefersCalm()) return;
   const frames = [
-    [0, "0"], [70, "0.9"], [150, "0.05"], [240, "1"],
-    [330, "0.12"], [430, "0.8"], [560, "0.35"], [700, ""],
+    [0, "0"], [50, "0.9"], [110, "0.05"], [175, "1"],
+    [235, "0.12"], [305, "0.8"], [390, "0.35"], [490, ""],
   ];
   frames.forEach(([t, v]) => setTimeout(() => { el.style.opacity = v; }, t));
 }

@@ -30,6 +30,12 @@
 <link rel="icon" href="/icon-192.png" sizes="192x192" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
+<!-- L'image du héros est l'élément le plus grand du premier écran : sans
+     préchargement, le navigateur ne la découvre qu'après avoir exécuté le
+     script qui la pose. C'est la direction A par défaut. -->
+<link rel="preload" as="image" href="/img/coin-640.webp"
+      imagesrcset="/img/coin-380.webp 380w, /img/coin-520.webp 520w, /img/coin-640.webp 640w, /img/coin-900.webp 900w, /img/coin-1100.webp 1100w, /img/coin-1537.webp 1537w" imagesizes="100vw" fetchpriority="high" />
+
 <link rel="preload" as="font" type="font/woff2" href="/fonts/bebas-neue-400-latin.woff2" crossorigin />
 <link rel="preload" as="font" type="font/woff2" href="/fonts/montserrat-400-latin.woff2" crossorigin />
 </head>

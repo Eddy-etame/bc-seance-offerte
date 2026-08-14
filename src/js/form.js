@@ -118,7 +118,7 @@ function stepBody(st) {
       .map(
         (o) => `<button type="button" class="opt${o.img ? " opt--img" : ""}" data-pick="${st.key}" data-val="${esc(o.v)}"
           aria-pressed="${cur === o.v}">${
-            o.img ? pic(o.img, { sizes: "(min-width:700px) 210px, 45vw" }) : ""
+            o.img ? pic(o.img, { sizes: "(min-width:700px) 210px, 44vw" }) : ""
           }<b>${esc(o.b)}</b>${o.s ? `<span>${esc(o.s)}</span>` : ""}</button>`
       )
       .join("")}</div>`;

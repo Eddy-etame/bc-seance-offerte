@@ -156,17 +156,17 @@ html.lit .hero__lede,
 html.lit .hero__acts,
 html.lit .hero__proof,
 html.lit .scrollcue { transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
-html.lit .hero__kicker { transition-delay: 0.55s; }
-html.lit .hero__lede { transition-delay: 1.3s; }
-html.lit .hero__acts { transition-delay: 1.4s; }
-html.lit .hero__proof { transition-delay: 1.5s; }
-html.lit .scrollcue { transition-delay: 1.65s; }
+html.lit .hero__kicker { transition-delay: 0.18s; }
+html.lit .hero__lede { transition-delay: 0.5s; }
+html.lit .hero__acts { transition-delay: 0.58s; }
+html.lit .hero__proof { transition-delay: 0.66s; }
+html.lit .scrollcue { transition-delay: 0.76s; }
 
-html.lit .hero h1 .mask > span { transition: transform 0.9s var(--ease); }
-html.lit .hero h1 .mask:nth-of-type(1) > span { transition-delay: 0.68s; }
-html.lit .hero h1 .mask:nth-of-type(2) > span { transition-delay: 0.8s; }
+html.lit .hero h1 .mask > span { transition: transform 0.7s var(--ease); }
+html.lit .hero h1 .mask:nth-of-type(1) > span { transition-delay: 0.24s; }
+html.lit .hero h1 .mask:nth-of-type(2) > span { transition-delay: 0.33s; }
 
-html.lit .price__new { transition: opacity 0.45s var(--ease), transform 0.5s var(--ease-punch); transition-delay: 1.2s; }
+html.lit .price__new { transition: opacity 0.35s var(--ease), transform 0.45s var(--ease-punch); transition-delay: 0.46s; }
 
 @media (prefers-reduced-motion: reduce) {
   html.lit:not(.shown) .hero__kicker,

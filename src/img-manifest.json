@@ -176,6 +176,8 @@
   "lqip": "data:image/webp;base64,UklGRu4AAABXRUJQVlA4IOIAAADQBACdASoUABkAPuloqlCpJaOiqAqpIB0JQBhmsaBJgexxtjJvWWTy3uDCZjDwAAD+QrQBJBbXYhnhnAMKd8Q6Q0v7OjqLFl20zYOtRVslKgz9doj9IaXPGQqFu/OJ7FYUYLIQs+xlDxKAO+tjFbTrfuKead5bJhqj6PFcNM7FQB9V7u5dsajGmgHL/d6VhzRgfslSE76ejR5xG+/S4id3Ejoz//BFUjTxlddqQMc+Xs9uw6aWenZYS3brOqNlUXAZ5Nz6fcOMCqMel7qQCzDFQpEfwMu/AQiNRNqlIGplAAAA",
   "src": "/img/salle-minimes",
   "widths": [
+   380,
+   520,
    640,
    900
   ]
@@ -188,6 +190,8 @@
   "lqip": "data:image/webp;base64,UklGRtwAAABXRUJQVlA4INAAAAAQBQCdASoUABkAPulsrlGpJaQiqAgBIB0JZwAFEB7tx/a3d8b5iPkSf/wk8Adu+V4AAP6ofGG+RE5b38qMsY0H6wZA1V+1zAHlaM/7ujhCO0jC+o9NAbfi151DHjY+UkKKP/8MzsDMYxmwcmuTm2LmlE7b7/EKkDVoOUst4XYEP1gWxkSZOzgs0AO/YdkXnxt+93GSmf7xuWa7hsYhQ/RoCPYXEN5W4xoR1gYzLAvdxt5G4l8cgnWj7V3bHczbgHdjFSBfjMLDVe4MbCfBwAAA",
   "src": "/img/salle-ramonville",
   "widths": [
+   380,
+   520,
    640,
    900
   ]
@@ -200,6 +204,8 @@
   "lqip": "data:image/webp;base64,UklGRroAAABXRUJQVlA4IK4AAADwBACdASoUABkAPuloqE6pJiOiMBgIASAdCUAZC4Id5CfYRSud6WksZJpRjc/7cAAA/FKfEvuWnslOc5aiHAq/sNQQ3JXh6EwjBjG4et/wrUc+WipdQnMDHwOn+rQuY8hno1ay4nwBOwSYitwMrtAvDakO5yr08tQlzkPM8sURm6umJO9wrMhpBdrrsS4VwteovSeWpdpW1sm5wcrnoYCANn7zNW8KOUpyjMxfcAA=",
   "src": "/img/salle-etats-unis",
   "widths": [
+   380,
+   520,
    640,
    900
   ]
@@ -212,6 +218,8 @@
   "lqip": "data:image/webp;base64,UklGRuYAAABXRUJQVlA4INoAAADQBQCdASoUABkAPulorFApJaQiqAqpIB0JZADBzxTsBoFKyx0jl+9J/zf3kNm8tIqyTWbpzDXAAP7xIKMA7XiHdp2m5wo40Pu5u38ft9iiy5WJfohdYjc2J199Xw7S0naWkyt14nOPfN7mGd6VbfcKyHypSlAgoVZPyEO6zkTgABleaCYj9SryDV4z8eLyD7I3m9y3vrmi6NLIuW8d33h6tYQYHtpOf0E2eW0dRe7g7XMEX5TXmrsRM1rV9eLlf3sRRw2x/G/WktM8wZUVHuY+L6nGAA1IAaQAAA==",
   "src": "/img/salle-saint-cyprien",
   "widths": [
+   380,
+   520,
    640,
    900
   ]
@@ -224,6 +232,8 @@
   "lqip": "data:image/webp;base64,UklGRiYBAABXRUJQVlA4IBoBAACwBQCdASoUABkAPulmrVApJaQiqAqpIB0JbAC2+vUqm+gatcicdznlMvkQqkYn+KOHYxm/ErAA/uY9B/kcsH5fJ8vkCwTMUdge/xnTpfgOPqs0KVWo8omyxFXMHTQ83qDdeTNbaOEOSUulmyNWvdDxSzpPQVVawzWOd9vNr54BVQrRejPw3MKnRqjZmfEbVmgc2W5FmiSx8BEzVZynlPF3n0hDBDvFui+h/u2PYKC+V0ssiMyHI04ksCNJ6V/VYoRjKo3esQz7svsx71aafyi/Lv7AWKoMr+OZs3mCFFBjob0DgwHSlYazatiRYVvvRwwq+7arHA0qw2gaNsQHyaYpE5Mlr2jXpUOe248HQB0jWROjJ1tiKEm8gAA=",
   "src": "/img/salle-portet",
   "widths": [
+   380,
+   520,
    640,
    900
   ]
@@ -236,6 +246,8 @@
   "lqip": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAADQAwCdASoUAA0APulgqE0pJaOiMAgBIB0JQBUegyfJVJtdqtMba2AA/vGSIeJzW5eJJhDDEDs0r+unsMrMAeUHxX5BXQGfP1g5ypPakoXrf+/DN+9GWwD+Vd+vZLLyne24H+ep5PnTSkoB1JlwS1tP5TzP1L/bXySZbVL+AiT4Jfl53EHQh57Wd0CexLJiAAA=",
   "src": "/img/coin",
   "widths": [
+   380,
+   520,
    640,
    900,
    1100,

@@ -15,4 +15,4 @@
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3);
 }
 .foot__list li::before { content: ""; width: 4px; height: 4px; background: var(--ink-4); flex: none; }
-.foot__note { font-size: var(--fs-xs); color: var(--ink-4); max-width: 40ch; line-height: 1.6; }
+.foot__note { font-size: var(--fs-xs); color: var(--ink-3); max-width: 40ch; line-height: 1.6; }

@@ -31,7 +31,7 @@ function passHTML(cls) {
     <div class="pass__stub"><span>Séance d'essai offerte · Boxing Center</span></div>
     <div class="pass__body">
       <div class="pass__top">
-        <img class="pass__logo" src="/img/logo-bc-papier-260.png" srcset="/img/logo-bc-papier-260.png 260w, /img/logo-bc-papier-520.png 520w" sizes="108px" width="3542" height="1653" alt="Boxing Center" />
+        <img class="pass__logo" src="/img/logo-bc-papier-260.webp" srcset="/img/logo-bc-papier-260.webp 260w, /img/logo-bc-papier-520.webp 520w" sizes="108px" width="3542" height="1653" alt="Boxing Center" />
         <span>N° ${esc(PASS_NO)}</span>
       </div>
       <p class="pass__title">Laissez-passer<br>une séance</p>
@@ -66,7 +66,7 @@ function heroHTML(dir) {
     <div class="hero__scrim"></div>
 
     <div class="hero__top">
-      <img class="hero__logo" src="/img/logo-bc-sombre-520.png" srcset="/img/logo-bc-sombre-260.png 260w, /img/logo-bc-sombre-520.png 520w" sizes="(min-width:760px) 186px, 132px" width="3542" height="1683" alt="Boxing Center" />
+      <img class="hero__logo" src="/img/logo-bc-sombre-520.webp" srcset="/img/logo-bc-sombre-260.webp 260w, /img/logo-bc-sombre-520.webp 520w" sizes="(min-width:760px) 186px, 132px" width="3542" height="1683" alt="Boxing Center" />
       <span class="hero__src">${esc(SOURCE_LABEL)}</span>
     </div>
 
@@ -190,9 +190,10 @@ function sallesHTML() {
       <div class="doors" data-rv>
         ${SALLES.map(
           (s) => `
-          <button type="button" class="door" data-salle="${s.id}" aria-pressed="false">
-            ${pic(s.img, { sizes: "(min-width:701px) 22vw, 66vw" })}
-            <span class="door__flag">Ta salle</span>
+          <button type="button" class="door" data-salle="${s.id}" aria-pressed="false"
+                  aria-label="Choisir Boxing Center ${esc(s.nom)} — ${esc(s.fait)}">
+            ${pic(s.img, { sizes: "(min-width:1100px) 240px, (min-width:701px) 22vw, 66vw" })}
+            <span class="door__flag" aria-hidden="true">Ta salle</span>
             <span class="door__pick" aria-hidden="true">✓</span>
             <span class="door__name">${esc(s.nom)}</span>
             <span class="door__meta">${esc(s.fait)}</span>
@@ -322,7 +323,7 @@ function footHTML() {
   return `
   <footer class="foot">
     <div class="shell foot__in">
-      <img class="foot__logo" src="/img/logo-bc-sombre-520.png" srcset="/img/logo-bc-sombre-260.png 260w, /img/logo-bc-sombre-520.png 520w" sizes="158px" width="3542" height="1683" alt="Boxing Center" />
+      <img class="foot__logo" src="/img/logo-bc-sombre-520.webp" srcset="/img/logo-bc-sombre-260.webp 260w, /img/logo-bc-sombre-520.webp 520w" sizes="158px" width="3542" height="1683" alt="Boxing Center" />
       <ul class="foot__list">
         <li>Débutants acceptés</li><li>Matériel prêté</li>
         <li>Cours encadrés</li><li>Sans obligation d'inscription</li>
@@ -436,7 +437,8 @@ function paintWeek(salleId) {
     if (!slots.length) {
       return `<div class="day day--empty"><span class="day__nom">${esc(j.court)}</span><span class="day__n">Fermé</span></div>`;
     }
-    return `<button type="button" class="day" data-jour="${j.id}" aria-pressed="${state.jour === j.id}">
+    return `<button type="button" class="day" data-jour="${j.id}" aria-pressed="${state.jour === j.id}"
+      aria-label="Choisir le ${esc(j.nom.toLowerCase())} — ${easy} cours pour débutants sur ${slots.length}">
       <span class="day__nom">${esc(j.court)}</span>
       <span class="day__n"><b>${easy}</b> pour débutants · ${slots.length} cours</span>
       <span class="day__slots">${slots
