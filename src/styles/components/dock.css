@@ -69,3 +69,15 @@
   color: var(--rouge); border-color: var(--rouge); background: rgb(232 0 28 / 0.1);
 }
 .tools__sep { width: 1px; height: 20px; background: var(--line); margin-inline: 3px; }
+
+@media (max-width: 760px) {
+  /* Les outils de maquette ne doivent jamais couvrir le logo officiel. */
+  .tools {
+    top: auto; bottom: 8px; right: auto; left: 8px;
+    padding: 4px 5px; opacity: 0.32;
+    transition: opacity var(--t) var(--ease);
+  }
+  .tools:hover, .tools:focus-within { opacity: 1; }
+  .tools__lab { display: none; }
+  .tools__b { min-width: 28px; height: 28px; line-height: 28px; font-size: 0.9rem; }
+}

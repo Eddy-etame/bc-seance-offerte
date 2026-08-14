@@ -25,8 +25,8 @@
     /* fibres du papier */
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23p)' opacity='0.32'/></svg>"),
     /* guilloche : trame de sécurité */
-    repeating-conic-gradient(from 0deg at 50% 50%, rgb(32 37 75 / 0.045) 0deg 3deg, transparent 3deg 6deg),
-    repeating-linear-gradient(58deg, rgb(32 37 75 / 0.03) 0 1px, transparent 1px 9px),
+    repeating-linear-gradient(58deg, rgb(32 37 75 / 0.035) 0 1px, transparent 1px 7px),
+    repeating-linear-gradient(-58deg, rgb(32 37 75 / 0.028) 0 1px, transparent 1px 7px),
     linear-gradient(172deg, var(--paper) 0%, var(--paper-2) 100%);
   background-blend-mode: multiply, normal, normal, normal;
 }
@@ -71,7 +71,7 @@
   font-family: var(--f-mono); font-size: 9.5px;
   letter-spacing: 0.2em; text-transform: uppercase; color: var(--paper-mute);
 }
-.pass__top b { color: var(--navy-logo); font-weight: 500; }
+.pass__logo { width: 104px; height: auto; flex: none; }
 
 .pass__title {
   font-family: var(--f-display);
@@ -112,12 +112,12 @@
 
 /* — pied : code-barres + mention — */
 .pass__foot {
-  display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;
+  display: flex; align-items: flex-end; gap: 16px;
   margin-top: 18px; padding-top: 13px;
   border-top: 1px solid rgb(32 37 75 / 0.16);
 }
 .pass__code {
-  flex: 1; height: 34px; min-width: 0;
+  flex: none; width: 54%; height: 34px; min-width: 0;
   background-image: repeating-linear-gradient(90deg,
     var(--navy-logo) 0 1px, transparent 1px 3px,
     var(--navy-logo) 3px 5px, transparent 5px 6px,
@@ -125,18 +125,13 @@
     var(--navy-logo) 11px 12px, transparent 12px 15px);
   opacity: 0.82;
 }
-.pass__mention {
-  flex: none; max-width: 46%;
-  font-family: var(--f-mono); font-size: 8px; line-height: 1.5;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--paper-mute); text-align: right;
-}
+
 
 /* — le tampon : encre rouge, bords irréguliers, posé de travers — */
 .pass__stamp {
   position: absolute; z-index: 3;
-  right: 12px; bottom: 44px;
-  rotate: -13deg;
+  right: 16px; bottom: 14px;
+  rotate: -8deg;
   padding: 7px 15px 4px;
   border: 3px double var(--rouge);
   border-radius: 2px;
@@ -166,3 +161,19 @@ html.lit .pass__stamp { transition: opacity 0.3s var(--ease) 1.1s, scale 0.42s v
 /* — le pass qui accompagne le formulaire — */
 .pass-live { position: sticky; top: 24px; }
 .pass-live .pass { rotate: -0.8deg; }
+
+/* Sur mobile, le titre d'accès occupait 60 % de l'écran et repoussait
+   l'appel à l'action sous le pli. Version compacte dans le héros ;
+   la version complète, qui se remplit ligne à ligne, reste au formulaire. */
+@media (max-width: 760px) {
+  .pass-hero { grid-template-columns: 40px 1fr; }
+  .pass-hero .pass__body { padding: 15px 16px 13px; }
+  .pass-hero .pass__title { font-size: 1.9rem; margin-top: 10px; }
+  .pass-hero .pass__sub { display: none; }
+  .pass-hero .pass__lines { margin-top: 12px; }
+  .pass-hero .pass__row:nth-of-type(n + 3) { display: none; }
+  .pass-hero .pass__foot { margin-top: 13px; padding-top: 10px; }
+  .pass-hero .pass__logo { width: 88px; }
+  .pass-hero .pass__stamp { font-size: 1.35rem; padding: 5px 11px 3px; bottom: 11px; right: 12px; }
+  .pass-hero .pass__stamp small { display: none; }
+}

@@ -28,28 +28,40 @@
 
 .fear__n {
   font-family: var(--f-mono); font-size: var(--fs-micro);
-  letter-spacing: 0.18em; color: var(--ink-4);
+  letter-spacing: 0.18em; color: var(--ink-3);
   font-variant-numeric: tabular-nums; padding-top: 0.7em;
 }
 
 /* l'objection, en grand, telle qu'elle est dite à l'accueil */
 .fear__q {
-  position: relative; display: inline;
+  display: block;
   font-family: var(--f-display); font-size: var(--fs-line);
   line-height: 0.94; letter-spacing: 0.006em;
   color: var(--ink-2);
   text-transform: uppercase;
 }
-.fear__qw { position: relative; display: inline-block; }
-.fear__qw::after {
-  content: ""; position: absolute; left: -0.04em; right: -0.04em; top: 52%;
-  height: max(3px, 0.045em); background: var(--rouge);
-  transform-origin: left; transform: scaleX(0);
+/* La rature doit barrer CHAQUE ligne, à la largeur de chaque ligne.
+   Un pseudo-élément en position absolue ne trace qu'un trait pour tout
+   le bloc : sur une objection de deux lignes, il passait entre les deux.
+   Le fond d'un élément en ligne, lui, est peint fragment par fragment —
+   `box-decoration-break: clone` donne un trait par ligne, chacun à sa
+   propre largeur, et tous se tracent ensemble. */
+.fear__qw {
+  display: inline;
+  background-image: linear-gradient(var(--rouge), var(--rouge));
+  background-repeat: no-repeat;
+  background-position: 0 46%;
+  background-size: 100% max(3px, 0.038em);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
-html.rv-on .fear.is-in .fear__qw::after { transform: scaleX(1); transition: transform 0.62s var(--ease-io) 0.18s; }
-html:not(.rv-on) .fear__qw::after { transform: scaleX(1); }
+html.rv-on .fear .fear__qw { background-size: 0% max(3px, 0.038em); }
+html.rv-on .fear.is-in .fear__qw {
+  background-size: 100% max(3px, 0.038em);
+  transition: background-size 0.62s var(--ease-io) 0.2s;
+}
 @media (prefers-reduced-motion: reduce) {
-  .fear__qw::after { transform: scaleX(1); transition: none; }
+  html.rv-on .fear .fear__qw { background-size: 100% max(3px, 0.038em); transition: none; }
 }
 
 .fear__a {

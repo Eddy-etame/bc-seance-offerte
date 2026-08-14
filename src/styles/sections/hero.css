@@ -9,10 +9,11 @@
   position: relative; isolation: isolate;
   min-height: 100svh;
   display: flex; flex-direction: column;
-  overflow: hidden;
+  /* PAS d'overflow ici : c'est ce qui coupait le titre quand le contenu
+     dépassait un écran. Seul le média est rogné. */
 }
 
-.hero__media { position: absolute; inset: 0; z-index: -2; }
+.hero__media { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
 .hero__media .ph { width: 100%; height: 100%; }
 .hero__media img { object-position: 62% 40%; }
 
@@ -26,12 +27,18 @@
 
 /* — barre haute — */
 .hero__top {
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  padding: 22px var(--gutter) 0;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: clamp(16px, 2.4vw, 26px) var(--gutter) 0;
+  /* La zone de protection du logo vaut la hauteur du mot CENTER (brand book) :
+     on la réserve ici pour que rien ne vienne se coller au filet bronze. */
+  margin-bottom: clamp(26px, 4.2vh, 54px);
 }
-.hero__mark {
-  font-family: var(--f-display); font-size: 1.05rem;
-  letter-spacing: 0.38em; color: rgb(245 245 245 / 0.92);
+/* Le logo officiel, jamais recomposé en texte (brand book p.2).
+   Zone de protection : l'espace autour vaut la hauteur du mot CENTER,
+   soit environ un tiers de la hauteur du bloc. */
+.hero__logo {
+  width: clamp(122px, 13vw, 176px); height: auto;
+  filter: drop-shadow(0 2px 14px rgb(0 0 0 / 0.55));
 }
 .hero__src {
   display: inline-flex; align-items: center; gap: 8px;
@@ -45,32 +52,28 @@
 
 /* — corps — */
 .hero__body {
-  margin-top: auto;
-  padding: 0 var(--gutter) clamp(38px, 7vw, 76px);
+  margin-top: auto; padding-top: clamp(28px, 5.5vh, 60px);
+  padding: 0 var(--gutter) clamp(30px, 4.4vw, 52px);
   display: flex; flex-direction: column;
-  gap: clamp(16px, 2.4vw, 26px);
+  gap: clamp(12px, 1.7vw, 20px);
   width: 100%; max-width: 1120px;
 }
 
 .hero__kicker {
   font-family: var(--f-mono); font-size: var(--fs-xs);
-  letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-2);
-  max-width: 34ch;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-2);
+  max-width: 52ch;
 }
 
 .hero h1 {
-  font-size: var(--fs-hero);
-  line-height: 0.82;
+  font-size: min(var(--fs-hero), 21vh);
+  line-height: 0.84;
   letter-spacing: -0.002em;
 }
-/* Le second vers porte le poids : il est souligné par le trait rouge. */
-.hero h1 .underline { position: relative; display: inline-block; }
-.hero h1 .underline::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: 0.1em; height: 0.055em;
-  background: var(--rouge);
-  transform-origin: left; transform: scaleX(1);
-  transition: transform 0.7s var(--ease) 0.95s;
-}
+/* Pas de trait sous le titre : il lisait comme un séparateur de section et
+   volait le rouge au 0 €. La loi de l'économie des couleurs veut qu'une
+   seule chose crie — c'est le prix, pas la typographie. */
+.hero h1 .underline { display: inline-block; }
 
 .hero__lede {
   max-width: 44ch; font-size: var(--fs-lede);
@@ -86,7 +89,7 @@
 }
 .price__new {
   font-family: var(--f-display);
-  font-size: clamp(3.4rem, 9vw, 6.4rem);
+  font-size: min(clamp(3rem, 7.6vw, 5.4rem), 13vh);
   line-height: 0.8; color: var(--rouge);
   /* « italique avant 5-8° pour le momentum sur les prix » — brand book */
   transform: skewX(-7deg);
@@ -115,7 +118,7 @@
 .hero__proof li::before { content: ""; width: 4px; height: 4px; background: var(--rouge); flex: none; }
 
 .scrollcue {
-  position: absolute; left: var(--gutter); bottom: 14px; z-index: 3;
+  position: absolute; left: var(--gutter); bottom: 10px; z-index: 3;
   display: flex; align-items: center; gap: 10px;
   font-family: var(--f-mono); font-size: var(--fs-micro);
   letter-spacing: var(--tr-mono); text-transform: uppercase; color: var(--ink-4);

@@ -50,7 +50,7 @@ h1, h2, h3, h4, .display {
 p { margin: 0; }
 img, svg, canvas { display: block; max-width: 100%; }
 button { font: inherit; color: inherit; background: none; border: 0; }
-ul { margin: 0; padding: 0; list-style: none; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
 s { text-decoration-thickness: 2px; }
 
 ::selection { background: var(--rouge); color: #fff; }
@@ -67,12 +67,14 @@ s { text-decoration-thickness: 2px; }
 }
 
 .eyebrow {
-  display: inline-flex; align-items: center; gap: 10px;
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px;
   font-family: var(--f-mono); font-size: var(--fs-micro);
   letter-spacing: var(--tr-mono); text-transform: uppercase; color: var(--ink-3);
+  line-height: 1.5;
 }
 .eyebrow::before {
-  content: ""; width: 22px; height: 1px; background: var(--rouge); flex: none;
+  content: ""; width: 22px; height: 1px; background: var(--rouge);
+  flex: none; align-self: center;
 }
 
 .skip {

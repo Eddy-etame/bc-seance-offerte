@@ -20,7 +20,7 @@
 
 /* Le numéro de round, gravé dans la marge de la section */
 .sect__mark {
-  position: absolute; top: calc(var(--sect) - 0.28em); left: 0;
+  position: absolute; top: calc(var(--sect) * 0.42); left: 0;
   font-family: var(--f-display); font-size: clamp(6rem, 16vw, 15rem);
   line-height: 0.7; color: rgb(255 255 255 / 0.022);
   pointer-events: none; user-select: none;

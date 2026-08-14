@@ -40,11 +40,18 @@ export function mountLight(el) {
     target = (e.clientX / window.innerWidth) * 100;
     target = 32 + (target - 50) * 0.55; // amplitude contenue : la lampe est accrochée au plafond
   };
+  /* Le projecteur est braqué sur le coin : plein feu dans le premier écran,
+     puis il redevient une ambiance. Sans cette décroissance, le faisceau
+     traverse les sections comme un triangle plein et lave le texte. */
   const onScroll = () => {
+    const y = window.scrollY;
+    const k = 1 - Math.min(1, y / Math.max(1, window.innerHeight * 0.9)) * 0.74;
+    el.style.setProperty("--k", k.toFixed(3));
     if (window.matchMedia("(pointer: fine)").matches) return;
-    const p = window.scrollY / Math.max(1, document.body.scrollHeight - window.innerHeight);
+    const p = y / Math.max(1, document.body.scrollHeight - window.innerHeight);
     target = 40 + Math.sin(p * Math.PI * 2) * 12;
   };
+  onScroll();
 
   window.addEventListener("pointermove", onMove, { passive: true });
   window.addEventListener("scroll", onScroll, { passive: true });

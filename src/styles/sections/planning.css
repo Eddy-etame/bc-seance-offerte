@@ -9,13 +9,13 @@
 
 .week {
   display: grid; gap: 8px;
-  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(152px, 1fr));
 }
 @media (max-width: 620px) { .week { grid-template-columns: repeat(2, 1fr); } }
 
 .day {
   position: relative; isolation: isolate;
-  min-height: 128px; padding: 16px 16px 14px;
+  min-height: 150px; padding: 16px 14px 14px;
   display: flex; flex-direction: column; gap: 4px;
   text-align: left; cursor: pointer;
   border: 1px solid var(--line); border-radius: var(--r);
@@ -45,7 +45,8 @@
   font-family: var(--f-mono); font-size: 0.6875rem; color: var(--ink-3);
   font-variant-numeric: tabular-nums;
 }
-.day__slots span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.day__slots span { display: block; line-height: 1.45; text-wrap: pretty; }
+.day__slots span b { font-weight: 400; }
 .day__slots span.easy { color: var(--ink); }
 .day__slots span.easy::before { content: "■ "; color: var(--rouge); }
 .day--empty { opacity: 0.42; cursor: default; }

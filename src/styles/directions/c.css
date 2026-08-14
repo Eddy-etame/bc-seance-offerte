@@ -17,10 +17,25 @@ html[data-dir="c"] .hero__scrim {
 }
 
 .ts {
+  display: inline-flex; align-items: center; gap: 9px;
+  align-self: flex-start;
   font-family: var(--f-mono);
-  font-size: clamp(0.875rem, 2.2vw, 1.125rem);
+  font-size: clamp(0.875rem, 2.2vw, 1.0625rem);
   letter-spacing: 0.26em; color: var(--rouge);
   font-variant-numeric: tabular-nums;
+}
+/* Un point rouge et un filet : l'horodatage se perdait sur les zones
+   claires de la photo, il lui fallait un ancrage graphique. */
+.ts::before {
+  content: ""; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--rouge); flex: none;
+  box-shadow: 0 0 0 4px rgb(232 0 28 / 0.18);
+}
+.hero .ts {
+  padding: 5px 12px 4px 10px;
+  background: rgb(6 8 14 / 0.72);
+  backdrop-filter: blur(6px);
+  border-left: 2px solid var(--rouge);
 }
 
 /* — les chapitres — */

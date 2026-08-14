@@ -40,21 +40,21 @@
 .door .ph { position: absolute; inset: 0; z-index: -2; }
 .door .ph img {
   transition: opacity 0.8s var(--ease), transform 1.2s var(--ease), filter var(--t) var(--ease);
-  filter: contrast(1.08) saturate(0.86) brightness(0.72);
+  filter: contrast(1.06) saturate(0.94) brightness(0.86);
 }
 .door::after {
   content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: linear-gradient(to top,
-    rgb(5 8 14 / 0.96) 8%,
-    rgb(5 8 14 / 0.6) 42%,
-    rgb(5 8 14 / 0.18) 74%);
+    rgb(5 8 14 / 0.94) 6%,
+    rgb(5 8 14 / 0.52) 40%,
+    rgb(5 8 14 / 0.1) 76%);
   transition: opacity var(--t) var(--ease);
 }
 .door:hover, .door:focus-visible { border-color: var(--ink-3); transform: translateY(-4px); }
-.door:hover .ph img { transform: scale(1.06); filter: contrast(1.08) saturate(1) brightness(0.86); }
+.door:hover .ph img { transform: scale(1.06); filter: contrast(1.06) saturate(1.02) brightness(0.98); }
 
 .door[aria-pressed="true"] { border-color: var(--rouge); }
-.door[aria-pressed="true"] .ph img { filter: contrast(1.1) saturate(1.04) brightness(0.94); }
+.door[aria-pressed="true"] .ph img { filter: contrast(1.08) saturate(1.06) brightness(1); }
 .door[aria-pressed="true"]::after { opacity: 0.82; }
 
 .door__name {

@@ -28,9 +28,12 @@ const DIRS = ["a", "b", "c"];
 function passHTML(cls) {
   return `
   <div class="pass ${cls}">
-    <div class="pass__stub"><span>Boxing Center · Séance d'essai</span></div>
+    <div class="pass__stub"><span>Séance d'essai offerte · Boxing Center</span></div>
     <div class="pass__body">
-      <div class="pass__top"><b>Titre d'accès</b><span>N° ${esc(PASS_NO)}</span></div>
+      <div class="pass__top">
+        <img class="pass__logo" src="/img/logo-bc-papier-260.png" srcset="/img/logo-bc-papier-260.png 260w, /img/logo-bc-papier-520.png 520w" sizes="108px" width="3542" height="1653" alt="Boxing Center" />
+        <span>N° ${esc(PASS_NO)}</span>
+      </div>
       <p class="pass__title">Laissez-passer<br>une séance</p>
       <p class="pass__sub">Valable une entrée · toutes disciplines</p>
       <dl class="pass__lines">
@@ -42,7 +45,6 @@ function passHTML(cls) {
       </dl>
       <div class="pass__foot">
         <span class="pass__code" aria-hidden="true"></span>
-        <span class="pass__mention">Matériel prêté<br>Sans obligation d'inscription</span>
       </div>
     </div>
     <span class="pass__stamp">Offerte<small>10 € → 0 €</small></span>
@@ -64,7 +66,7 @@ function heroHTML(dir) {
     <div class="hero__scrim"></div>
 
     <div class="hero__top">
-      <span class="hero__mark">BOXING CENTER</span>
+      <img class="hero__logo" src="/img/logo-bc-sombre-520.png" srcset="/img/logo-bc-sombre-260.png 260w, /img/logo-bc-sombre-520.png 520w" sizes="(min-width:760px) 186px, 132px" width="3542" height="1683" alt="Boxing Center" />
       <span class="hero__src">${esc(SOURCE_LABEL)}</span>
     </div>
 
@@ -322,7 +324,7 @@ function footHTML() {
   return `
   <footer class="foot">
     <div class="shell foot__in">
-      <span class="foot__mark">BOXING CENTER</span>
+      <img class="foot__logo" src="/img/logo-bc-sombre-520.png" srcset="/img/logo-bc-sombre-260.png 260w, /img/logo-bc-sombre-520.png 520w" sizes="158px" width="3542" height="1683" alt="Boxing Center" />
       <ul class="foot__list">
         <li>Débutants acceptés</li><li>Matériel prêté</li>
         <li>Cours encadrés</li><li>Sans obligation d'inscription</li>
@@ -335,11 +337,13 @@ function footHTML() {
 function roundsHTML() {
   return `
   <nav class="rounds" aria-label="Progression">
-    <span class="rounds__lab">Le combat</span>
-    <div class="rounds__track"><span class="rounds__fill"></span><span class="rounds__bell"></span></div>
-    <ol class="rounds__list">
-      ${ROUNDS.map((r) => `<li class="rounds__item" title="${esc(r.label)}">${r.n}</li>`).join("")}
-    </ol>
+    <div class="rounds__in">
+      <span class="rounds__lab">Le combat</span>
+      <div class="rounds__track"><span class="rounds__fill"></span><span class="rounds__bell"></span></div>
+      <ol class="rounds__list">
+        ${ROUNDS.map((r) => `<li class="rounds__item" title="${esc(r.label)}">${r.n}</li>`).join("")}
+      </ol>
+    </div>
   </nav>`;
 }
 
@@ -509,13 +513,32 @@ function mountObservers(dir) {
     mountRounds(document.querySelector(".rounds"), ids);
   }
 
-  const acts = document.querySelector(".hero__acts");
-  if (acts && "IntersectionObserver" in window) {
+  /* La barre collante ne doit jamais doubler un bouton déjà à l'écran :
+     deux rouges identiques l'un sous l'autre, c'est la loi de l'économie
+     des couleurs qui saute. Elle s'efface dès qu'un appel à l'action est
+     visible, et revient sitôt qu'il sort du champ. */
+  const anchors = [
+    document.querySelector(".hero__acts"),
+    ...document.querySelectorAll(".act"),
+    // La section d'inscription entière : la barre y masquait les tuiles de
+    // salle et doublait le bouton « Continuer ». C'est là que la conversion
+    // se joue, on ne met rien devant.
+    document.getElementById("inscription"),
+  ].filter(Boolean);
+
+  if (anchors.length && "IntersectionObserver" in window) {
+    const visible = new Set();
     dockIO = new IntersectionObserver(
-      ([en]) => { dockFired = true; dock.classList.toggle("is-on", !en.isIntersecting); },
-      { threshold: 0 }
+      (entries) => {
+        dockFired = true;
+        entries.forEach((en) => (en.isIntersecting ? visible.add(en.target) : visible.delete(en.target)));
+        dock.classList.toggle("is-on", visible.size === 0 && window.scrollY > 60);
+      },
+      // La marge basse vaut la hauteur de la barre : un bouton caché DERRIÈRE
+      // elle ne compte pas comme visible, un bouton juste au-dessus si.
+      { threshold: 0, rootMargin: "-60px 0px -96px 0px" }
     );
-    dockIO.observe(acts);
+    anchors.forEach((a) => dockIO.observe(a));
   }
 
   if (dir === "c") {
