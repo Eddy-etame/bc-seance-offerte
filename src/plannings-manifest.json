@@ -1,0 +1,120 @@
+{
+ "minimes": [
+  {
+   "slug": "planning-minimes",
+   "label": "Tous les cours",
+   "w": 1200,
+   "h": 1096,
+   "widths": [
+    480,
+    760,
+    1200
+   ],
+   "lqip": "data:image/webp;base64,UklGRtoAAABXRUJQVlA4IM4AAABwBQCdASoUABIAPuloqVCpJaOiqAqpIB0JbACpFNoJY6YAAlcUWEu9bxBzA8gkIL8anW1AAP7w+1GnZRMsMlYBMQelExcW7W18se7V4bQ7zq9N7To4kkGyDOGGkvFsiOewOS81klTVRV8EjWEi7PWjubNmQ2ip8FHbO6hz4ZTSQWwPhvmRzFo4fzZMkzm/4p1NBdwRzoApGGhpzyHdgDRUf8eq0ykaX9G/1RdchNCQnxBP4TZg9JyQHdZbFTq2uYzZJO+lepE86nQ5xqAAAA=="
+  }
+ ],
+ "ramonville": [
+  {
+   "slug": "planning-ramonville",
+   "label": "Tous les cours",
+   "w": 1200,
+   "h": 892,
+   "widths": [
+    480,
+    760,
+    1200
+   ],
+   "lqip": "data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAABQBACdASoUAA8APulgqE0pJaOiMAgBIB0JbACxDDfJ/gNus2p7vxYTE4WQAP7w+229fWkDmVgg4Hw1RwAR9Tns5TMYnTE7uNGDBiZfs7aPzZ7Zy11mJxB0a2mKxSmBgA0GLLmh8WQSKnG4+iuZjel0VP/IWc7T00NFY4a9+F93M5v6PGjPfSdrd7kgsvVsANI6rnoyGyWOVZxDh4pMyb64bAA="
+  }
+ ],
+ "etats-unis": [
+  {
+   "slug": "planning-etats-unis-boxe",
+   "label": "Boxe",
+   "w": 1200,
+   "h": 830,
+   "widths": [
+    480,
+    760,
+    1200
+   ],
+   "lqip": "data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAABQBACdASoUAA4APuleqE0pJSOiMAgBIB0JZAC7GuAwQD1/wGxv/TCA2dG0AP7w+2MuydRrub3ZosZhoIi6Me47tvJ1vTF+I+dB4aJitOLyNQN9mUq553ADiBblIi/2hnKbjYHM9tSyPUCXh/zRMQ4jfm7zm73tcyEfpzMyL9KAga8zm+GfmB5zm0p4GGjLUMV/ZpgA"
+  },
+  {
+   "slug": "planning-etats-unis-fitness",
+   "label": "Fitness",
+   "w": 1200,
+   "h": 644,
+   "widths": [
+    480,
+    760,
+    1200
+   ],
+   "lqip": "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAAAwBACdASoUAAsAPulgqE0pJaQiMAgBIB0JQBWEIBE/wGyo6CVm96v3AAAA/vD7SeDJD1qPrAzwbDYG84FmrZTD94nFUcRAl5TJJzVCETZYVcfv9zn8DCz6xEFlXUh7Q2UnMrhuGTqZDA2xMw7xYXteXlh4/tIAAAA="
+  },
+  {
+   "slug": "planning-etats-unis-mma",
+   "label": "MMA",
+   "w": 1200,
+   "h": 706,
+   "widths": [
+    480,
+    760,
+    1200
+   ],
+   "lqip": "data:image/webp;base64,UklGRogAAABXRUJQVlA4IHwAAAAQBACdASoUAAwAPulgqE2pJaQiMAgBIB0JZAC7GuAAUG16xVHufym0rAD+8PtKceQitQrcFu1JELSPoPhlbwGbAase4PL3d5Y2He2aoAoK1PctF6sY3ca7iy2LgWs2vkUZ/z3ZcaMwpGGESPlsQJ9F7VFf94QTfot2BggA"
+  }
+ ],
+ "portet": [
+  {
+   "slug": "planning-portet-provisoire",
+   "label": "Salle actuelle",
+   "w": 1200,
+   "h": 1037,
+   "widths": [
+    480,
+    760,
+    1200
+   ],
+   "lqip": "data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAAAwBACdASoUABEAPulkqE8pJaQiKA1RIB0JZAC7MoABfp2qd8cWmJl8GAAA/vD7UadlGMxvtJWLuljk6Kjl1SdoXzG+qTsDz9Z84IoJEG6Jh/qC+KHPYbDCCd47dpy/K1g10DGbXd4czeXTT8PNtGzqF9b/tYaF4cBew24jbAl3V+B/JHLk6cPsbQJJ8YIsjNrikBO1AQn7Zh9X7FlkzEq0AAA="
+  },
+  {
+   "slug": "planning-portet-combat",
+   "label": "Salle de combat",
+   "w": 1200,
+   "h": 892,
+   "widths": [
+    480,
+    760,
+    1200
+   ],
+   "lqip": "data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAADwBACdASoUAA8APulgqE0pJaOiMAgBIB0JbACdIIpcV+vGA2fdgp47kb0Hd85m05wA/vD7SnHkIkPK3SUdYj9jnKarHIYeMaX6HhllW8svBoiQ3oMhRYYtJ/IW3RmJpGWfvq9dRTVivZhMBtOUFzV3cJMRl6WqOm2f27zzv7oUdM8rBTl6LUrmgtQHaAhxEhfhuGxGP4nqesecNzg3w3gA"
+  },
+  {
+   "slug": "planning-portet-mma",
+   "label": "MMA",
+   "w": 1200,
+   "h": 1037,
+   "widths": [
+    480,
+    760,
+    1200
+   ],
+   "lqip": "data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAABQBACdASoUABEAPuliqk4pJaiiKA1RIB0JYgC1GyQA6AUOrMf9uhmO5tsgAP7w+19gH47rV5OxisT4FUohlH9ldPg4hiirwJQXp7E5ao1V2fe5RT5VDkyqHkuDJASWzdWOiwSZdANQr+Us+o67/cEKqYo15W5c6VKcn98+LS5k6hO5KrlGDsH617+cADnt+Oc+p5IeJQAAAA=="
+  }
+ ],
+ "st-cyprien": [
+  {
+   "slug": "planning-saint-cyprien",
+   "label": "Tous les cours",
+   "w": 1200,
+   "h": 1052,
+   "widths": [
+    480,
+    760,
+    1200
+   ],
+   "lqip": "data:image/webp;base64,UklGRroAAABXRUJQVlA4IK4AAACwBACdASoUABIAPulqqlCpJiOiqAqpIB0JZgC7Ef/gG7cv+/0LPMThL4aAENQAAP7w+2NFo6CaeSSo2iOy0lzhcvXGyiK/To29T7OwIae+VTjrV87THDne8YB36OgVbLSb69w+Abstr4SEDNzEm8RisohxnAQofoz7P32GRl0c4BLnKd6L3w3DjBEvu5KnvILKTEtkjPSv+DSl39S/sb/lHpeyw0h/HR4ihSPgAAA="
+  }
+ ]
+}

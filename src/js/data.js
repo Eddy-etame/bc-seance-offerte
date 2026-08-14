@@ -138,52 +138,10 @@ export const CHAPITRES = [
   { t: "19:50", h: "Tu repars libre.", p: "Séance sans obligation d'inscription. Si tu reviens, ce sera parce que tu en as envie.", q: "Je vais devoir m'inscrire derrière.", img: "femme-garde" },
 ];
 
-/* §6.4 — plannings. DONNÉES D'EXEMPLE, bannière visible à l'écran.
-   Le prospect ne choisit ni l'heure ni le cours : seulement salle + jour.
-   `true` = créneau accessible sans expérience. */
-export const PLANNINGS_EXEMPLE = {
-  _exemple: true,
-  minimes: {
-    lundi: [["18:30", "Boxe anglaise", true], ["19:45", "Boxing Fitness", true]],
-    mardi: [["12:15", "Crosstraining", false], ["19:00", "Kick-Boxing", true]],
-    mercredi: [["18:00", "Lady Boxing", true], ["19:30", "Boxe anglaise", false]],
-    jeudi: [["19:00", "Boxe pieds-poings", true]],
-    vendredi: [["18:30", "Boxing Fitness", true], ["20:00", "Boxe anglaise", false]],
-    samedi: [["10:30", "Boxe anglaise", true]],
-  },
-  "st-cyprien": {
-    lundi: [["19:00", "Boxe anglaise", true]],
-    mardi: [["18:30", "Boxing Fitness", true], ["20:00", "Grappling", false]],
-    mercredi: [["18:00", "Lady Boxing", true]],
-    jeudi: [["19:15", "Kick-Boxing", true], ["20:30", "JJB", false]],
-    vendredi: [["18:30", "Boxe anglaise", true]],
-    samedi: [["11:00", "Boxing Fitness", true]],
-  },
-  ramonville: {
-    lundi: [["18:45", "Boxe pieds-poings", true]],
-    mardi: [["19:00", "Boxe anglaise", true]],
-    mercredi: [["18:15", "Boxing Fitness", true], ["19:45", "MMA", false]],
-    jeudi: [["19:00", "Lady Boxing", true]],
-    vendredi: [["18:30", "Kick-Boxing", true]],
-    samedi: [["10:00", "Boxe anglaise", true]],
-  },
-  "etats-unis": {
-    lundi: [["18:30", "Boxe anglaise", true], ["20:00", "MMA", false]],
-    mardi: [["19:00", "Boxing Fitness", true]],
-    mercredi: [["18:00", "Boxe française", true]],
-    jeudi: [["19:30", "Grappling", false]],
-    vendredi: [["18:30", "Lady Boxing", true]],
-    samedi: [["10:30", "Boxe anglaise", true], ["12:00", "Crosstraining", false]],
-  },
-  portet: {
-    lundi: [["19:00", "Kick-Boxing", true]],
-    mardi: [["18:30", "Boxe anglaise", true], ["20:00", "MMA", false]],
-    mercredi: [["18:00", "Boxing Fitness", true]],
-    jeudi: [["19:15", "Boxe française", true]],
-    vendredi: [["18:45", "Grappling", false]],
-    samedi: [["10:30", "Boxe anglaise", true]],
-  },
-};
+/* §6.4 — les plannings sont les AFFICHES OFFICIELLES du club
+   (bc-plannings, saison 2026-2027, couleur par discipline, aucun nom de
+   coach). Plus aucune donnée inventée : le manifeste
+   `plannings-manifest.json` fait foi. */
 
 /* Avis Google réels, verbatim, relevé du 2026-07-12.
    États-Unis n'a aucun avis citable : on n'affiche rien plutôt qu'inventer. */

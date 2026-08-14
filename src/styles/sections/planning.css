@@ -15,8 +15,8 @@
 
 .day {
   position: relative; isolation: isolate;
-  min-height: 150px; padding: 16px 14px 14px;
-  display: flex; flex-direction: column; gap: 4px;
+  min-height: 104px; padding: 16px 14px 14px;
+  display: flex; flex-direction: column; gap: 3px;
   text-align: left; cursor: pointer;
   border: 1px solid var(--line); border-radius: var(--r);
   background: var(--surface);
@@ -24,33 +24,77 @@
 }
 .day::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
-  background: rgb(232 0 28 / 0.08);
+  background: rgb(232 0 28 / 0.1);
   transform: scaleY(0); transform-origin: bottom;
   transition: transform var(--t) var(--ease);
 }
 .day:hover { border-color: var(--ink-4); transform: translateY(-2px); }
 .day[aria-pressed="true"] { border-color: var(--rouge); }
 .day[aria-pressed="true"]::before { transform: scaleY(1); }
-
 .day__nom {
-  font-family: var(--f-display); font-size: 1.75rem; line-height: 1; letter-spacing: 0.03em;
+  font-family: var(--f-display); font-size: 2rem; line-height: 1; letter-spacing: 0.03em;
 }
-.day__n {
+.day__long {
   font-family: var(--f-mono); font-size: var(--fs-micro);
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3);
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
 }
-.day__n b { color: var(--rouge); font-weight: 400; }
-.day__slots {
-  margin-top: auto; display: flex; flex-direction: column; gap: 2px;
-  font-family: var(--f-mono); font-size: 0.6875rem; color: var(--ink-3);
-  font-variant-numeric: tabular-nums;
+.day[aria-pressed="true"] .day__long { color: var(--ink-2); }
+.day__pick {
+  position: absolute; top: 12px; right: 12px;
+  width: 22px; height: 22px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 11px;
+  border: 1px solid var(--line); color: transparent;
+  transition: background var(--t), border-color var(--t), color var(--t);
 }
-.day__slots span { display: block; line-height: 1.45; text-wrap: pretty; }
-.day__slots span b { font-weight: 400; }
-.day__slots span.easy { color: var(--ink); }
-.day__slots span.easy::before { content: "■ "; color: var(--rouge); }
-.day--empty { opacity: 0.42; cursor: default; }
-.day--empty:hover { transform: none; border-color: var(--line); }
+.day[aria-pressed="true"] .day__pick { background: var(--rouge); border-color: var(--rouge); color: #fff; }
+
+/* ---------- l'affiche officielle ---------- */
+.poster { margin-top: clamp(26px, 4vw, 44px); }
+.poster__tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.poster__tab {
+  padding: 8px 14px 6px; cursor: pointer;
+  border: 1px solid var(--line); border-radius: var(--r);
+  font-family: var(--f-display); font-size: 1.05rem; letter-spacing: 0.05em;
+  text-transform: uppercase; color: var(--ink-3);
+  transition: color var(--t), border-color var(--t), background var(--t);
+}
+.poster__tab:hover { color: var(--ink); border-color: var(--ink-4); }
+.poster__tab[aria-selected="true"] { color: var(--ink); border-color: var(--ink-2); background: var(--surface-2); }
+
+.poster__frame {
+  position: relative; display: block; width: 100%; cursor: zoom-in;
+  border: 1px solid var(--line-soft); border-radius: var(--r);
+  overflow: hidden; background: var(--surface); padding: 0;
+}
+.poster__frame .ph { width: 100%; }
+.poster__frame img { width: 100%; height: auto; }
+.poster__zoom {
+  position: absolute; right: 12px; bottom: 12px;
+  padding: 7px 13px 5px;
+  background: rgb(6 8 14 / 0.82); backdrop-filter: blur(6px);
+  border: 1px solid var(--line);
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-2);
+}
+.poster__frame:hover .poster__zoom { color: var(--ink); border-color: var(--ink-3); }
+.poster__vide { padding: 40px 20px; text-align: center; color: var(--ink-3); font-size: var(--fs-sm); }
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 120;
+  display: grid; place-items: center; padding: clamp(16px, 4vw, 48px);
+  background: rgb(3 4 8 / 0.94); backdrop-filter: blur(10px);
+  overflow: auto; cursor: zoom-out;
+}
+.lightbox .ph { width: min(1400px, 96vw); }
+.lightbox img { width: 100%; height: auto; }
+.lightbox__close {
+  position: fixed; top: 18px; right: 18px; z-index: 2; cursor: pointer;
+  padding: 11px 18px 9px;
+  border: 1px solid var(--line); background: rgb(8 10 16 / 0.9);
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-2);
+}
+.lightbox__close:hover { color: var(--ink); border-color: var(--rouge); }
 
 .legend {
   margin-top: 16px;

@@ -7,8 +7,9 @@
 import "../styles/index.css";
 import {
   OFFRE, SALLES, JOURS, PEURS, CHAPITRES, HEROS, HERO_PREUVES,
-  ANNONCE, PLANNINGS_EXEMPLE, AVIS, ROUNDS,
+  ANNONCE, AVIS, ROUNDS,
 } from "./data.js";
+import AFFICHES from "../plannings-manifest.json";
 import { esc, pic, scrollTo } from "./ui.js";
 import { formHTML, mountForm, skipKnownSteps, state } from "./form.js";
 import { track, SOURCE_LABEL, PASS_NO } from "./track.js";
@@ -216,18 +217,25 @@ function planningsHTML() {
     <span class="sect__mark" aria-hidden="true">04</span>
     <div class="shell">
       <div class="sect__head" data-rv>
-        <span class="eyebrow" data-round="Round 04">Plannings</span>
+        <span class="eyebrow" data-round="Round 04">Plannings officiels</span>
         <h2>Quel jour<br>tu peux venir ?</h2>
-        <p>Pas besoin de réserver un cours précis : tu indiques un jour, l'équipe t'oriente à l'accueil. Les créneaux en rouge accueillent les débutants sans expérience.</p>
+        <p>Pas besoin de réserver un cours précis : tu indiques un jour, l'équipe t'oriente à l'accueil. Le planning complet de la salle est juste en dessous.</p>
       </div>
-      <p class="warn" data-rv><b>À valider</b> Données d'exemple — plannings officiels des 5 salles à intégrer</p>
+
       <div class="week__for" data-rv>
         <b id="week-salle">Minimes</b>
-        <span>semaine type</span>
+        <span id="week-saison">Saison 2026 — 2027</span>
         <a class="week__swap" href="#salles" data-goto>Changer de salle</a>
       </div>
+
       <div class="week" id="week" data-rv></div>
-      <p class="legend" data-rv><span><i>■</i> créneau accessible aux débutants</span><span>Tu choisis salle + jour · pas l'heure</span></p>
+      <p class="legend" data-rv><span>Tu choisis salle + jour · pas l'heure</span></p>
+
+      <div class="poster" data-rv>
+        <div class="poster__tabs" id="poster-tabs" role="tablist" aria-label="Planning affiché"></div>
+        <button type="button" class="poster__frame" id="poster-frame" aria-label="Agrandir le planning"></button>
+      </div>
+
       <div class="act" data-rv>
         <button type="button" class="btn btn--primary" data-open-form>
           ${esc(OFFRE.ctaPrimaire)}<span class="btn__arrow" aria-hidden="true"></span>
@@ -236,6 +244,17 @@ function planningsHTML() {
       </div>
     </div>
   </section>`;
+}
+
+/* L'affiche officielle du club, telle qu'elle est publiée : couleur par
+   discipline, aucun nom de coach. On ne recompose rien, on ne devine rien. */
+function posterPic(a, sizes) {
+  const srcset = a.widths.map((w) => `/img/plannings/${a.slug}-${w}.webp ${w}w`).join(", ");
+  const src = `/img/plannings/${a.slug}-${a.widths[a.widths.length - 1]}.webp`;
+  return `<div class="ph"><img class="ph__lqip" src="${a.lqip}" alt="" aria-hidden="true" />
+    <img src="${src}" srcset="${srcset}" sizes="${sizes}" width="${a.w}" height="${a.h}"
+         loading="lazy" decoding="async"
+         alt="Planning officiel Boxing Center — ${esc(a.label)}, saison 2026-2027" /></div>`;
 }
 
 function binomeHTML() {
@@ -428,28 +447,78 @@ function sync() {
 
 function paintWeek(salleId) {
   const week = document.getElementById("week");
-  if (!week) return;
-  const p = PLANNINGS_EXEMPLE[salleId] || {};
+  if (week) {
+    week.innerHTML = JOURS.map(
+      (j) => `<button type="button" class="day" data-jour="${j.id}" aria-pressed="${state.jour === j.id}"
+        aria-label="Je viens le ${esc(j.nom.toLowerCase())}">
+        <span class="day__nom">${esc(j.court)}</span>
+        <span class="day__long">${esc(j.nom)}</span>
+        <span class="day__pick" aria-hidden="true">✓</span>
+      </button>`
+    ).join("");
+  }
 
-  week.innerHTML = JOURS.map((j) => {
-    const slots = p[j.id] || [];
-    const easy = slots.filter((s) => s[2]).length;
-    if (!slots.length) {
-      return `<div class="day day--empty"><span class="day__nom">${esc(j.court)}</span><span class="day__n">Fermé</span></div>`;
-    }
-    return `<button type="button" class="day" data-jour="${j.id}" aria-pressed="${state.jour === j.id}"
-      aria-label="Choisir le ${esc(j.nom.toLowerCase())} — ${easy} cours pour débutants sur ${slots.length}">
-      <span class="day__nom">${esc(j.court)}</span>
-      <span class="day__n"><b>${easy}</b> pour débutants · ${slots.length} cours</span>
-      <span class="day__slots">${slots
-        .map(([h, d, ok]) => `<span class="${ok ? "easy" : ""}">${esc(h)} ${esc(d)}</span>`)
-        .join("")}</span>
-    </button>`;
-  }).join("");
-
-  const wS = document.getElementById("week-salle");
   const s = SALLES.find((x) => x.id === salleId);
+  const wS = document.getElementById("week-salle");
   if (wS && s) wS.textContent = s.nom;
+
+  paintPoster(salleId, 0);
+}
+
+function paintPoster(salleId, index) {
+  const tabs = document.getElementById("poster-tabs");
+  const frame = document.getElementById("poster-frame");
+  if (!tabs || !frame) return;
+
+  const liste = AFFICHES[salleId] || [];
+  if (!liste.length) {
+    tabs.innerHTML = "";
+    frame.innerHTML = `<p class="poster__vide">Planning de cette salle à venir.</p>`;
+    return;
+  }
+
+  tabs.innerHTML =
+    liste.length > 1
+      ? liste
+          .map(
+            (a, i) =>
+              `<button type="button" class="poster__tab" role="tab" data-poster="${i}"
+                 aria-selected="${i === index}">${esc(a.label)}</button>`
+          )
+          .join("")
+      : "";
+
+  frame.innerHTML =
+    posterPic(liste[index] || liste[0], "(min-width:900px) 940px, 96vw") +
+    `<span class="poster__zoom">Agrandir</span>`;
+  // Surtout pas `data-salle` : le gestionnaire des portes intercepterait le
+  // clic et prendrait l'affiche pour un bouton de salle.
+  frame.dataset.posterSalle = salleId;
+  frame.dataset.posterIndex = String(index);
+  mountImages(frame);
+}
+
+/* Plein écran : l'affiche est dense, elle doit pouvoir se lire en grand. */
+function openPoster(salleId, index) {
+  const a = (AFFICHES[salleId] || [])[index];
+  if (!a) return;
+  const lb = document.getElementById("lightbox");
+  lb.innerHTML =
+    `<button type="button" class="lightbox__close" aria-label="Fermer">Fermer</button>` +
+    posterPic(a, "min(1400px, 96vw)");
+  lb.hidden = false;
+  document.body.style.overflow = "hidden";
+  mountImages(lb);
+  lb.querySelector(".lightbox__close").focus();
+  track("planning_agrandi", { salle: salleId });
+}
+
+function closePoster() {
+  const lb = document.getElementById("lightbox");
+  if (!lb || lb.hidden) return;
+  lb.hidden = true;
+  lb.innerHTML = "";
+  document.body.style.overflow = "";
 }
 
 /* ============================================================
@@ -484,6 +553,17 @@ document.addEventListener("click", (e) => {
     track("salle_choisie", { salle: state.salle });
     return;
   }
+
+  const ptab = e.target.closest("[data-poster]");
+  if (ptab) {
+    paintPoster(state.salle || SALLES[0].id, Number(ptab.dataset.poster));
+    return;
+  }
+
+  const frame = e.target.closest("#poster-frame");
+  if (frame) { openPoster(frame.dataset.posterSalle, Number(frame.dataset.posterIndex)); return; }
+
+  if (e.target.closest(".lightbox__close") || e.target.id === "lightbox") { closePoster(); return; }
 
   const day = e.target.closest("[data-jour]");
   if (day) {
@@ -596,6 +676,7 @@ document.querySelector(".tools").addEventListener("click", (e) => {
 });
 
 document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closePoster();
   if (e.target.matches("input, select, textarea")) return;
   const map = { 1: "a", 2: "b", 3: "c" };
   if (map[e.key]) setDir(map[e.key]);

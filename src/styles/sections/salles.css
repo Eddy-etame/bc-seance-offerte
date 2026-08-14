@@ -6,10 +6,12 @@
    Visuels et faits : cartes officielles de la boutique.
    ============================================================ */
 
+/* Cinq salles côte à côte, mais assez hautes pour qu'on voie l'intérieur :
+   à 190 px de large en 4/5 elles lisaient comme des vignettes de catalogue. */
 .doors {
   display: grid;
-  gap: clamp(10px, 1.2vw, 16px);
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: clamp(10px, 1.1vw, 14px);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 /* Sur mobile : rail à défilement horizontal, une carte et demie visible
    pour signaler qu'il y en a d'autres. */
@@ -28,8 +30,8 @@
 .door {
   position: relative; isolation: isolate;
   display: flex; flex-direction: column; justify-content: flex-end;
-  aspect-ratio: 4 / 5;
-  padding: 20px 18px 18px;
+  aspect-ratio: 3 / 4.6;
+  padding: 22px 18px 20px;
   text-align: left; cursor: pointer;
   border: 1px solid var(--line);
   border-radius: var(--r-card);
@@ -58,7 +60,7 @@
 .door[aria-pressed="true"]::after { opacity: 0.82; }
 
 .door__name {
-  font-family: var(--f-display); font-size: clamp(1.6rem, 2.6vw, 2.15rem);
+  font-family: var(--f-display); font-size: clamp(1.7rem, 2.3vw, 2.1rem);
   line-height: 0.92; letter-spacing: 0.014em;
 }
 .door__meta {
