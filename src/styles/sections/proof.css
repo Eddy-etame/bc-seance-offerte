@@ -1,0 +1,43 @@
+/* ============================================================
+   LA PREUVE — avis Google réels, verbatim, jamais réécrits.
+   États-Unis n'a aucun avis citable : on n'affiche rien plutôt
+   que d'inventer.
+   ============================================================ */
+
+.proof { display: grid; gap: clamp(26px, 4vw, 48px); align-items: start; }
+@media (min-width: 900px) { .proof { grid-template-columns: 300px minmax(0, 1fr); } }
+
+.score { display: flex; flex-direction: column; gap: 8px; }
+.score__n {
+  font-family: var(--f-display); font-size: clamp(5rem, 13vw, 8.5rem);
+  line-height: 0.76; letter-spacing: -0.01em;
+  display: flex; align-items: baseline; gap: 8px;
+}
+.score__n small {
+  font-size: 0.24em; color: var(--ink-3); letter-spacing: 0.06em;
+}
+.score__stars { color: var(--rouge); letter-spacing: 0.28em; font-size: 0.9rem; }
+.score__src {
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+  line-height: 1.7;
+}
+
+.quotes { display: grid; gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); }
+.quote {
+  margin: 0; padding: 24px 24px 22px; background: var(--surface);
+  display: flex; flex-direction: column; gap: 14px;
+}
+.quote blockquote {
+  margin: 0; font-size: clamp(1.0625rem, 2vw, 1.25rem);
+  line-height: 1.55; color: var(--ink);
+}
+.quote blockquote::before { content: "«\00a0"; color: var(--ink-4); }
+.quote blockquote::after { content: "\00a0»"; color: var(--ink-4); }
+.quote figcaption {
+  margin-top: auto;
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+  display: flex; flex-wrap: wrap; gap: 4px 12px;
+}
+.quote figcaption b { color: var(--ink-2); font-weight: 400; }

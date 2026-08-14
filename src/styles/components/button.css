@@ -1,0 +1,73 @@
+/* ============================================================
+   BOUTONS — un seul rouge à l'écran (loi de l'économie des couleurs).
+   Le bouton principal se remplit par la gauche au survol, comme un
+   compteur qui monte. Cible tactile ≥ 52 px : 48 % des abandons
+   mobiles viennent de boutons trop petits.
+   ============================================================ */
+
+.btn {
+  position: relative; isolation: isolate;
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  min-height: 58px; padding: 17px 30px 13px;
+  font-family: var(--f-display); font-size: 1.45rem;
+  letter-spacing: 0.045em; text-transform: uppercase; text-decoration: none;
+  border: 1px solid transparent; border-radius: var(--r);
+  cursor: pointer; overflow: hidden;
+  transition: color var(--t) var(--ease), border-color var(--t) var(--ease),
+              transform 0.14s var(--ease);
+}
+.btn:active { transform: translateY(1px) scale(0.995); }
+
+.btn__arrow {
+  display: inline-block; width: 15px; height: 1px; background: currentColor;
+  position: relative; flex: none; margin-bottom: 4px;
+  transition: width var(--t) var(--ease);
+}
+.btn__arrow::after {
+  content: ""; position: absolute; right: -1px; top: -3px;
+  width: 7px; height: 7px;
+  border-top: 1px solid currentColor; border-right: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+.btn:hover .btn__arrow { width: 26px; }
+
+/* — principal — */
+.btn--primary { color: #fff; background: var(--rouge); }
+.btn--primary::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--rouge-badge);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--t) var(--ease);
+}
+.btn--primary:hover::before { transform: scaleX(1); }
+
+/* — secondaire — */
+.btn--ghost { color: var(--ink); border-color: var(--line); }
+.btn--ghost::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--surface-2);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--t) var(--ease);
+}
+.btn--ghost:hover { border-color: var(--ink-3); }
+.btn--ghost:hover::before { transform: scaleX(1); }
+
+.btn--block { width: 100%; }
+.btn[disabled] { opacity: 0.4; cursor: not-allowed; }
+.btn[disabled]:hover::before { transform: scaleX(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .btn::before, .btn__arrow { transition: none; }
+}
+
+/* ---------- rappel d'action en fin de section ----------
+   Un seul CTA par section, libellé principal constant. */
+.act {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px;
+  margin-top: clamp(32px, 5vw, 56px);
+}
+.act__note {
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-3);
+}
+.act__note b { color: var(--ink); font-weight: 400; }

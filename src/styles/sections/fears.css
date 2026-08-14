@@ -1,0 +1,76 @@
+/* ============================================================
+   LES PEURS — « la rature »
+   Le §6.2 demandait huit puces de réassurance. Une liste de puces
+   ne désarme personne. Ici chaque objection est écrite en grand,
+   dans les mots du prospect, puis RAYÉE d'un trait rouge à l'entrée
+   dans le champ — et la réponse apparaît dessous.
+   50 % des gens qui envisagent une salle citent l'intimidation
+   comme frein n°1 : c'est la section qui décide de leur venue.
+   ============================================================ */
+
+.fears { border-top: 1px solid var(--line-soft); }
+
+.fear {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  padding-block: clamp(26px, 3.6vw, 44px);
+  border-bottom: 1px solid var(--line-soft);
+}
+@media (min-width: 900px) {
+  .fear {
+    grid-template-columns: 84px minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 0 clamp(24px, 3vw, 56px);
+    align-items: start;
+  }
+}
+
+.fear__n {
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: 0.18em; color: var(--ink-4);
+  font-variant-numeric: tabular-nums; padding-top: 0.7em;
+}
+
+/* l'objection, en grand, telle qu'elle est dite à l'accueil */
+.fear__q {
+  position: relative; display: inline;
+  font-family: var(--f-display); font-size: var(--fs-line);
+  line-height: 0.94; letter-spacing: 0.006em;
+  color: var(--ink-2);
+  text-transform: uppercase;
+}
+.fear__qw { position: relative; display: inline-block; }
+.fear__qw::after {
+  content: ""; position: absolute; left: -0.04em; right: -0.04em; top: 52%;
+  height: max(3px, 0.045em); background: var(--rouge);
+  transform-origin: left; transform: scaleX(0);
+}
+html.rv-on .fear.is-in .fear__qw::after { transform: scaleX(1); transition: transform 0.62s var(--ease-io) 0.18s; }
+html:not(.rv-on) .fear__qw::after { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .fear__qw::after { transform: scaleX(1); transition: none; }
+}
+
+.fear__a {
+  color: var(--ink); font-size: var(--fs-body); line-height: 1.62;
+  max-width: 46ch;
+}
+@media (min-width: 900px) { .fear__a { padding-top: 0.5em; } }
+
+/* la réponse arrive après la rature */
+html.rv-on .fear .fear__a { opacity: 0; transform: translateY(10px); }
+html.rv-on .fear.is-in .fear__a {
+  opacity: 1; transform: none;
+  transition: opacity 0.6s var(--ease) 0.42s, transform 0.6s var(--ease) 0.42s;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.rv-on .fear .fear__a { opacity: 1; transform: none; transition: none; }
+}
+
+/* Un renvoi vers la section binôme quand l'objection est « venir seul » */
+.fear__link {
+  display: inline; color: var(--rouge); text-decoration: none;
+  border-bottom: 1px solid currentColor; padding-bottom: 1px;
+}
+.fear__link:hover { color: var(--ink); }

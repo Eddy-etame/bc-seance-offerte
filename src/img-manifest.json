@@ -1,0 +1,245 @@
+{
+ "coach-cible": {
+  "alt": "Une coach tient la cible pendant qu'une adhérente frappe, en salle Boxing Center",
+  "w": 1537,
+  "h": 1023,
+  "ratio": 1.5024,
+  "lqip": "data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAADQAwCdASoUAA0APulgqE0pJaOiMAgBIB0JYgCo9B9FYhtiXWHh+YwA/u94j9mhj5IIfC+/dPNHzkQuPEYXkrjXimISBcLfRXxILE+Ol+TtyxZ9CTSkrLFWcEy+2n/pbDlU1FaDBvo113j3SEN+KW5u2SeBEzwDpTNh05FqH2Ealgl+XncQdCHnurDz4ipwNSoAAA==",
+  "src": "/img/coach-cible",
+  "widths": [
+   640,
+   1100,
+   1537
+  ]
+ },
+ "femme-garde": {
+  "alt": "Une adhérente en garde devant le ring, sacs de frappe en arrière-plan",
+  "w": 1537,
+  "h": 1023,
+  "ratio": 1.5024,
+  "lqip": "data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAACQBACdASoUAA0APulgqE0pJaOiMAgBIB0JagC+Wf/i112+7U/a4c8TROq/PpgA/ic74vXB89U9GwAq40As2AKnwT6WDUppzEaP0w/93SkMlxvOo55aXRQYfVvLP9W9GsOzn+iODjid1S4LPoub6ubgh+cfnjMaiWi2w4rxRy/wfCAzhx7v4ON+H37OUrs/12765q3p2lxnO6x2nWSvq/QA",
+  "src": "/img/femme-garde",
+  "widths": [
+   640,
+   1100,
+   1537
+  ]
+ },
+ "femme-sac": {
+  "alt": "Une adhérente frappe le sac lourd, alignée de sacs Boxing Center",
+  "w": 1535,
+  "h": 1024,
+  "ratio": 1.499,
+  "lqip": "data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAACwAwCdASoUAA0APulgqE0pJaQiMAgBIB0JQAqvsNjoDZt3T5oSAAD+6lWgOBBInOu49I2Cu86rTdhxDv+KOVJEvoANstVIBtNOpG4rEXecqMBvPcIknE+mMGdPpsqB5tZcR13oQGuC+4B37XljbhkOZ87Cn36FrV/C8SMEXxc8fendL9VE7xLpMHq3R3dw7tLdw91go4AAAA==",
+  "src": "/img/femme-sac",
+  "widths": [
+   640,
+   1100,
+   1535
+  ]
+ },
+ "portrait-gants": {
+  "alt": "Portrait d'une adhérente gantée, concentrée, en salle",
+  "w": 1553,
+  "h": 1013,
+  "ratio": 1.5331,
+  "lqip": "data:image/webp;base64,UklGRnoAAABXRUJQVlA4IG4AAADwAwCdASoUAA0APulep00pJSOiMAgBIB0JYwCw7Bh7cdQHq2sZEzqAAP7qVXebLqNANKlSEqAVaQkcoV/PoAwwuKH/z3oU2417OgvjmktEbWlf5zhmPvw6siplI3uo8awTF4V/cHXATDIg6qsAAA==",
+  "src": "/img/portrait-gants",
+  "widths": [
+   640,
+   1100,
+   1553
+  ]
+ },
+ "cours-groupe": {
+  "alt": "Cours collectif : deux adhérentes travaillent aux gants sur les tapis de couleur",
+  "w": 1536,
+  "h": 1024,
+  "ratio": 1.5,
+  "lqip": "data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAADwAwCdASoUAA0APulep00pJSOiMAgBIB0JZgCo9Bn5cchdBud1TawAAP7sS+O+QcaR/8zLv9E7ki0s7I2mLeRn3hqV4To/M3ev1+++V6CrB8EMvHxRWs2CtZdBMLw+AA/NIu7pEAqmpf3DvQdhAH2JaoyqOvOIIRfy8g8TuBQ36PphevCEvAV7rwrAAA==",
+  "src": "/img/cours-groupe",
+  "widths": [
+   640,
+   1100,
+   1536
+  ]
+ },
+ "groupe-sol": {
+  "alt": "Groupe au sol pendant le gainage, coach à côté",
+  "w": 1537,
+  "h": 1023,
+  "ratio": 1.5024,
+  "lqip": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAADQAwCdASoUAA0APuleqE0pJSOiMAgBIB0JQBYdg9gMxnEAPMexUYAA/vGjnjBG0jEmqgtXlb4CDX/KErFjCouZXCL7lS+nZYChKFbdFbcxmUASSpgXzLWlezlGLODu4i1pvya6BtlnfIhoTrfuAjsPak1h2pVq25CBCcsyAAA=",
+  "src": "/img/groupe-sol",
+  "widths": [
+   640,
+   1100,
+   1537
+  ]
+ },
+ "groupe-rang": {
+  "alt": "Groupe de débutants aligné pendant l'échauffement, coach de face",
+  "w": 1537,
+  "h": 1023,
+  "ratio": 1.5024,
+  "lqip": "data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAABQBACdASoUAA0APulgqE0pJaOiMAgBIB0JZQC7AYvMtq6Ml6MO4U5R5rx4AP7azI8E3WAg/3iR26TLrl4Oi8qtH1iIxCjh7uwYbfQJHfVKM64+xww8v8DcdvAavOQpHe92I9zogYo1MYGpmbMQ3DGpnpQtoYDnta6wpU7E7PiJ2AAA",
+  "src": "/img/groupe-rang",
+  "widths": [
+   640,
+   1100,
+   1537
+  ]
+ },
+ "duo-cage": {
+  "alt": "Deux adhérentes travaillent aux pattes d'ours dans la cage",
+  "w": 1599,
+  "h": 984,
+  "ratio": 1.625,
+  "lqip": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAAAwBACdASoUAAwAPulgqE0pJaOiMAgBIB0JYwC7AywBTzVd68jKuaToR8AA/vLXJEklktvWjeixNwOd/2BW47LTa7ZAfsW9ygbWHZ/f9Rjuzk7Enkt08wD4XnZ5T/YnvGrl3qEer7+rWILDsAA=",
+  "src": "/img/duo-cage",
+  "widths": [
+   640,
+   1100,
+   1599
+  ]
+ },
+ "coach-ring": {
+  "alt": "Un coach parle à un groupe rassemblé autour du ring",
+  "w": 1537,
+  "h": 1023,
+  "ratio": 1.5024,
+  "lqip": "data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAADQAwCdASoUAA0APulgqE0pJaOiMAgBIB0JYwC06BTsg3frtcTa5AAA/uaDgb99+JdkR07VQRyf7GJh6sAUKjRqWOwmQ7ZCXIQysQLX1CTRbJZgBWyMCOtEb3ztAsXWWfHDI2T79D8uiXe2OzRk58gAAAA=",
+  "src": "/img/coach-ring",
+  "widths": [
+   640,
+   1100,
+   1537
+  ]
+ },
+ "coach-jeunes": {
+  "alt": "Un coach corrige la garde de jeunes adhérents dans le ring",
+  "w": 1537,
+  "h": 1023,
+  "ratio": 1.5024,
+  "lqip": "data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAABwBACdASoUAA0APuleqE0pJSOiMAgBIB0JZQCdEf/i1+nNVxhdIfpwk3+LmAD+wb2mnC/AhSh0mG5itca/P1Hhi+5aKEBqKE+HZq+AbtyovLtVnnSNqh55eBUL3OhWW3sdPvNO8SEdIKd8xYz+Cfb4H/F9kRsqvSRnKp1eUM06fhzt4AcvjECaBvQEtUAA",
+  "src": "/img/coach-jeunes",
+  "widths": [
+   640,
+   1100,
+   1537
+  ]
+ },
+ "sac-nb": {
+  "alt": "Adhérente au sac, noir et blanc, alignée de sacs Metal Boxe",
+  "w": 1537,
+  "h": 1023,
+  "ratio": 1.5024,
+  "lqip": "data:image/webp;base64,UklGRpYAAABXRUJQVlA4IIoAAABQBACdASoUAA0APulep00pJSOiMAgBIB0JaQAML+CVCmNB/MN+xsL99MqAAP6I3HEID3QXXYdPhm5fUT65GKS5DM+GUcW2+fafFOJGkrK5ZUCdFHsNSAX7Tb8LhD5DWM0A/qMHNvpZiTjewh+Ie1hjw8C3HDNt+H5Ilf9ssevXVvluPNh7W1AAAAA=",
+  "src": "/img/sac-nb",
+  "widths": [
+   640,
+   1100,
+   1537
+  ]
+ },
+ "saut-box": {
+  "alt": "Adhérent en saut sur box, zone de renforcement",
+  "w": 1537,
+  "h": 1023,
+  "ratio": 1.5024,
+  "lqip": "data:image/webp;base64,UklGRqYAAABXRUJQVlA4IJoAAAAQBQCdASoUAA0APulep00pJSOiMAgBIB0JbACdMoHgd5/8Wxiztjo+EvFgaxs2zI0AAPfAAdveJzdOAVMrGE19bQYa8aUCkiQtj9HzG2AjPBNKrYZgG+Afpq2MPpuvx0b0Mzs1fOGqxfGDBN3tgha7kdNnJ9gZ4OGTDwIrUldAPcVQmGjGrIBvOnYbqqo/gaxWdRw0NgTbQo4A",
+  "src": "/img/saut-box",
+  "widths": [
+   640,
+   1100,
+   1537
+  ]
+ },
+ "muscu": {
+  "alt": "Zone de renforcement musculaire, lumière chaude",
+  "w": 1600,
+  "h": 933,
+  "ratio": 1.7149,
+  "lqip": "data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAADwAwCdASoUAAwAPulgqE0pJaOiMAgBIB0JbACdABn5xfc2C5YOCdacAP7mm/mh7DApmypX+42kny0vdF7wv813MuMvcM9BKScb4twd+yeM1cwIE7UrG91V4JfiYGmAWMT8Gvno99ofSa2bKQ2yELzjFf31ce0xs3ZW4Fq+x/M11KSmAAA=",
+  "src": "/img/muscu",
+  "widths": [
+   640,
+   1100,
+   1600
+  ]
+ },
+ "salle-minimes": {
+  "alt": "Le ring et les sacs de la salle Boxing Center Minimes",
+  "w": 900,
+  "h": 1125,
+  "ratio": 0.8,
+  "lqip": "data:image/webp;base64,UklGRu4AAABXRUJQVlA4IOIAAADQBACdASoUABkAPuloqlCpJaOiqAqpIB0JQBhmsaBJgexxtjJvWWTy3uDCZjDwAAD+QrQBJBbXYhnhnAMKd8Q6Q0v7OjqLFl20zYOtRVslKgz9doj9IaXPGQqFu/OJ7FYUYLIQs+xlDxKAO+tjFbTrfuKead5bJhqj6PFcNM7FQB9V7u5dsajGmgHL/d6VhzRgfslSE76ejR5xG+/S4id3Ejoz//BFUjTxlddqQMc+Xs9uw6aWenZYS3brOqNlUXAZ5Nz6fcOMCqMel7qQCzDFQpEfwMu/AQiNRNqlIGplAAAA",
+  "src": "/img/salle-minimes",
+  "widths": [
+   640,
+   900
+  ]
+ },
+ "salle-ramonville": {
+  "alt": "L'octogone et les drapeaux de la salle Boxing Center Ramonville",
+  "w": 900,
+  "h": 1125,
+  "ratio": 0.8,
+  "lqip": "data:image/webp;base64,UklGRtwAAABXRUJQVlA4INAAAAAQBQCdASoUABkAPulsrlGpJaQiqAgBIB0JZwAFEB7tx/a3d8b5iPkSf/wk8Adu+V4AAP6ofGG+RE5b38qMsY0H6wZA1V+1zAHlaM/7ujhCO0jC+o9NAbfi151DHjY+UkKKP/8MzsDMYxmwcmuTm2LmlE7b7/EKkDVoOUst4XYEP1gWxkSZOzgs0AO/YdkXnxt+93GSmf7xuWa7hsYhQ/RoCPYXEN5W4xoR1gYzLAvdxt5G4l8cgnWj7V3bHczbgHdjFSBfjMLDVe4MbCfBwAAA",
+  "src": "/img/salle-ramonville",
+  "widths": [
+   640,
+   900
+  ]
+ },
+ "salle-etats-unis": {
+  "alt": "Le ring bleu et le tatami de la salle Boxing Center États-Unis",
+  "w": 900,
+  "h": 1125,
+  "ratio": 0.8,
+  "lqip": "data:image/webp;base64,UklGRroAAABXRUJQVlA4IK4AAADwBACdASoUABkAPuloqE6pJiOiMBgIASAdCUAZC4Id5CfYRSud6WksZJpRjc/7cAAA/FKfEvuWnslOc5aiHAq/sNQQ3JXh6EwjBjG4et/wrUc+WipdQnMDHwOn+rQuY8hno1ay4nwBOwSYitwMrtAvDakO5yr08tQlzkPM8sURm6umJO9wrMhpBdrrsS4VwteovSeWpdpW1sm5wcrnoYCANn7zNW8KOUpyjMxfcAA=",
+  "src": "/img/salle-etats-unis",
+  "widths": [
+   640,
+   900
+  ]
+ },
+ "salle-saint-cyprien": {
+  "alt": "Le ring et la fresque murale de la salle Boxing Center Saint-Cyprien",
+  "w": 900,
+  "h": 1125,
+  "ratio": 0.8,
+  "lqip": "data:image/webp;base64,UklGRuYAAABXRUJQVlA4INoAAADQBQCdASoUABkAPulorFApJaQiqAqpIB0JZADBzxTsBoFKyx0jl+9J/zf3kNm8tIqyTWbpzDXAAP7xIKMA7XiHdp2m5wo40Pu5u38ft9iiy5WJfohdYjc2J199Xw7S0naWkyt14nOPfN7mGd6VbfcKyHypSlAgoVZPyEO6zkTgABleaCYj9SryDV4z8eLyD7I3m9y3vrmi6NLIuW8d33h6tYQYHtpOf0E2eW0dRe7g7XMEX5TXmrsRM1rV9eLlf3sRRw2x/G/WktM8wZUVHuY+L6nGAA1IAaQAAA==",
+  "src": "/img/salle-saint-cyprien",
+  "widths": [
+   640,
+   900
+  ]
+ },
+ "salle-portet": {
+  "alt": "Deux adhérents à l'entraînement sous les drapeaux, salle Boxing Center Portet",
+  "w": 900,
+  "h": 1125,
+  "ratio": 0.8,
+  "lqip": "data:image/webp;base64,UklGRiYBAABXRUJQVlA4IBoBAACwBQCdASoUABkAPulmrVApJaQiqAqpIB0JbAC2+vUqm+gatcicdznlMvkQqkYn+KOHYxm/ErAA/uY9B/kcsH5fJ8vkCwTMUdge/xnTpfgOPqs0KVWo8omyxFXMHTQ83qDdeTNbaOEOSUulmyNWvdDxSzpPQVVawzWOd9vNr54BVQrRejPw3MKnRqjZmfEbVmgc2W5FmiSx8BEzVZynlPF3n0hDBDvFui+h/u2PYKC+V0ssiMyHI04ksCNJ6V/VYoRjKo3esQz7svsx71aafyi/Lv7AWKoMr+OZs3mCFFBjob0DgwHSlYazatiRYVvvRwwq+7arHA0qw2gaNsQHyaYpE5Mlr2jXpUOe248HQB0jWROjJ1tiKEm8gAA=",
+  "src": "/img/salle-portet",
+  "widths": [
+   640,
+   900
+  ]
+ },
+ "coin": {
+  "alt": "Un coach Boxing Center accompagne une adhérente au sac de frappe",
+  "w": 1537,
+  "h": 1023,
+  "ratio": 1.5024,
+  "lqip": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAADQAwCdASoUAA0APulgqE0pJaOiMAgBIB0JQBUegyfJVJtdqtMba2AA/vGSIeJzW5eJJhDDEDs0r+unsMrMAeUHxX5BXQGfP1g5ypPakoXrf+/DN+9GWwD+Vd+vZLLyne24H+ep5PnTSkoB1JlwS1tP5TzP1L/bXySZbVL+AiT4Jfl53EHQh57Wd0CexLJiAAA=",
+  "src": "/img/coin",
+  "widths": [
+   640,
+   900,
+   1100,
+   1537
+  ]
+ }
+}

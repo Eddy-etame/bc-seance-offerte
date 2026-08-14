@@ -1,0 +1,100 @@
+/* ============================================================
+   LE RAIL DES ROUNDS — la page se lit comme un combat en cinq reprises.
+   Rail fixe à gauche : les numéros, celui en cours allumé, un filet
+   qui se remplit. Au passage d'un round, la cloche : un éclair blanc
+   traverse le filet.
+   ============================================================ */
+
+.rounds {
+  position: fixed; left: 0; top: 0; bottom: 0; z-index: 40;
+  width: var(--rail-w);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 18px; pointer-events: none;
+  mix-blend-mode: normal;
+}
+@media (max-width: 1100px) { .rounds { display: none; } }
+
+.rounds__lab {
+  writing-mode: vertical-rl;
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: var(--tr-mono); text-transform: uppercase;
+  color: var(--ink-4);
+}
+
+.rounds__list { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+
+.rounds__item {
+  position: relative;
+  font-family: var(--f-mono); font-size: 0.6875rem; letter-spacing: 0.08em;
+  color: var(--ink-4);
+  transition: color var(--t) var(--ease);
+}
+.rounds__item::after {
+  content: ""; position: absolute; left: 50%; translate: -50% 0; bottom: -8px;
+  width: 3px; height: 3px; background: currentColor; opacity: 0;
+  transition: opacity var(--t);
+}
+.rounds__item.is-on { color: var(--rouge); }
+.rounds__item.is-on::after { opacity: 1; }
+.rounds__item.is-done { color: var(--ink-3); }
+
+.rounds__track {
+  position: relative; width: 1px; flex: 1; max-height: 34vh;
+  background: var(--line);
+  overflow: hidden;
+}
+.rounds__fill {
+  position: absolute; top: 0; left: 0; width: 100%; height: 0;
+  background: linear-gradient(to bottom, var(--rouge), var(--rouge-badge));
+  transition: height 0.2s linear;
+}
+
+/* la cloche */
+.rounds__bell {
+  position: absolute; left: 50%; translate: -50% 0; top: 0;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #fff; opacity: 0;
+  box-shadow: 0 0 22px 8px rgb(255 255 255 / 0.55);
+}
+.rounds.is-ringing .rounds__bell { animation: bell 0.6s var(--ease) both; }
+@keyframes bell {
+  0% { opacity: 0; transform: scale(0.2); }
+  25% { opacity: 1; transform: scale(1.4); }
+  100% { opacity: 0; transform: scale(0.6); }
+}
+
+/* écho de cloche sur toute la page — un souffle blanc très bref */
+.bellflash {
+  position: fixed; inset: 0; z-index: 92; pointer-events: none;
+  background: rgb(255 255 255 / 0.055); opacity: 0;
+}
+.bellflash.is-on { animation: flash 0.42s var(--ease-io) both; }
+@keyframes flash { 0% { opacity: 0; } 18% { opacity: 1; } 100% { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .rounds.is-ringing .rounds__bell, .bellflash.is-on { animation: none; opacity: 0; }
+}
+
+/* ---------- l'annonce entre deux rounds ---------- */
+.announce {
+  position: relative; overflow: hidden;
+  border-block: 1px solid var(--line-soft);
+  padding-block: 15px;
+  background: var(--surface);
+}
+.announce__track {
+  display: flex; width: max-content; gap: 0;
+  animation: slide 46s linear infinite;
+}
+.announce__track > span {
+  display: inline-flex; align-items: center; gap: 34px; padding-right: 34px;
+  font-family: var(--f-display); font-size: 1.3rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-3); white-space: nowrap;
+}
+.announce__track b { color: var(--rouge); font-weight: 400; }
+@keyframes slide { to { transform: translateX(-50%); } }
+.announce:hover .announce__track { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .announce__track { animation: none; }
+}

@@ -1,0 +1,49 @@
+/* ============================================================
+   A — LE COIN  (direction retenue par le coach)
+   Le moment le plus humain de la boxe n'est pas l'affrontement :
+   ce sont les soixante secondes où quelqu'un pose une main sur ton
+   épaule et te dit que tu peux le faire. La page est ce coin.
+   Le visiteur est assis dessous, la lumière tombe sur lui.
+   ============================================================ */
+
+html[data-dir="a"] .light { display: block; }
+html[data-dir="a"] .rounds { display: flex; }
+@media (max-width: 1100px) { html[data-dir="a"] .rounds { display: none; } }
+
+/* Le héros : la lumière du cône se pose sur la photo, pas à côté. */
+html[data-dir="a"] .hero__media img { object-position: 58% 42%; }
+html[data-dir="a"] .hero__scrim {
+  background:
+    radial-gradient(58% 44% at 50% -10%, rgb(var(--light) / 0.2), rgb(var(--light) / 0.04) 46%, transparent 70%),
+    linear-gradient(to top, var(--noir) 1%, rgb(8 8 8 / 0.76) 30%, rgb(8 8 8 / 0.24) 64%),
+    linear-gradient(to right, rgb(8 8 8 / 0.84) 4%, rgb(8 8 8 / 0.32) 48%, rgb(8 8 8 / 0.04) 84%),
+    radial-gradient(120% 86% at 50% 44%, transparent 20%, rgb(3 5 11 / 0.9) 100%);
+}
+
+/* Les sections s'ouvrent sur un round, comme un combat annoncé. */
+html[data-dir="a"] .sect__head .eyebrow::after {
+  content: attr(data-round);
+  margin-left: 12px; padding-left: 12px;
+  border-left: 1px solid var(--line);
+  color: var(--rouge);
+}
+
+/* Le trait de lumière qui longe le bord gauche de chaque section :
+   la lampe du coin éclaire aussi le couloir. */
+html[data-dir="a"] .sect::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, rgb(var(--light) / 0.22), transparent 46%);
+  pointer-events: none;
+}
+@media (max-width: 1100px) { html[data-dir="a"] .sect::before { display: none; } }
+
+/* Le tabouret : un socle de lumière sous le bloc d'action du héros. */
+html[data-dir="a"] .hero__acts { position: relative; }
+html[data-dir="a"] .hero__acts::before {
+  content: ""; position: absolute; z-index: -1;
+  left: -10%; right: -10%; bottom: -46px; height: 90px;
+  background: radial-gradient(closest-side, rgb(var(--light) / 0.13), transparent 72%);
+  filter: blur(10px); pointer-events: none;
+}
+
+html[data-dir="a"] .price__note { color: rgb(var(--light) / 0.72); }

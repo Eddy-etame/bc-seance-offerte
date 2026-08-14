@@ -1,0 +1,29 @@
+/* ============================================================
+   BOXING CENTER — SÉANCE D'ESSAI OFFERTE
+   Ordre d'import : jetons → base → mise en page → composants →
+   sections → directions. Rien ne surcharge ce qui vient après.
+   ============================================================ */
+
+@import "./fonts.css";
+@import "./tokens.css";
+@import "./base.css";
+@import "./layout.css";
+
+@import "./components/light.css";
+@import "./components/rounds.css";
+@import "./components/button.css";
+@import "./components/dock.css";
+@import "./components/form.css";
+@import "./components/pass.css";
+
+@import "./sections/hero.css";
+@import "./sections/fears.css";
+@import "./sections/salles.css";
+@import "./sections/planning.css";
+@import "./sections/duo.css";
+@import "./sections/proof.css";
+@import "./sections/foot.css";
+
+@import "./directions/a.css";
+@import "./directions/b.css";
+@import "./directions/c.css";

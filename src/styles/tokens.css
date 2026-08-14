@@ -1,0 +1,80 @@
+/* ============================================================
+   JETONS — Boxing Center · séance d'essai offerte
+   Source : BC_Brand_Guidelines v1.0 + standards de build 2026-07-12.
+   Loi n°1 : UNE seule couleur chaude à l'écran. Le rouge appartient
+   au 0 € et au bouton principal. Rien d'autre n'est rouge.
+   Loi n°2 : fond sombre partout. La lumière est un objet, pas un fond.
+   ============================================================ */
+
+:root {
+  /* — Palette 1 · identité permanente — */
+  --noir: #080808;
+  --navy-logo: #20254b;
+  --blanc: #f5f5f5;
+
+  /* — Palette 2 · campagne — */
+  --rouge: #e8001c;
+  --rouge-badge: #c8001a;
+  --navy-deep: #0c1829;
+
+  /* — Neutres biaisés navy : choisis, pas hérités — */
+  --surface: #0b1220;
+  --surface-2: #101a2c;
+  --surface-3: #16233a;
+  --line: #223250;
+  --line-soft: #141f33;
+  --ink: #f0f3f9;
+  --ink-2: #a3aec4;
+  --ink-3: #7d89a3;
+  --ink-4: #46536d;
+
+  /* — La lumière du coin (ambre spotlight, jamais une couleur d'interface) — */
+  --light: 255 228 190;
+  --light-hot: 255 243 222;
+
+  /* — Papier du laissez-passer (direction B) — */
+  --paper: #f3efe4;
+  --paper-2: #e2dccc;
+  --paper-ink: #10131f;
+  --paper-mute: #6d7288;
+  --paper-line: #b6ae9b;
+
+  /* — Type — */
+  --f-display: "Bebas Neue", "Haettenschweiler", "Arial Narrow", sans-serif;
+  --f-body: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* Échelle : le titre doit passer le test BILLBOARD — lisible en 2 s */
+  --fs-hero: clamp(3.75rem, 16.5vw, 11.5rem);
+  --fs-h2: clamp(2.6rem, 9vw, 6.25rem);
+  --fs-h3: clamp(1.6rem, 4.2vw, 2.6rem);
+  --fs-line: clamp(1.85rem, 6.2vw, 4rem);
+  --fs-lede: clamp(1.0625rem, 2.1vw, 1.3125rem);
+  --fs-body: 1.0625rem;
+  --fs-sm: 0.9375rem;
+  --fs-xs: 0.8125rem;
+  --fs-micro: 0.6875rem;
+
+  --lh-display: 0.84;
+  --tr-display: 0.004em;
+  --tr-mono: 0.2em;
+
+  /* — Rythme — */
+  --shell: 1280px;
+  --gutter: clamp(20px, 5.2vw, 60px);
+  --measure: 58ch;
+  --sect: clamp(88px, 13vw, 180px);
+  --dock-h: 88px;
+  --rail-w: 78px;
+
+  /* — Mouvement — */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-punch: cubic-bezier(0.2, 1.6, 0.35, 1);
+  --t-fast: 0.22s;
+  --t: 0.45s;
+  --t-slow: 0.9s;
+
+  --r: 2px;
+  --r-card: 4px;
+}

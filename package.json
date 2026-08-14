@@ -1,0 +1,15 @@
+{
+  "name": "bc-seance-essai",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Boxing Center — page séance d'essai offerte. Maquette : 3 directions artistiques, un seul moteur de conversion.",
+  "scripts": {
+    "dev": "vite --port 5610 --open",
+    "build": "vite build",
+    "preview": "vite preview --port 5610"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10"
+  }
+}

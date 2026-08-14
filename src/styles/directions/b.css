@@ -1,0 +1,45 @@
+/* ============================================================
+   B — LE LAISSEZ-PASSER
+   Tout le trafic vient d'un objet qu'on a tenu dans la main :
+   un flyer, une affiche, une accroche-porte. La page ne rompt pas
+   avec cet objet — elle EST le titre d'accès, et chaque étape du
+   formulaire en remplit une ligne.
+   ============================================================ */
+
+html[data-dir="b"] .light { display: block; }
+html[data-dir="b"] .light__beam { opacity: calc(var(--on) * 0.5); }
+html[data-dir="b"] .rounds { display: none; }
+html[data-dir="b"] #app { padding-left: 0; }
+
+html[data-dir="b"] .hero__media img { object-position: 74% 34%; }
+html[data-dir="b"] .hero__scrim {
+  background:
+    linear-gradient(104deg, transparent 16%, rgb(var(--light) / 0.09) 44%, transparent 70%),
+    linear-gradient(to top, var(--noir) 2%, rgb(8 8 8 / 0.74) 32%, rgb(8 8 8 / 0.2) 72%),
+    linear-gradient(to right, rgb(8 8 8 / 0.9) 8%, rgb(8 8 8 / 0.36) 50%, transparent 86%),
+    radial-gradient(122% 84% at 50% 44%, transparent 22%, rgb(3 5 11 / 0.88) 100%);
+}
+
+/* Sur grand écran le pass se pose à droite et laisse voir la photo. */
+@media (min-width: 980px) {
+  html[data-dir="b"] .hero__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 540px);
+    column-gap: clamp(40px, 5vw, 72px); row-gap: 20px;
+    align-items: end; max-width: 1220px;
+  }
+  html[data-dir="b"] .hero__body > *:not(.pass) { grid-column: 1; }
+  html[data-dir="b"] .hero__body > .pass { grid-column: 2; grid-row: 1 / -1; align-self: center; justify-self: end; }
+}
+
+/* Les séparateurs deviennent des pointillés de découpe. */
+html[data-dir="b"] .sect { border-top-style: dashed; border-top-color: var(--ink-4); }
+html[data-dir="b"] .door { border-radius: 3px; }
+
+/* Le pass qui suit le formulaire */
+html[data-dir="b"] .form-layout { display: grid; gap: clamp(28px, 4vw, 48px); align-items: start; }
+@media (min-width: 1000px) {
+  html[data-dir="b"] .form-layout { grid-template-columns: minmax(0, 1fr) 440px; }
+}
+html:not([data-dir="b"]) .pass-live,
+html:not([data-dir="b"]) .pass-hero { display: none !important; }

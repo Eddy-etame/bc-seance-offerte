@@ -1,0 +1,204 @@
+/* ============================================================
+   LE HÉROS
+   Test BILLBOARD : lisible en deux secondes. Test PERMISSION : on
+   éclaire le débutant, jamais le champion. Tout tient dans un écran
+   de 375 px — 64 % des visiteurs mobiles ne verront que celui-là.
+   ============================================================ */
+
+.hero {
+  position: relative; isolation: isolate;
+  min-height: 100svh;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+
+.hero__media { position: absolute; inset: 0; z-index: -2; }
+.hero__media .ph { width: 100%; height: 100%; }
+.hero__media img { object-position: 62% 40%; }
+
+.hero__scrim {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    linear-gradient(to top, var(--noir) 1%, rgb(8 8 8 / 0.7) 32%, rgb(8 8 8 / 0.2) 66%, rgb(8 8 8 / 0.42) 100%),
+    linear-gradient(to right, rgb(8 8 8 / 0.86) 6%, rgb(8 8 8 / 0.38) 46%, rgb(8 8 8 / 0.06) 82%),
+    radial-gradient(120% 84% at 50% 42%, transparent 22%, rgb(3 5 11 / 0.86) 100%);
+}
+
+/* — barre haute — */
+.hero__top {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 22px var(--gutter) 0;
+}
+.hero__mark {
+  font-family: var(--f-display); font-size: 1.05rem;
+  letter-spacing: 0.38em; color: rgb(245 245 245 / 0.92);
+}
+.hero__src {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3);
+}
+.hero__src::before {
+  content: ""; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--rouge); flex: none;
+}
+
+/* — corps — */
+.hero__body {
+  margin-top: auto;
+  padding: 0 var(--gutter) clamp(38px, 7vw, 76px);
+  display: flex; flex-direction: column;
+  gap: clamp(16px, 2.4vw, 26px);
+  width: 100%; max-width: 1120px;
+}
+
+.hero__kicker {
+  font-family: var(--f-mono); font-size: var(--fs-xs);
+  letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-2);
+  max-width: 34ch;
+}
+
+.hero h1 {
+  font-size: var(--fs-hero);
+  line-height: 0.82;
+  letter-spacing: -0.002em;
+}
+/* Le second vers porte le poids : il est souligné par le trait rouge. */
+.hero h1 .underline { position: relative; display: inline-block; }
+.hero h1 .underline::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0.1em; height: 0.055em;
+  background: var(--rouge);
+  transform-origin: left; transform: scaleX(1);
+  transition: transform 0.7s var(--ease) 0.95s;
+}
+
+.hero__lede {
+  max-width: 44ch; font-size: var(--fs-lede);
+  color: rgb(240 243 249 / 0.88); line-height: 1.55;
+}
+
+/* — l'ancre de prix : grande une seule fois sur toute la page — */
+.price { display: flex; align-items: baseline; gap: clamp(12px, 2vw, 20px); flex-wrap: wrap; }
+.price__old {
+  font-family: var(--f-display); font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+  color: var(--ink-3); text-decoration: line-through;
+  text-decoration-thickness: 2px; text-decoration-color: var(--ink-4);
+}
+.price__new {
+  font-family: var(--f-display);
+  font-size: clamp(3.4rem, 9vw, 6.4rem);
+  line-height: 0.8; color: var(--rouge);
+  /* « italique avant 5-8° pour le momentum sur les prix » — brand book */
+  transform: skewX(-7deg);
+  display: inline-block;
+}
+
+.price__note {
+  align-self: flex-end; max-width: 24ch; padding-bottom: 6px;
+  font-family: var(--f-body); font-size: var(--fs-xs);
+  color: var(--ink-2); line-height: 1.45;
+}
+
+.hero__acts { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+/* — arguments sous le pli, lisibles sans défiler — */
+.hero__proof {
+  display: flex; flex-wrap: wrap; gap: 8px 26px;
+  padding-top: clamp(12px, 2vw, 20px);
+  border-top: 1px solid rgb(255 255 255 / 0.1);
+}
+.hero__proof li {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2);
+}
+.hero__proof li::before { content: ""; width: 4px; height: 4px; background: var(--rouge); flex: none; }
+
+.scrollcue {
+  position: absolute; left: var(--gutter); bottom: 14px; z-index: 3;
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: var(--tr-mono); text-transform: uppercase; color: var(--ink-4);
+}
+.scrollcue i { display: block; width: 34px; height: 1px; background: var(--ink-4); overflow: hidden; position: relative; }
+.scrollcue i::after {
+  content: ""; position: absolute; inset: 0; background: var(--rouge);
+  animation: sweep 2.4s var(--ease-io) infinite;
+}
+@keyframes sweep { 0% { transform: translateX(-100%); } 60%, 100% { transform: translateX(100%); } }
+@media (prefers-reduced-motion: reduce) { .scrollcue i::after { animation: none; } }
+@media (max-width: 520px) { .scrollcue { display: none; } }
+
+/* ============================================================
+   SÉQUENCE D'ALLUMAGE
+   Deux classes pilotent tout : `lit` = le script a pris la main,
+   `shown` = on joue. Les états cachés ne vivent QUE dans
+   `html.lit:not(.shown)`. Sans script, sans minuteur, ou dans un
+   onglet qui ne compose pas, aucune de ces deux classes n'est
+   posée — et la page s'affiche entière, tout de suite.
+   ============================================================ */
+
+html.lit:not(.shown) .hero__kicker,
+html.lit:not(.shown) .hero__lede,
+html.lit:not(.shown) .hero__acts,
+html.lit:not(.shown) .hero__proof,
+html.lit:not(.shown) .scrollcue { opacity: 0; transform: translateY(16px); }
+
+html.lit:not(.shown) .hero h1 .mask > span { transform: translateY(102%); }
+html.lit:not(.shown) .price__new { opacity: 0; transform: skewX(-7deg) scale(1.9); }
+html.lit:not(.shown) .hero h1 .underline::after { transform: scaleX(0); transition: none; }
+
+html.lit .hero__kicker,
+html.lit .hero__lede,
+html.lit .hero__acts,
+html.lit .hero__proof,
+html.lit .scrollcue { transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+html.lit .hero__kicker { transition-delay: 0.55s; }
+html.lit .hero__lede { transition-delay: 1.3s; }
+html.lit .hero__acts { transition-delay: 1.4s; }
+html.lit .hero__proof { transition-delay: 1.5s; }
+html.lit .scrollcue { transition-delay: 1.65s; }
+
+html.lit .hero h1 .mask > span { transition: transform 0.9s var(--ease); }
+html.lit .hero h1 .mask:nth-of-type(1) > span { transition-delay: 0.68s; }
+html.lit .hero h1 .mask:nth-of-type(2) > span { transition-delay: 0.8s; }
+
+html.lit .price__new { transition: opacity 0.45s var(--ease), transform 0.5s var(--ease-punch); transition-delay: 1.2s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.lit:not(.shown) .hero__kicker,
+  html.lit:not(.shown) .hero__lede,
+  html.lit:not(.shown) .hero__acts,
+  html.lit:not(.shown) .hero__proof,
+  html.lit:not(.shown) .scrollcue,
+  html.lit:not(.shown) .hero h1 .mask > span,
+  html.lit:not(.shown) .hero h1 .underline::after { opacity: 1; transform: none; }
+  html.lit:not(.shown) .price__new { opacity: 1; transform: skewX(-7deg); }
+  html.lit .hero__kicker, html.lit .hero__lede, html.lit .hero__acts,
+  html.lit .hero__proof, html.lit .scrollcue,
+  html.lit .hero h1 .mask > span, html.lit .price__new { transition: none; }
+}
+
+
+/* ------------------------------------------------------------
+   VERROU FINAL
+   Trois secondes après le chargement, la séquence est forcément
+   terminée. On fige l'état complet, quoi qu'il se soit passé —
+   transition interrompue, onglet resté en arrière-plan, frame
+   jamais produite. Aucun texte de cette page ne peut rester caché.
+   ------------------------------------------------------------ */
+html.settled .hero__kicker,
+html.settled .hero__lede,
+html.settled .hero__acts,
+html.settled .hero__proof,
+html.settled .scrollcue,
+html.settled .hero h1 .mask > span,
+html.settled .price__new,
+html.settled .pass__stamp {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+html.settled .price__new { transform: skewX(-7deg) !important; }
+html.settled .pass__stamp { opacity: 0.86 !important; scale: 1 !important; rotate: -13deg !important; }
+html.settled .hero h1 .underline::after { transform: scaleX(1) !important; transition: none !important; }

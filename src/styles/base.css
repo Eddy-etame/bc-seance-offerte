@@ -1,0 +1,137 @@
+/* ============================================================
+   BASE — remise à zéro, typographie, utilitaires
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Un élément masqué est masqué. Sans cette ligne, un `display:grid`
+   d'auteur écrase le `[hidden]` de la feuille navigateur : c'est ce
+   qui laissait les champs de l'ami visibles après un « non ». */
+[hidden] { display: none !important; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  background: var(--noir);
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--noir);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-weight: 400;
+  font-size: var(--fs-body);
+  line-height: 1.66;
+  overflow-x: clip;
+  padding-bottom: var(--dock-h);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Grain cinéma 6–8 % sur tout le visuel — règle photo du brand book */
+body::after {
+  content: "";
+  position: fixed; inset: 0; z-index: 95; pointer-events: none;
+  opacity: 0.055; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+}
+
+h1, h2, h3, h4, .display {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: var(--lh-display);
+  letter-spacing: var(--tr-display);
+  text-wrap: balance;
+}
+p { margin: 0; }
+img, svg, canvas { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+s { text-decoration-thickness: 2px; }
+
+::selection { background: var(--rouge); color: #fff; }
+:focus-visible { outline: 2px solid var(--rouge); outline-offset: 3px; border-radius: 2px; }
+
+/* ---------- utilitaires ---------- */
+.shell { width: 100%; max-width: var(--shell); margin-inline: auto; padding-inline: var(--gutter); }
+.measure { max-width: var(--measure); }
+.mono { font-family: var(--f-mono); }
+.tint { color: var(--rouge); }
+.sr {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: var(--tr-mono); text-transform: uppercase; color: var(--ink-3);
+}
+.eyebrow::before {
+  content: ""; width: 22px; height: 1px; background: var(--rouge); flex: none;
+}
+
+.skip {
+  position: fixed; left: 14px; top: 14px; z-index: 200;
+  background: var(--rouge); color: #fff; padding: 13px 20px 10px;
+  font-family: var(--f-display); font-size: 1.15rem; letter-spacing: 0.05em;
+  text-transform: uppercase; text-decoration: none;
+  transform: translateY(-180%);
+  transition: transform var(--t-fast) var(--ease);
+}
+.skip:focus { transform: none; }
+
+/* ---------- révélations ----------
+   Le contenu est visible par défaut. On ne le cache QUE si le script a
+   confirmé qu'il saura le montrer (html.rv-on) — un observateur muet,
+   onglet en arrière-plan, laisserait sinon une page blanche.
+   La motion révèle, elle ne bloque jamais. */
+html.rv-on [data-rv] { opacity: 0; transform: translateY(22px); }
+html.rv-on [data-rv].is-in {
+  opacity: 1; transform: none;
+  transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease);
+}
+html.rv-on [data-rv-delay="1"].is-in { transition-delay: 0.08s; }
+html.rv-on [data-rv-delay="2"].is-in { transition-delay: 0.16s; }
+html.rv-on [data-rv-delay="3"].is-in { transition-delay: 0.24s; }
+
+/* Masque typographique : le texte monte derrière une fenêtre, il n'apparaît
+   pas en fondu. Strictement limité aux masques placés DANS un bloc à
+   révélation : sinon cette règle cache aussi le titre du héros, qui n'en
+   fait pas partie et se retrouverait poussé hors de sa fenêtre. */
+.mask { display: block; overflow: hidden; }
+.mask > span { display: block; }
+html.rv-on [data-rv] .mask > span { transform: translateY(105%); }
+html.rv-on [data-rv].is-in .mask > span {
+  transform: none;
+  transition: transform 1s var(--ease);
+}
+html.rv-on [data-rv].is-in .mask:nth-of-type(2) > span { transition-delay: 0.09s; }
+html.rv-on [data-rv].is-in .mask:nth-of-type(3) > span { transition-delay: 0.18s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.rv-on [data-rv],
+  html.rv-on [data-rv] .mask > span { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* ---------- images ---------- */
+.ph { position: relative; overflow: hidden; background: var(--surface); }
+.ph img {
+  width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transition: opacity 0.8s var(--ease);
+}
+.ph img.is-in { opacity: 1; }
+.ph__lqip {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; filter: blur(20px); transform: scale(1.1);
+}
+/* Étalonnage cinéma : contraste poussé, ombres bleu-noir, ambre sur les peaux */
+.ph--grade img { filter: contrast(1.1) saturate(1.02) brightness(0.92); }
+.ph--vig::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(118% 82% at 50% 40%, transparent 24%, rgba(3, 5, 11, 0.9) 100%);
+}

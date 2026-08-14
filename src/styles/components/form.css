@@ -1,0 +1,146 @@
+/* ============================================================
+   LE FORMULAIRE — six respirations, une décision par écran.
+   8 champs imposés par Deciplus. Empilés : ~7 % de complétion.
+   Découpés et ordonnés par coût d'engagement : ~14 %.
+   Les deux premiers écrans se touchent — on ne tape rien avant
+   d'avoir dit deux fois oui.
+   ============================================================ */
+
+.form {
+  position: relative;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+  overflow: hidden;
+}
+
+/* — en-tête : la progression est un round, pas une barre de téléchargement — */
+.form__head {
+  display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  padding: 16px clamp(20px, 3.4vw, 34px) 14px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.form__count {
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: var(--tr-mono); text-transform: uppercase; color: var(--ink-3);
+  white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+.form__pips { display: flex; gap: 5px; }
+.form__pips i {
+  width: 26px; height: 3px; background: var(--line);
+  transition: background var(--t) var(--ease);
+}
+.form__pips i.is-done { background: var(--ink-4); }
+.form__pips i.is-on { background: var(--rouge); }
+
+/* — les écrans — */
+.step {
+  display: none;
+  padding: clamp(28px, 4.4vw, 52px) clamp(20px, 3.4vw, 34px) clamp(26px, 3.6vw, 40px);
+  flex-direction: column; gap: clamp(20px, 2.6vw, 28px);
+}
+.step.is-on { display: flex; }
+.step__q {
+  font-family: var(--f-display); font-size: var(--fs-h3);
+  max-width: 20ch; text-wrap: balance;
+}
+.step__why {
+  font-size: var(--fs-xs); color: var(--ink-3); max-width: 46ch; line-height: 1.6;
+}
+.step__why b { color: var(--ink-2); font-weight: 600; }
+
+/* — tuiles de choix : grandes, sans frappe — */
+.opts { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); }
+.opts--days { grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); }
+.opt {
+  position: relative; isolation: isolate;
+  min-height: 76px; padding: 14px 16px 12px;
+  display: flex; flex-direction: column; justify-content: center; gap: 3px;
+  text-align: left; cursor: pointer;
+  border: 1px solid var(--line); border-radius: var(--r);
+  background: var(--surface);
+  transition: border-color var(--t) var(--ease), transform var(--t-fast) var(--ease);
+}
+.opt::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: rgb(232 0 28 / 0.09);
+  transform: scaleY(0); transform-origin: bottom;
+  transition: transform var(--t) var(--ease);
+}
+.opt:hover { border-color: var(--ink-4); transform: translateY(-2px); }
+.opt[aria-pressed="true"] { border-color: var(--rouge); }
+.opt[aria-pressed="true"]::before { transform: scaleY(1); }
+.opt b {
+  font-family: var(--f-display); font-size: 1.5rem; font-weight: 400;
+  letter-spacing: 0.03em; line-height: 1;
+}
+.opt span {
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3);
+}
+.opt[aria-pressed="true"] span { color: var(--ink-2); }
+
+/* — champs — */
+.fields { display: grid; gap: 16px; }
+@media (min-width: 620px) { .fields--2 { grid-template-columns: 1fr 1fr; } }
+.field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.field > span {
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-3);
+}
+.field input, .field select {
+  width: 100%; min-height: 58px; padding: 14px 16px;
+  color: var(--ink); background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--r);
+  font-family: var(--f-body); font-size: 1.0625rem;
+  transition: border-color var(--t) var(--ease), background var(--t) var(--ease);
+}
+.field input::placeholder { color: var(--ink-4); }
+.field input:hover, .field select:hover { border-color: var(--ink-4); }
+.field input:focus, .field select:focus { outline: none; border-color: var(--ink-2); background: var(--surface-2); }
+.field input:focus-visible, .field select:focus-visible { outline: 2px solid var(--rouge); outline-offset: 2px; }
+.field.is-bad input, .field.is-bad select { border-color: var(--rouge); }
+.field__err { font-size: var(--fs-xs); color: var(--rouge); font-style: normal; line-height: 1.45; }
+.field__err:empty { display: none; }
+
+/* — consentement — */
+.consent {
+  display: grid; grid-template-columns: auto 1fr; gap: 6px 14px;
+  align-items: start; padding: 16px;
+  border: 1px solid var(--line-soft); border-radius: var(--r);
+  background: var(--surface); cursor: pointer;
+  transition: border-color var(--t) var(--ease);
+}
+.consent:hover { border-color: var(--ink-4); }
+.consent input { width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--rouge); cursor: pointer; }
+.consent span { font-size: var(--fs-xs); color: var(--ink-2); line-height: 1.6; }
+.consent .field__err { grid-column: 2; }
+.consent.is-bad { border-color: var(--rouge); }
+
+/* — navigation — */
+.step__nav { display: flex; align-items: center; gap: 14px; margin-top: 4px; }
+.step__nav .btn { flex: 1; }
+.back {
+  flex: none; padding: 14px 6px; cursor: pointer;
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-3);
+  transition: color var(--t-fast);
+}
+.back:hover { color: var(--ink); }
+
+/* — écran final — */
+.done {
+  padding: clamp(36px, 5vw, 64px) clamp(20px, 3.4vw, 34px);
+  display: flex; flex-direction: column; gap: 20px;
+}
+.done h3 { font-size: clamp(2.2rem, 6.5vw, 3.6rem); }
+.done p { color: var(--ink-2); max-width: 48ch; }
+.done__recap {
+  display: grid; grid-template-columns: auto 1fr; gap: 8px 20px;
+  margin: 6px 0 0; padding-top: 18px; border-top: 1px solid var(--line-soft);
+}
+.done__recap dt {
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+}
+.done__recap dd { margin: 0; font-size: var(--fs-sm); }
+.done__recap dd b { color: var(--rouge); font-weight: 600; }

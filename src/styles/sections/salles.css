@@ -1,0 +1,98 @@
+/* ============================================================
+   LES SALLES — « la porte »
+   Cinq portes, une par salle. C'est la première interaction possible
+   de la page : un « oui » sans une seule frappe, qui pré-remplit un
+   des huit champs Deciplus et personnalise tout ce qui suit.
+   Visuels et faits : cartes officielles de la boutique.
+   ============================================================ */
+
+.doors {
+  display: grid;
+  gap: clamp(10px, 1.2vw, 16px);
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+/* Sur mobile : rail à défilement horizontal, une carte et demie visible
+   pour signaler qu'il y en a d'autres. */
+@media (max-width: 700px) {
+  .doors {
+    display: flex; gap: 10px;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+  .doors::-webkit-scrollbar { display: none; }
+  .door { flex: 0 0 66vw; scroll-snap-align: start; }
+}
+
+.door {
+  position: relative; isolation: isolate;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  aspect-ratio: 4 / 5;
+  padding: 20px 18px 18px;
+  text-align: left; cursor: pointer;
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  overflow: hidden;
+  background: var(--surface);
+  transition: border-color var(--t) var(--ease), transform var(--t) var(--ease);
+}
+.door .ph { position: absolute; inset: 0; z-index: -2; }
+.door .ph img {
+  transition: opacity 0.8s var(--ease), transform 1.2s var(--ease), filter var(--t) var(--ease);
+  filter: contrast(1.08) saturate(0.86) brightness(0.72);
+}
+.door::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(to top,
+    rgb(5 8 14 / 0.96) 8%,
+    rgb(5 8 14 / 0.6) 42%,
+    rgb(5 8 14 / 0.18) 74%);
+  transition: opacity var(--t) var(--ease);
+}
+.door:hover, .door:focus-visible { border-color: var(--ink-3); transform: translateY(-4px); }
+.door:hover .ph img { transform: scale(1.06); filter: contrast(1.08) saturate(1) brightness(0.86); }
+
+.door[aria-pressed="true"] { border-color: var(--rouge); }
+.door[aria-pressed="true"] .ph img { filter: contrast(1.1) saturate(1.04) brightness(0.94); }
+.door[aria-pressed="true"]::after { opacity: 0.82; }
+
+.door__name {
+  font-family: var(--f-display); font-size: clamp(1.6rem, 2.6vw, 2.15rem);
+  line-height: 0.92; letter-spacing: 0.014em;
+}
+.door__meta {
+  margin-top: 6px;
+  font-family: var(--f-mono); font-size: 0.6875rem; line-height: 1.5;
+  letter-spacing: 0.06em; color: var(--ink-2);
+}
+
+/* la pastille de sélection */
+.door__pick {
+  position: absolute; top: 14px; right: 14px; z-index: 1;
+  width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1px solid rgb(255 255 255 / 0.28);
+  background: rgb(8 10 16 / 0.42); backdrop-filter: blur(4px);
+  font-size: 13px; color: transparent;
+  transition: background var(--t), border-color var(--t), color var(--t), scale var(--t) var(--ease);
+}
+.door[aria-pressed="true"] .door__pick {
+  background: var(--rouge); border-color: var(--rouge); color: #fff; scale: 1.06;
+}
+
+/* bandeau « ta salle » qui glisse quand elle est retenue */
+.door__flag {
+  position: absolute; left: 0; top: 20px; z-index: 1;
+  padding: 5px 12px 3px;
+  background: var(--rouge); color: #fff;
+  font-family: var(--f-mono); font-size: 9px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  transform: translateX(-101%);
+  transition: transform var(--t) var(--ease);
+}
+.door[aria-pressed="true"] .door__flag { transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .door, .door .ph img, .door__flag, .door__pick { transition: none; }
+}

@@ -1,0 +1,168 @@
+/* ============================================================
+   LE LAISSEZ-PASSER (direction B)
+   Reprise complète : la première version ressemblait à un coupon.
+   Ici on fabrique un vrai titre d'accès — papier chaud, guilloche
+   de sécurité, souche détachable, perforation, tampon encré à bords
+   irréguliers, lignes à points de conduite, code-barres.
+   ============================================================ */
+
+.pass {
+  --pass-w: min(100%, 540px);
+  position: relative;
+  width: var(--pass-w);
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  color: var(--paper-ink);
+  border-radius: 3px;
+  isolation: isolate;
+  rotate: -1.1deg;
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.5) inset,
+    0 -1px 0 rgb(0 0 0 / 0.14) inset,
+    0 44px 60px -34px rgb(0 0 0 / 0.92),
+    0 8px 18px -10px rgb(0 0 0 / 0.6);
+  background:
+    /* fibres du papier */
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23p)' opacity='0.32'/></svg>"),
+    /* guilloche : trame de sécurité */
+    repeating-conic-gradient(from 0deg at 50% 50%, rgb(32 37 75 / 0.045) 0deg 3deg, transparent 3deg 6deg),
+    repeating-linear-gradient(58deg, rgb(32 37 75 / 0.03) 0 1px, transparent 1px 9px),
+    linear-gradient(172deg, var(--paper) 0%, var(--paper-2) 100%);
+  background-blend-mode: multiply, normal, normal, normal;
+}
+
+/* — la souche détachable — */
+.pass__stub {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  padding: 16px 0;
+  border-right: 1px dashed rgb(32 37 75 / 0.3);
+  background: linear-gradient(90deg, rgb(32 37 75 / 0.07), transparent 78%);
+}
+.pass__stub span {
+  writing-mode: vertical-rl; rotate: 180deg;
+  font-family: var(--f-mono); font-size: 9px;
+  letter-spacing: 0.34em; text-transform: uppercase;
+  color: var(--paper-mute); white-space: nowrap;
+}
+/* perforation dans la pliure */
+.pass__stub::after {
+  content: ""; position: absolute; right: -3.5px; top: 10px; bottom: 10px; width: 7px;
+  background-image: radial-gradient(circle at 50% 50%, var(--noir) 42%, transparent 43%);
+  background-size: 7px 14px; background-repeat: repeat-y;
+}
+
+/* — encoches latérales, comme un ticket poinçonné — */
+.pass::before, .pass::after {
+  content: ""; position: absolute; z-index: 2;
+  width: 17px; height: 17px; border-radius: 50%;
+  background: var(--noir);
+  top: 50%; translate: 0 -50%;
+}
+.pass::before { left: -9px; }
+.pass::after { right: -9px; }
+
+.pass__body { padding: 20px 22px 18px; min-width: 0; }
+
+.pass__top {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgb(32 37 75 / 0.16);
+  font-family: var(--f-mono); font-size: 9.5px;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--paper-mute);
+}
+.pass__top b { color: var(--navy-logo); font-weight: 500; }
+
+.pass__title {
+  font-family: var(--f-display);
+  font-size: clamp(2.1rem, 6.4vw, 3rem);
+  line-height: 0.86; letter-spacing: 0.008em;
+  text-transform: uppercase; color: var(--navy-logo);
+  margin-top: 14px;
+}
+.pass__sub {
+  font-family: var(--f-mono); font-size: 9.5px;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--paper-mute); margin-top: 7px;
+}
+
+/* — lignes de données avec points de conduite — */
+.pass__lines { margin: 16px 0 0; display: flex; flex-direction: column; gap: 7px; }
+.pass__row { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+.pass__row dt {
+  flex: none;
+  font-family: var(--f-mono); font-size: 9.5px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--paper-mute);
+}
+.pass__row .lead {
+  flex: 1; height: 1px; min-width: 12px;
+  background-image: radial-gradient(circle, rgb(32 37 75 / 0.32) 0.6px, transparent 0.7px);
+  background-size: 4px 1px; background-repeat: repeat-x;
+  transform: translateY(-2px);
+}
+.pass__row dd {
+  flex: none; margin: 0; max-width: 62%;
+  font-family: var(--f-mono); font-size: 11.5px; font-weight: 500;
+  color: var(--paper-ink); text-align: right;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.pass__row dd.todo { color: rgb(32 37 75 / 0.32); font-weight: 400; }
+.pass__row dd.hot { color: var(--rouge-badge); font-weight: 700; }
+.pass__row dd.hot s { color: rgb(32 37 75 / 0.42); font-weight: 400; margin-right: 7px; }
+
+/* — pied : code-barres + mention — */
+.pass__foot {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;
+  margin-top: 18px; padding-top: 13px;
+  border-top: 1px solid rgb(32 37 75 / 0.16);
+}
+.pass__code {
+  flex: 1; height: 34px; min-width: 0;
+  background-image: repeating-linear-gradient(90deg,
+    var(--navy-logo) 0 1px, transparent 1px 3px,
+    var(--navy-logo) 3px 5px, transparent 5px 6px,
+    var(--navy-logo) 6px 8px, transparent 8px 11px,
+    var(--navy-logo) 11px 12px, transparent 12px 15px);
+  opacity: 0.82;
+}
+.pass__mention {
+  flex: none; max-width: 46%;
+  font-family: var(--f-mono); font-size: 8px; line-height: 1.5;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--paper-mute); text-align: right;
+}
+
+/* — le tampon : encre rouge, bords irréguliers, posé de travers — */
+.pass__stamp {
+  position: absolute; z-index: 3;
+  right: 12px; bottom: 44px;
+  rotate: -13deg;
+  padding: 7px 15px 4px;
+  border: 3px double var(--rouge);
+  border-radius: 2px;
+  font-family: var(--f-display);
+  font-size: clamp(1.5rem, 4.2vw, 2rem);
+  line-height: 1; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--rouge);
+  opacity: 0.86;
+  mix-blend-mode: multiply;
+  /* bords rongés : le masque de bruit mange l'encre par endroits */
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='60'><filter id='r'><feTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1.7 1.15'/></filter><rect width='120' height='60' filter='url(%23r)'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='60'><filter id='r'><feTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3'/><feColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1.7 1.15'/></filter><rect width='120' height='60' filter='url(%23r)'/></svg>");
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+}
+.pass__stamp small {
+  display: block; font-family: var(--f-mono); font-size: 8px;
+  letter-spacing: 0.22em; margin-top: 2px; opacity: 0.9;
+}
+
+html.lit:not(.shown) .pass__stamp { opacity: 0; scale: 2.1; rotate: -32deg; }
+html.lit .pass__stamp { transition: opacity 0.3s var(--ease) 1.1s, scale 0.42s var(--ease-punch) 1.1s, rotate 0.42s var(--ease-punch) 1.1s; }
+@media (prefers-reduced-motion: reduce) {
+  html.lit:not(.shown) .pass__stamp { opacity: 0.86; scale: 1; rotate: -13deg; }
+  html.lit .pass__stamp { transition: none; }
+}
+
+/* — le pass qui accompagne le formulaire — */
+.pass-live { position: sticky; top: 24px; }
+.pass-live .pass { rotate: -0.8deg; }

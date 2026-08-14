@@ -1,0 +1,84 @@
+/* ============================================================
+   LE PLANNING — la bande des jours
+   Le §6.4 impose d'afficher les plannings, mais le prospect ne
+   choisit ni l'heure ni le cours : seulement salle + jour. Un
+   tableau hebdomadaire lui fait donc lire 40 cases pour prendre
+   UNE décision. On le remplace par six jours cliquables : choisir
+   ici remplit directement le formulaire.
+   ============================================================ */
+
+.week {
+  display: grid; gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+}
+@media (max-width: 620px) { .week { grid-template-columns: repeat(2, 1fr); } }
+
+.day {
+  position: relative; isolation: isolate;
+  min-height: 128px; padding: 16px 16px 14px;
+  display: flex; flex-direction: column; gap: 4px;
+  text-align: left; cursor: pointer;
+  border: 1px solid var(--line); border-radius: var(--r);
+  background: var(--surface);
+  transition: border-color var(--t) var(--ease), transform var(--t-fast) var(--ease);
+}
+.day::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: rgb(232 0 28 / 0.08);
+  transform: scaleY(0); transform-origin: bottom;
+  transition: transform var(--t) var(--ease);
+}
+.day:hover { border-color: var(--ink-4); transform: translateY(-2px); }
+.day[aria-pressed="true"] { border-color: var(--rouge); }
+.day[aria-pressed="true"]::before { transform: scaleY(1); }
+
+.day__nom {
+  font-family: var(--f-display); font-size: 1.75rem; line-height: 1; letter-spacing: 0.03em;
+}
+.day__n {
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3);
+}
+.day__n b { color: var(--rouge); font-weight: 400; }
+.day__slots {
+  margin-top: auto; display: flex; flex-direction: column; gap: 2px;
+  font-family: var(--f-mono); font-size: 0.6875rem; color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+.day__slots span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.day__slots span.easy { color: var(--ink); }
+.day__slots span.easy::before { content: "■ "; color: var(--rouge); }
+.day--empty { opacity: 0.42; cursor: default; }
+.day--empty:hover { transform: none; border-color: var(--line); }
+
+.legend {
+  margin-top: 16px;
+  display: flex; flex-wrap: wrap; gap: 6px 22px;
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-3);
+}
+.legend i { color: var(--rouge); font-style: normal; }
+
+/* rappel de la salle en cours au-dessus de la bande */
+.week__for {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px;
+  margin-bottom: 18px;
+}
+.week__for b {
+  font-family: var(--f-display); font-size: 1.7rem;
+  font-weight: 400; letter-spacing: 0.02em;
+}
+.week__for span {
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+}
+.week__swap {
+  margin-left: auto;
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
+  border-bottom: 1px solid var(--line); cursor: pointer; padding-bottom: 2px;
+  text-decoration: none;
+}
+.week__swap:hover { color: var(--ink); border-color: var(--rouge); }
+
+@media (prefers-reduced-motion: reduce) { .day, .day::before { transition: none; } }
