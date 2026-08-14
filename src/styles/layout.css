@@ -17,6 +17,9 @@
 }
 .sect--flush { border-top: 0; }
 .sect--tight { padding-block: clamp(56px, 8vw, 96px); }
+/* Une section qui ne contient qu'un en-tête n'a rien à séparer : la marge
+   d'après-titre y creusait un trou de 200 px. */
+.sect--solo .sect__head { margin-bottom: 0; }
 
 /* Le numéro de round, gravé dans la marge de la section */
 .sect__mark {
@@ -62,4 +65,18 @@ html:not(.rv-on) .rule { transform: scaleX(1); transition: transform 1.1s var(--
 .warn b {
   flex: none; padding: 2px 7px 1px;
   border: 1px solid var(--rouge); color: var(--rouge); font-weight: 400;
+}
+
+/* ============================================================
+   LE CADRAGE — C1
+   Sans cette phrase, le 0 € de cette page détruit le tarif à 10 €
+   des cinq salles. Elle n'est pas décorative : elle est la condition
+   pour que les deux offres coexistent.
+   ============================================================ */
+.sect__head > .cadrage__claim {
+  font-family: var(--f-display);
+  font-size: clamp(1.9rem, 5.2vw, 3.4rem);
+  line-height: 0.92; letter-spacing: 0.008em;
+  text-transform: uppercase; color: var(--ink);
+  max-width: 22ch;
 }

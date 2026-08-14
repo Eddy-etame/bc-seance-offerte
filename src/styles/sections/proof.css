@@ -16,7 +16,7 @@
 .score__n small {
   font-size: 0.24em; color: var(--ink-3); letter-spacing: 0.06em;
 }
-.score__stars { color: var(--rouge); letter-spacing: 0.28em; font-size: 0.9rem; }
+.score__stars { color: var(--ink-2); letter-spacing: 0.28em; font-size: 0.9rem; }
 .score__src {
   font-family: var(--f-mono); font-size: var(--fs-micro);
   letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);

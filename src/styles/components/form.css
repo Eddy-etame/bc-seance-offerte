@@ -51,6 +51,8 @@
 /* — tuiles de choix : grandes, sans frappe — */
 .opts { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); }
 .opts--days { grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); }
+.opts--visuel { grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)); }
+
 .opt {
   position: relative; isolation: isolate;
   min-height: 76px; padding: 14px 16px 12px;
@@ -78,6 +80,26 @@
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3);
 }
 .opt[aria-pressed="true"] span { color: var(--ink-2); }
+
+/* La salle se choisit sur sa photo, pas sur son nom : c'est la même
+   décision que dans la section « portes », avec la même matière. */
+.opt--img {
+  min-height: 178px; justify-content: flex-end;
+  padding: 14px 14px 13px; overflow: hidden;
+}
+.opt--img .ph { position: absolute; inset: 0; z-index: -2; }
+.opt--img .ph img {
+  filter: contrast(1.06) saturate(0.88) brightness(0.6);
+  transition: opacity 0.8s var(--ease), filter var(--t) var(--ease), transform 1s var(--ease);
+}
+.opt--img::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(to top, rgb(5 8 14 / 0.94) 10%, rgb(5 8 14 / 0.5) 46%, rgb(5 8 14 / 0.12) 80%);
+}
+.opt--img:hover .ph img { filter: contrast(1.06) saturate(1) brightness(0.78); transform: scale(1.04); }
+.opt--img[aria-pressed="true"] .ph img { filter: contrast(1.08) saturate(1.05) brightness(0.92); }
+.opt--img[aria-pressed="true"]::before { transform: none; background: rgb(232 0 28 / 0.14); }
+.opt--img span { text-transform: none; letter-spacing: 0.02em; font-size: 0.6875rem; line-height: 1.45; }
 
 /* — champs — */
 .fields { display: grid; gap: 16px; }

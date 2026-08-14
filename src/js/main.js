@@ -99,13 +99,11 @@ function annonceHTML() {
 
 function cadrageHTML() {
   return `
-  <section class="sect sect--tight" id="cadrage">
+  <section class="sect sect--tight sect--solo" id="cadrage">
     <div class="shell">
       <div class="sect__head" data-rv>
         <span class="eyebrow" data-round="Round 01">${esc(OFFRE.cadrageTitre)}</span>
-        <p style="font-size:clamp(1.25rem,3vw,2rem);line-height:1.35;color:var(--ink);max-width:30ch;font-family:var(--f-display);text-transform:uppercase;letter-spacing:.01em">
-          Elle est à 10 € partout.<br>Ici elle est à <span class="tint">0 €</span>.
-        </p>
+        <p class="cadrage__claim">Elle est à 10 € partout.<br>Ici elle est à <span class="tint">0 €</span>.</p>
         <p class="measure">${esc(OFFRE.cadrage)}</p>
         <span class="rule"></span>
       </div>

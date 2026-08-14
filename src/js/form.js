@@ -10,7 +10,7 @@
 import { SALLES, JOURS } from "./data.js";
 import { track } from "./track.js";
 import { thud } from "./audio.js";
-import { esc } from "./ui.js";
+import { esc, pic } from "./ui.js";
 
 export const state = {
   salle: "", jour: "",
@@ -23,10 +23,10 @@ export const state = {
 
 const STEPS = [
   {
-    id: "salle", key: "salle", kind: "choix",
+    id: "salle", key: "salle", kind: "choix", visuel: true,
     q: "Dans quelle salle veux-tu venir ?",
     why: "Une seule chose à toucher. Tu ne tapes rien pour l'instant.",
-    options: () => SALLES.map((s) => ({ v: s.id, b: s.nom, s: "Boxing Center" })),
+    options: () => SALLES.map((s) => ({ v: s.id, b: s.nom, s: s.fait, img: s.img })),
   },
   {
     id: "jour", key: "jour", kind: "choix", wide: true,
@@ -112,11 +112,14 @@ function invalid(rule, val) {
 function stepBody(st) {
   if (st.kind === "choix") {
     const cur = state[st.key];
-    return `<div class="opts${st.wide ? " opts--days" : ""}" role="group" aria-label="${esc(st.q)}">${st
+    const cls = "opts" + (st.wide ? " opts--days" : "") + (st.visuel ? " opts--visuel" : "");
+    return `<div class="${cls}" role="group" aria-label="${esc(st.q)}">${st
       .options()
       .map(
-        (o) => `<button type="button" class="opt" data-pick="${st.key}" data-val="${esc(o.v)}"
-          aria-pressed="${cur === o.v}"><b>${esc(o.b)}</b>${o.s ? `<span>${esc(o.s)}</span>` : ""}</button>`
+        (o) => `<button type="button" class="opt${o.img ? " opt--img" : ""}" data-pick="${st.key}" data-val="${esc(o.v)}"
+          aria-pressed="${cur === o.v}">${
+            o.img ? pic(o.img, { sizes: "(min-width:700px) 210px, 45vw" }) : ""
+          }<b>${esc(o.b)}</b>${o.s ? `<span>${esc(o.s)}</span>` : ""}</button>`
       )
       .join("")}</div>`;
   }

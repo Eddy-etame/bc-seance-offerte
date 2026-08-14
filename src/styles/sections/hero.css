@@ -115,7 +115,7 @@
   font-family: var(--f-mono); font-size: var(--fs-micro);
   letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2);
 }
-.hero__proof li::before { content: ""; width: 4px; height: 4px; background: var(--rouge); flex: none; }
+.hero__proof li::before { content: ""; width: 4px; height: 4px; background: var(--ink-4); flex: none; }
 
 .scrollcue {
   position: absolute; left: var(--gutter); bottom: 10px; z-index: 3;

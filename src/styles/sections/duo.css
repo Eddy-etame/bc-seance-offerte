@@ -38,5 +38,5 @@
 }
 .duo__how li i {
   font-family: var(--f-mono); font-style: normal; font-size: var(--fs-micro);
-  letter-spacing: 0.14em; color: var(--rouge);
+  letter-spacing: 0.14em; color: var(--ink-3);
 }
