@@ -33,11 +33,16 @@ html[data-dir="c"] .hero__scrim {
   box-shadow: 0 0 0 4px rgb(232 0 28 / 0.18);
 }
 .hero .ts {
-  padding: 5px 12px 4px 10px;
+  padding: 4px 11px 3px 9px;
   background: rgb(6 8 14 / 0.72);
   backdrop-filter: blur(6px);
   border-left: 2px solid var(--rouge);
 }
+/* L'horodatage est un élément de plus dans le héros : sans ce resserrement,
+   la direction C dépasse de 77 px celles qui n'en ont pas, et la barre
+   collante vient se poser sur son propre bouton. */
+html[data-dir="c"] .hero__body { gap: clamp(10px, 1.5vw, 17px); }
+html[data-dir="c"] .hero__kicker { max-width: 60ch; }
 
 /* — les chapitres — */
 .chapters { display: flex; flex-direction: column; }

@@ -53,7 +53,7 @@
 /* — corps — */
 .hero__body {
   margin-top: auto; padding-top: clamp(28px, 5.5vh, 60px);
-  padding: 0 var(--gutter) clamp(30px, 4.4vw, 52px);
+  padding: 0 var(--gutter) clamp(26px, 3.6vw, 44px);
   display: flex; flex-direction: column;
   gap: clamp(12px, 1.7vw, 20px);
   width: 100%; max-width: 1120px;
@@ -221,4 +221,28 @@ html.settled .hero h1 .underline::after { transform: scaleX(1) !important; trans
   .hero__lede { font-size: 1rem; }
   .hero__top { margin-bottom: 14px; }
   .hero__logo { width: 108px; }
+}
+
+
+/* ------------------------------------------------------------
+   ÉCRANS COURTS EN HAUTEUR (portables 800–900 px)
+   Le bandeau de preuves est le dernier élément : c'est lui qui
+   sortait du champ. On resserre l'échelle plutôt que de le
+   supprimer — il fait partie de la réassurance immédiate.
+   ------------------------------------------------------------ */
+@media (max-height: 920px) and (min-width: 761px) {
+  .hero h1 { font-size: min(var(--fs-hero), 18vh); }
+  .price__new { font-size: min(clamp(3rem, 7.6vw, 5.4rem), 11vh); }
+  .hero__body { gap: clamp(10px, 1.3vw, 16px); padding-top: clamp(20px, 3vh, 38px); }
+  .hero__top { margin-bottom: clamp(18px, 2.6vh, 34px); }
+  .hero__lede { font-size: 1.0625rem; }
+}
+
+
+/* Sous 820 px de haut, même resserré, le bandeau de preuves poussait
+   l'appel à l'action hors du champ. Arbitrage assumé : le bouton passe
+   avant le bonus, et les mêmes preuves sont reprises dans la section
+   des objections juste en dessous, puis dans le pied de page. */
+@media (max-height: 820px) and (min-width: 761px) {
+  .hero__proof { display: none; }
 }
