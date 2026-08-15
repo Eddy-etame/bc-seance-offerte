@@ -79,6 +79,26 @@
 .poster__frame:hover .poster__zoom { color: var(--ink); border-color: var(--ink-3); }
 .poster__vide { padding: 40px 20px; text-align: center; color: var(--ink-3); font-size: var(--fs-sm); }
 
+/* Sur mobile, la grille hebdomadaire est illisible à 350 px de large.
+   L'aperçu ne sert qu'à prouver qu'un vrai planning existe : l'action
+   d'agrandir devient une barre pleine largeur, pas une pastille à viser. */
+@media (max-width: 700px) {
+  .poster__frame { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+  .poster__frame .ph {
+    max-height: 220px; overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent);
+    mask-image: linear-gradient(to bottom, #000 62%, transparent);
+  }
+  .poster__zoom {
+    position: static; display: block; width: 100%;
+    padding: 15px 12px 13px; text-align: center;
+    background: var(--surface-2); backdrop-filter: none;
+    border: 1px solid var(--line); border-top: 0;
+    color: var(--ink); font-size: var(--fs-xs); letter-spacing: 0.2em;
+  }
+  .poster__zoom::after { content: " le planning"; }
+}
+
 .lightbox {
   position: fixed; inset: 0; z-index: 120;
   display: grid; place-items: center; padding: clamp(16px, 4vw, 48px);
@@ -87,6 +107,13 @@
 }
 .lightbox .ph { width: min(1400px, 96vw); }
 .lightbox img { width: 100%; height: auto; }
+
+/* Sur téléphone, une grille hebdomadaire ramenée à 390 px reste illisible :
+   on la sert à une largeur exploitable et on laisse le doigt la parcourir. */
+@media (max-width: 760px) {
+  .lightbox { place-items: start; padding: 64px 0 32px; }
+  .lightbox .ph { width: 880px; max-width: none; }
+}
 .lightbox__close {
   position: fixed; top: 18px; right: 18px; z-index: 2; cursor: pointer;
   padding: 11px 18px 9px;
