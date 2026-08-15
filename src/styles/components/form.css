@@ -146,9 +146,17 @@
 .consent .field__err { grid-column: 2; }
 .consent.is-bad { border-color: var(--rouge); }
 
-/* — navigation — */
+/* — navigation —
+   Sur mobile la colonne s'inverse : le bouton principal passe pleine largeur
+   sous le pouce, le retour dessous. Côte à côte, un libellé long se cassait
+   sur trois lignes. */
 .step__nav { display: flex; align-items: center; gap: 14px; margin-top: 4px; }
 .step__nav .btn { flex: 1; }
+@media (max-width: 620px) {
+  .step__nav { flex-direction: column-reverse; align-items: stretch; gap: 6px; }
+  .step__nav .btn { width: 100%; }
+  .back { text-align: center; padding: 12px 6px 6px; }
+}
 .back {
   flex: none; padding: 14px 6px; cursor: pointer;
   font-family: var(--f-mono); font-size: var(--fs-micro);

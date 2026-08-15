@@ -184,7 +184,7 @@ export function formHTML() {
           <div class="step__nav">
             ${i > 0 ? `<button type="button" class="back" data-back>← Retour</button>` : ""}
             <button type="button" class="btn btn--primary" data-next>
-              ${i === STEPS.length - 1 ? "Je valide ma séance offerte" : "Continuer"}
+              ${i === STEPS.length - 1 ? "Je valide ma séance" : "Continuer"}
               <span class="btn__arrow" aria-hidden="true"></span>
             </button>
           </div>
