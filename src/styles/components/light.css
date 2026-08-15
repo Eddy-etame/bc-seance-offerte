@@ -29,12 +29,18 @@
   width: 116vw; height: 108vh;
   translate: -50% 0;
   clip-path: polygon(45.6% 0%, 54.4% 0%, 86% 100%, 14% 100%);
-  background: linear-gradient(to bottom,
-    rgb(var(--light-hot) / 0.42) 0%,
-    rgb(var(--light) / 0.13) 38%,
-    rgb(var(--light) / 0.035) 68%,
-    transparent 92%);
-  filter: blur(42px);
+  background:
+    linear-gradient(to bottom,
+      rgb(var(--light-hot) / 0.42) 0%,
+      rgb(var(--light) / 0.13) 38%,
+      rgb(var(--light) / 0.035) 68%,
+      transparent 92%);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+  /* Le flou suit la taille du faisceau : fixe à 42 px, il devenait
+     proportionnellement invisible sur grand écran et le tronc de cône
+     se lisait comme un triangle découpé posé sur la photo. */
+  filter: blur(clamp(30px, 3.4vw, 78px));
   opacity: var(--k, 1);
   transition: left 1.1s var(--ease), opacity 0.3s linear;
 }

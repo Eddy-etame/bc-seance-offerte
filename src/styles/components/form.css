@@ -51,7 +51,10 @@
 /* — tuiles de choix : grandes, sans frappe — */
 .opts { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(148px, 1fr)); }
 .opts--days { grid-template-columns: repeat(auto-fit, minmax(104px, 1fr)); }
-.opts--visuel { grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)); }
+/* 168 px de minimum ne tenaient pas en deux colonnes une fois retirées les
+   marges du formulaire : les cinq salles s'empilaient sur 890 px de
+   défilement pour une seule décision. */
+.opts--visuel { grid-template-columns: repeat(auto-fit, minmax(126px, 1fr)); }
 
 .opt {
   position: relative; isolation: isolate;
@@ -84,8 +87,13 @@
 /* La salle se choisit sur sa photo, pas sur son nom : c'est la même
    décision que dans la section « portes », avec la même matière. */
 .opt--img {
-  min-height: 178px; justify-content: flex-end;
-  padding: 14px 14px 13px; overflow: hidden;
+  min-height: 158px; justify-content: flex-end;
+  padding: 13px 13px 12px; overflow: hidden;
+}
+@media (max-width: 560px) {
+  .opt--img { min-height: 136px; }
+  .opt--img b { font-size: 1.25rem; }
+  .opt--img span { font-size: 0.625rem; }
 }
 .opt--img .ph { position: absolute; inset: 0; z-index: -2; }
 .opt--img .ph img {
