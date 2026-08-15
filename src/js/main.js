@@ -35,7 +35,7 @@ if (NU) document.documentElement.classList.add("nu");
 function passHTML(cls) {
   return `
   <div class="pass ${cls}">
-    <div class="pass__stub"><span>Séance d'essai offerte · Boxing Center</span></div>
+    <div class="pass__stub"><span>Séance d'essai · Boxing Center</span></div>
     <div class="pass__body">
       <div class="pass__top">
         <img class="pass__logo" src="/img/logo-bc-papier-260.webp" srcset="/img/logo-bc-papier-260.webp 260w, /img/logo-bc-papier-520.webp 520w" sizes="108px" width="3542" height="1653" alt="Boxing Center" />
@@ -617,12 +617,22 @@ function mountObservers(dir) {
     dockIO = new IntersectionObserver(
       (entries) => {
         dockFired = true;
-        entries.forEach((en) => (en.isIntersecting ? visible.add(en.target) : visible.delete(en.target)));
-        dock.classList.toggle("is-on", visible.size === 0 && window.scrollY > 60);
+        entries.forEach((en) =>
+          en.isIntersecting && en.intersectionRatio >= 0.55
+            ? visible.add(en.target)
+            : visible.delete(en.target)
+        );
+        // Aucune condition de défilement : sur un petit écran, le bouton du
+        // héros peut être sous le pli dès le chargement. Il resterait alors
+        // zéro appel à l'action visible — le pire cas possible.
+        dock.classList.toggle("is-on", visible.size === 0);
       },
       // La marge basse vaut la hauteur de la barre : un bouton caché DERRIÈRE
       // elle ne compte pas comme visible, un bouton juste au-dessus si.
-      { threshold: 0, rootMargin: "-60px 0px -96px 0px" }
+      // Seuil 0,55 : un bouton dont trois pixels dépassent en bas d'écran
+      // n'est pas un appel à l'action. Il doit être majoritairement visible
+      // pour que la barre s'efface.
+      { threshold: [0, 0.55], rootMargin: "-60px 0px -96px 0px" }
     );
     anchors.forEach((a) => dockIO.observe(a));
   }

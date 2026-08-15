@@ -205,3 +205,20 @@ html.settled .pass__stamp {
 html.settled .price__new { transform: skewX(-7deg) !important; }
 html.settled .pass__stamp { opacity: 0.86 !important; scale: 1 !important; rotate: -13deg !important; }
 html.settled .hero h1 .underline::after { transform: scaleX(1) !important; transition: none !important; }
+
+
+/* ------------------------------------------------------------
+   PETITS ÉCRANS EN HAUTEUR (iPhone SE et assimilés, 667 px)
+   L'appel à l'action doit rester au-dessus du pli : 64 % des
+   visiteurs mobiles ne verront jamais rien d'autre. Ce qui saute
+   en premier, c'est le bandeau de preuves — il est repris plus bas.
+   ------------------------------------------------------------ */
+@media (max-height: 730px) and (max-width: 760px) {
+  .hero__proof { display: none; }
+  .hero__body { gap: 10px; padding-bottom: 20px; padding-top: 16px; }
+  .hero h1 { font-size: min(var(--fs-hero), 17vh); }
+  .price__new { font-size: min(clamp(2.6rem, 7vw, 4.4rem), 11vh); }
+  .hero__lede { font-size: 1rem; }
+  .hero__top { margin-bottom: 14px; }
+  .hero__logo { width: 108px; }
+}

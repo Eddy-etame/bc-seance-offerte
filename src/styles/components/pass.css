@@ -38,8 +38,20 @@
   padding: 16px 0;
   border-right: 1px dashed rgb(32 37 75 / 0.3);
   background: linear-gradient(90deg, rgb(32 37 75 / 0.07), transparent 78%);
+  /* Le texte vertical de la souche est plus long que le contenu du titre
+     d'accès : sans cela, il imposait sa hauteur à tout le pass — 360 px
+     pour deux lignes utiles sur un écran de 667 px. `overflow: hidden`
+     annule la taille minimale automatique de l'élément de grille. */
+  overflow: hidden;
+  min-height: 0;
 }
+/* Le texte de la souche est sorti du flux : en `writing-mode: vertical-rl`
+   sa longueur intrinsèque dictait la hauteur de la ligne de grille, donc
+   celle du pass entier — 360 px pour 158 px de contenu utile. Hors flux,
+   c'est le corps qui commande, et la souche se contente de suivre. */
 .pass__stub span {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
   writing-mode: vertical-rl; rotate: 180deg;
   font-family: var(--f-mono); font-size: 9px;
   letter-spacing: 0.34em; text-transform: uppercase;
@@ -184,8 +196,13 @@ html.lit .pass__stamp { transition: opacity 0.26s var(--ease) 0.5s, scale 0.4s v
   .pass-hero .pass__sub { display: none; }
   .pass-hero .pass__lines { margin-top: 12px; }
   .pass-hero .pass__row:nth-of-type(n + 3) { display: none; }
-  .pass-hero .pass__foot { margin-top: 13px; padding-top: 10px; }
+  .pass-hero .pass__foot { margin-top: 11px; padding-top: 9px; }
+  .pass-hero .pass__code { height: 26px; }
+  .pass-hero .pass__row dd.hot { font-size: 1.45rem; }
   .pass-hero .pass__logo { width: 88px; }
+  /* Sur la version compacte, la souche garde sa perforation mais perd son
+     texte : il serait coupé en deux, ce qui se lit comme un défaut. */
+  .pass-hero .pass__stub span { display: none; }
   .pass-hero .pass__stamp { font-size: 1.35rem; padding: 5px 11px 3px; bottom: 11px; right: 12px; }
   .pass-hero .pass__stamp small { display: none; }
 }

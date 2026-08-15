@@ -51,6 +51,16 @@ html[data-dir="b"] .hero__body { padding-bottom: clamp(34px, 5vw, 64px); }
   html[data-dir="b"] .pass-hero { width: min(100%, 460px); }
 }
 
+/* Sur mobile, le titre d'accès porte déjà le message du chapô : les deux
+   ensemble poussaient l'appel à l'action 121 px sous le pli. On garde
+   l'objet, on retire le doublon. */
+@media (max-width: 760px) {
+  html[data-dir="b"] .hero__lede { display: none; }
+  html[data-dir="b"] .hero h1 { font-size: min(clamp(2.6rem, 11.5vw, 3.6rem), 15vh); }
+  html[data-dir="b"] .hero__body { gap: 12px; padding-bottom: 24px; }
+  html[data-dir="b"] .hero__kicker { display: none; }
+}
+
 /* Les séparateurs deviennent des pointillés de découpe. */
 html[data-dir="b"] .sect { border-top-style: dashed; border-top-color: var(--ink-4); }
 html[data-dir="b"] .door { border-radius: 3px; }
@@ -62,3 +72,16 @@ html[data-dir="b"] .form-layout { display: grid; gap: clamp(28px, 4vw, 48px); al
 }
 html:not([data-dir="b"]) .pass-live,
 html:not([data-dir="b"]) .pass-hero { display: none !important; }
+
+
+/* Petits écrans en hauteur : le laissez-passer se réduit à son essentiel
+   — titre, valeur, tampon — pour que le bouton reste au-dessus du pli. */
+@media (max-height: 730px) and (max-width: 760px) {
+  html[data-dir="b"] .pass-hero .pass__row:nth-of-type(n + 2) { display: none; }
+  html[data-dir="b"] .pass-hero .pass__foot { display: none; }
+  html[data-dir="b"] .pass-hero .pass__title { font-size: 1.6rem; margin-top: 8px; }
+  html[data-dir="b"] .pass-hero .pass__body { padding: 12px 14px 12px; }
+  html[data-dir="b"] .pass-hero .pass__logo { width: 74px; }
+  html[data-dir="b"] .pass-hero .pass__stamp { bottom: 9px; right: 10px; font-size: 1.15rem; }
+  html[data-dir="b"] .hero h1 { font-size: min(clamp(2.3rem, 10vw, 3rem), 13vh); }
+}
