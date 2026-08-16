@@ -123,7 +123,9 @@
 }
 
 @media (max-width: 760px) {
-  .pancarte { bottom: auto; top: 72px; padding: 10px 18px 8px 14px; gap: 10px; }
+  /* En haut de l'écran plutôt qu'à 72 px : là, elle se posait en travers
+     du sur-titre de la section qu'on vient d'atteindre. */
+  .pancarte { bottom: auto; top: 0; padding: 9px 16px 7px 12px; gap: 9px; }
   .pancarte__n { font-size: 1.9rem; }
   .pancarte__l { font-size: 1.1rem; }
 }

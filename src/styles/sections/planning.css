@@ -11,7 +11,19 @@
   display: grid; gap: 8px;
   grid-template-columns: repeat(auto-fit, minmax(152px, 1fr));
 }
-@media (max-width: 620px) { .week { grid-template-columns: repeat(2, 1fr); } }
+/* `1fr` vaut `minmax(auto, 1fr)` : la piste refuse de descendre sous la
+   largeur mini-contenu, et deux colonnes restaient bloquées à 361 px quelle
+   que soit la fenêtre. `minmax(0, 1fr)` autorise la piste à rétrécir. */
+@media (max-width: 620px) { .week { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* Sous 400 px, deux colonnes de tuiles dépassaient le cadre de trois
+   pixels : la gouttière et le rembourrage se resserrent avant de casser
+   la grille en une seule colonne, qui coûterait six lignes de défilement. */
+@media (max-width: 400px) {
+  .week { gap: 6px; }
+  .day { padding: 11px 10px 9px; gap: 7px; }
+  .day__pick { right: 8px; width: 22px; height: 22px; }
+  .day__long { margin-right: 20px; }
+}
 
 /* Depuis que les horaires inventés ont sauté, la tuile ne porte plus qu'un
    nom de jour : une boîte de 104 px de haut pour trois lettres se lisait
@@ -20,7 +32,8 @@
 .day {
   position: relative; isolation: isolate;
   min-height: 62px; padding: 12px 14px 10px;
-  display: flex; align-items: baseline; gap: 10px;
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  min-width: 0;
   text-align: left; cursor: pointer;
   border: 1px solid var(--line); border-radius: var(--r);
   background: var(--surface);

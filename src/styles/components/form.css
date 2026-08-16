@@ -30,6 +30,13 @@
   white-space: nowrap; font-variant-numeric: tabular-nums;
 }
 .form__pips { display: flex; gap: 5px; }
+/* Sous 400 px, six pastilles de 26 px plus le libellé ne tiennent pas sur
+   la ligne : elles rétrécissent, et la progression reste dite en toutes
+   lettres par « Étape 3 sur 6 ». */
+@media (max-width: 400px) {
+  .form__pips { gap: 3px; }
+  .form__pips i { width: 14px; }
+}
 .form__pips i {
   width: 26px; height: 3px; background: var(--line);
   transition: background var(--t) var(--ease);
