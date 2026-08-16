@@ -11,7 +11,7 @@ import {
 } from "./data.js";
 import AFFICHES from "../plannings-manifest.json";
 import { esc, pic, scrollTo, lignes, fr } from "./ui.js";
-import { formHTML, mountForm, skipKnownSteps, state } from "./form.js";
+import { formHTML, mountForm, skipKnownSteps, state, retenirChoix } from "./form.js";
 import { track, SOURCE_LABEL, PASS_NO } from "./track.js";
 import { mountReveal, mountImages } from "./reveal.js";
 import { mountLight, unmountLight, strikeLight } from "./light.js";
@@ -400,6 +400,10 @@ function render(dir) {
   );
 
   mountForm(app, sync);
+  /* Un visiteur qui revient a déjà sa salle et son jour en mémoire : le
+     formulaire s'ouvre à la première question sans réponse, il ne redemande
+     pas ce qui est déjà choisi. */
+  skipKnownSteps();
   paintWeek(state.salle || SALLES[0].id);
   sync();
 
@@ -579,6 +583,7 @@ document.addEventListener("click", (e) => {
     const opt = app.querySelector(`.opt[data-pick="salle"][data-val="${state.salle}"]`);
     if (opt) opt.parentElement.querySelectorAll(".opt").forEach((b) => b.setAttribute("aria-pressed", String(b === opt)));
     paintWeek(state.salle);
+    retenirChoix();
     sync();
     track("salle_choisie", { salle: state.salle });
     return;
@@ -600,6 +605,7 @@ document.addEventListener("click", (e) => {
     state.jour = day.dataset.jour;
     const opt = app.querySelector(`.opt[data-pick="jour"][data-val="${state.jour}"]`);
     if (opt) opt.parentElement.querySelectorAll(".opt").forEach((b) => b.setAttribute("aria-pressed", String(b === opt)));
+    retenirChoix();
     sync();
     track("jour_choisi", { jour: state.jour });
   }

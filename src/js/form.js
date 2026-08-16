@@ -13,8 +13,32 @@ import { thud } from "./audio.js";
 import { esc, pic, fr, prefersCalm } from "./ui.js";
 import { mountImages } from "./reveal.js";
 
+/* On garde LES CHOIX, jamais l'identité.
+   Salle et jour coûtent du parcours — parcourir les portes, lire l'affiche
+   du planning : les reperdre à un rechargement, c'est refaire le chemin.
+   Prénom, email, date de naissance et sexe ne sont jamais stockés : ce sont
+   des données personnelles, et les retaper coûte trente secondes. La portée
+   est la session, donc l'onglet fermé efface tout. */
+const MEMO = "bc-essai-choix";
+
+function relire() {
+  try {
+    const j = JSON.parse(sessionStorage.getItem(MEMO) || "{}");
+    return { salle: typeof j.salle === "string" ? j.salle : "",
+             jour: typeof j.jour === "string" ? j.jour : "" };
+  } catch { return { salle: "", jour: "" }; }
+}
+
+export function retenirChoix() {
+  try {
+    sessionStorage.setItem(MEMO, JSON.stringify({ salle: state.salle, jour: state.jour }));
+  } catch { /* mode privé : on continue sans mémoire */ }
+}
+
+const repris = relire();
+
 export const state = {
-  salle: "", jour: "",
+  salle: repris.salle, jour: repris.jour,
   prenom: "", nom: "", email: "", tel: "", naissance: "", sexe: "",
   ami: null,        // null = pas répondu · false = seul · objet = à deux
   rgpd: false,
@@ -337,6 +361,7 @@ export function mountForm(root, onChange) {
     if (pick) {
       begin();
       state[pick.dataset.pick] = pick.dataset.val;
+      retenirChoix();
       pick.parentElement.querySelectorAll(".opt").forEach((b) => b.setAttribute("aria-pressed", String(b === pick)));
       thud();
       onChange && onChange(state);
@@ -414,13 +439,29 @@ export function mountForm(root, onChange) {
     if (started && state.step < STEPS.length) track("etape_abandonnee", { etape: state.step + 1 });
   });
 
+  repeindre = paint;
   paint();
 }
 
 /** Fait avancer le formulaire si la salle a déjà été choisie plus haut dans la page. */
-export function skipKnownSteps(root) {
-  if (state.salle && state.step === 0) root.querySelector('.step[data-step="0"] [data-next]')?.click();
-  if (state.jour && state.step === 1) root.querySelector('.step[data-step="1"] [data-next]')?.click();
+/* Place le formulaire à la première question sans réponse.
+   On ne simule PLUS un clic sur « Continuer » : ce clic déclenchait
+   `formulaire_commence`, et au retour d'un visiteur dont les choix sont
+   repris, la page comptait un formulaire entamé qu'il n'avait pas touché.
+   On pose l'étape et on redessine. */
+export function skipKnownSteps() {
+  let n = 0;
+  if (state.salle) n = 1;
+  if (state.salle && state.jour) n = 2;
+  if (n > state.step) {
+    state.step = n;
+    state.maxStep = Math.max(state.maxStep, n);
+    repeindre && repeindre();
+  }
 }
+
+/* Le rendu du formulaire, exposé pour que `skipKnownSteps` puisse
+   rafraîchir sans passer par un faux clic. */
+let repeindre = null;
 
 export const STEP_COUNT = STEPS.length;
