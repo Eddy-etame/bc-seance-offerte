@@ -21,14 +21,24 @@ function readSource() {
 }
 
 export const SOURCE = readSource();
+/* Une source inconnue est affichée telle quelle en mode maquette, mais
+   nettoyée : on ne recopie pas n'importe quoi depuis l'URL, même échappé. */
 export const SOURCE_LABEL =
-  SOURCES[SOURCE] || (SOURCE === "direct" ? "Accès direct" : SOURCE);
+  SOURCES[SOURCE] ||
+  (SOURCE === "direct"
+    ? "Accès direct"
+    : SOURCE.replace(/[^a-z0-9 _-]/gi, "").slice(0, 24) || "Source inconnue");
 
 /** Numéro de laissez-passer, dérivé de la source : le flyer scanné a son numéro à l'écran. */
 export const PASS_NO = (() => {
   const p = new URLSearchParams(location.search);
   const camp = (p.get("c") || p.get("utm_campaign") || "").replace(/[^a-z0-9]/gi, "").slice(0, 5);
-  const base = (SOURCE === "direct" ? "web" : SOURCE).slice(0, 3).toUpperCase();
+  /* Le préfixe est montré au visiteur : il ne doit contenir que des lettres.
+     Sans filtre, un ?src= fantaisiste produisait « N° <IM-7643 » ou
+     « N° " O-4205 » — aucune injection possible, l'échappement tient, mais
+     du caractère parasite dans un identifiant qu'on affiche. */
+  const propre = (SOURCE === "direct" ? "web" : SOURCE).replace(/[^a-z]/gi, "");
+  const base = (propre || "web").slice(0, 3).toUpperCase();
   const seed = camp || SOURCE;
   const n = (Math.abs([...seed].reduce((a, ch) => (a * 31 + ch.charCodeAt(0)) | 0, 7)) % 9000) + 1000;
   return `${base}-${n}`;
