@@ -71,13 +71,21 @@ export function mountLight(el) {
     plans = stages.map((s) => {
       let t = 0, n = s;
       while (n) { t += n.offsetTop; n = n.offsetParent; }
-      return { el: s, haut: t, h: s.offsetHeight, lit: -1 };
+      const f = parseFloat(s.dataset.focus);
+      return { el: s, haut: t, h: s.offsetHeight, lit: -1,
+               mire: Number.isFinite(f) ? f : 0.44 };
     });
   };
 
   /* — cible et valeur amortie : la poursuite glisse, elle ne saute pas — */
   let cibleY = 0.5, y = 0.5, cibleX = 0.5, x = 0.5;
   let vitesse = 0, dernier = window.scrollY;
+  /* Le point de mire : chaque section dit où la lumière doit pointer.
+     Sans ça le faisceau pendait au milieu du premier écran pendant que le
+     sujet de la photo se tenait ailleurs — une poursuite qui ne suit
+     personne. Le pointeur ne fait que dévier autour de ce point. */
+  let mire = 0.5;
+  let devie = 0;
 
   const viser = () => {
     const sy = window.scrollY;
@@ -85,19 +93,24 @@ export function mountLight(el) {
     vitesse = vitesse * 0.84 + (sy - dernier) * 0.16;
     dernier = sy;
 
-    let best = 0.5, dist = Infinity;
+    let best = 0.5, dist = Infinity, vise = 0.5;
     for (const p of plans) {
       const centre = p.haut + Math.min(p.h, vh) * 0.42 - sy;
       const d = Math.abs(centre - vh * 0.5);
-      if (d < dist) { dist = d; best = centre / vh; }
+      if (d < dist) { dist = d; best = centre / vh; vise = p.mire; }
     }
     // le suiveur devance légèrement : il regarde là où on va
     cibleY = clamp(best + clamp(vitesse / vh, -0.07, 0.07), 0.2, 0.78);
+    mire = vise;
+    cibleX = clamp(mire + devie, 0.12, 0.88);
   };
 
   const onScroll = () => viser();
   const onResize = () => { mesurer(); viser(); };
-  const onMove = (e) => { cibleX = 0.5 + (e.clientX / window.innerWidth - 0.5) * 0.4; };
+  const onMove = (e) => {
+    devie = (e.clientX / window.innerWidth - 0.5) * 0.34;
+    cibleX = clamp(mire + devie, 0.12, 0.88);
+  };
 
   mesurer(); viser();
   y = cibleY; x = cibleX;

@@ -68,7 +68,7 @@ function heroHTML(dir) {
     </p>`;
 
   return `
-  <header class="hero" data-stage>
+  <header class="hero" data-stage data-focus="${dir === "b" ? "0.72" : dir === "c" ? "0.46" : "0.63"}">
     <div class="hero__media">${pic(h.img, { sizes: "100vw", eager: true })}</div>
     <div class="hero__scrim"></div>
 
@@ -105,7 +105,7 @@ function heroHTML(dir) {
 
 function cadrageHTML() {
   return `
-  <section class="sect cadrage" id="cadrage" data-stage aria-label="Pourquoi cette séance est offerte">
+  <section class="sect cadrage" id="cadrage" data-stage aria-label="Pourquoi cette séance est offerte" data-focus="0.38">
     <div class="shell cadrage__in">
       <span class="eyebrow" data-round="Round 01" data-rv>${esc(OFFRE.cadrageTitre)}</span>
       <p class="cadrage__claim" data-rv>
@@ -120,7 +120,7 @@ function cadrageHTML() {
 
 function peursHTML() {
   return `
-  <section class="sect" id="reassurance" data-stage aria-label="Ce qui te retient">
+  <section class="sect" id="reassurance" data-stage aria-label="Ce qui te retient" data-focus="0.4">
     <span class="sect__mark" aria-hidden="true">02</span>
     <div class="shell">
       <div class="sect__head" data-rv>
@@ -152,7 +152,7 @@ function peursHTML() {
 
 function chapitresHTML() {
   return `
-  <section class="sect" id="reassurance" data-stage aria-label="Ce qui te retient">
+  <section class="sect" id="reassurance" data-stage aria-label="Ce qui te retient" data-focus="0.4">
     <span class="sect__mark" aria-hidden="true">02</span>
     <div class="shell">
       <div class="sect__head" data-rv>
@@ -186,7 +186,7 @@ function chapitresHTML() {
 
 function sallesHTML() {
   return `
-  <section class="sect" id="salles" data-stage aria-label="Choisir ta salle">
+  <section class="sect" id="salles" data-stage aria-label="Choisir ta salle" data-focus="0.5">
     <span class="sect__mark" aria-hidden="true">03</span>
     <div class="shell">
       <div class="sect__head" data-rv>
@@ -221,7 +221,7 @@ function sallesHTML() {
 
 function planningsHTML() {
   return `
-  <section class="sect" id="plannings" data-stage aria-label="Choisir ton jour">
+  <section class="sect" id="plannings" data-stage aria-label="Choisir ton jour" data-focus="0.42">
     <span class="sect__mark" aria-hidden="true">04</span>
     <div class="shell">
       <div class="sect__head" data-rv>
@@ -267,7 +267,7 @@ function posterPic(a, sizes) {
 
 function binomeHTML() {
   return `
-  <section class="sect sect--bleed" id="binome" data-stage aria-label="Venir à deux">
+  <section class="sect sect--bleed" id="binome" data-stage aria-label="Venir à deux" data-focus="0.34">
     <div class="bleed">
       <div class="duo">
         <div class="duo__media" data-rv>
@@ -296,7 +296,7 @@ function binomeHTML() {
 
 function preuveHTML() {
   return `
-  <section class="sect" id="preuve" data-stage aria-label="Avis des adhérents">
+  <section class="sect" id="preuve" data-stage aria-label="Avis des adhérents" data-focus="0.44">
     <div class="shell">
       <div class="sect__head" data-rv>
         <span class="eyebrow">Ce qu'en disent les adhérents</span>
@@ -330,7 +330,7 @@ function preuveHTML() {
 
 function inscriptionHTML(dir) {
   return `
-  <section class="sect" id="inscription" data-stage aria-label="Réserver ta séance">
+  <section class="sect" id="inscription" data-stage aria-label="Réserver ta séance" data-focus="0.42">
     <span class="sect__mark" aria-hidden="true">05</span>
     <div class="shell">
       <div class="sect__head" data-rv>
