@@ -23,12 +23,17 @@ export const OFFRE = {
    Visuels et faits repris des cartes officielles de boutique.boxingcenter.fr
    (storefront/public/js/home.js) — mêmes images, mêmes formulations validées.
    Aucune adresse : pas de source fiable pour les cinq. À compléter club. */
+/* `img` : la carte officielle de la salle, pour la choisir.
+   `accueil` : le visuel de l'écran de confirmation. Ce n'est PAS le même —
+   la carte de Portet montre deux adhérents en opposition, ce qui est juste
+   pour situer un lieu et faux sur le dernier écran avant qu'un débutant se
+   déplace. Là, on montre quelqu'un qu'on accompagne. */
 export const SALLES = [
-  { id: "minimes", nom: "Minimes", fait: "Le berceau du club (2016) · 3 rings", img: "salle-minimes" },
-  { id: "st-cyprien", nom: "Saint-Cyprien", fait: "1 200 m² · la plus récente (2025)", img: "salle-saint-cyprien" },
-  { id: "ramonville", nom: "Ramonville", fait: "Octogone 7 m · 300 m² extérieur", img: "salle-ramonville" },
-  { id: "etats-unis", nom: "États-Unis", fait: "Cage MMA · large choix de disciplines", img: "salle-etats-unis" },
-  { id: "portet", nom: "Portet", fait: "Boxe, cross training et MMA", img: "salle-portet" },
+  { id: "minimes", nom: "Minimes", accueil: "cours-groupe", fait: "Le berceau du club (2016) · 3 rings", img: "salle-minimes" },
+  { id: "st-cyprien", nom: "Saint-Cyprien", accueil: "coin", fait: "1 200 m² · la plus récente (2025)", img: "salle-saint-cyprien" },
+  { id: "ramonville", nom: "Ramonville", accueil: "duo-cage", fait: "Octogone 7 m · 300 m² extérieur", img: "salle-ramonville" },
+  { id: "etats-unis", nom: "États-Unis", accueil: "coach-ring", fait: "Cage MMA · large choix de disciplines", img: "salle-etats-unis" },
+  { id: "portet", nom: "Portet", accueil: "portrait-gants", fait: "Boxe, cross training et MMA", img: "salle-portet" },
 ];
 
 export const JOURS = [

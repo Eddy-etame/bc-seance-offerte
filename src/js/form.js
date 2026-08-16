@@ -191,7 +191,7 @@ export function formHTML() {
         </section>`
       ).join("")}
 
-      <section class="done" data-step="${STEPS.length}" hidden aria-live="polite">
+      <section class="done" data-step="${STEPS.length}" hidden aria-live="polite" aria-label="Confirmation de ta séance">
         <div class="done__media" id="done-media"></div>
         <div class="done__body">
           <p class="eyebrow">C'est enregistré</p>
@@ -322,7 +322,8 @@ export function mountForm(root, onChange) {
 
     const media = root.querySelector("#done-media");
     if (media) {
-      media.innerHTML = salle ? pic(salle.img, { sizes: "(min-width:820px) 320px, 100vw" }) : "";
+      // Registre permission : on accompagne, on n'affronte pas (voir data.js).
+      media.innerHTML = salle ? pic(salle.accueil || salle.img, { sizes: "(min-width:820px) 320px, 100vw" }) : "";
       // Une image injectée après coup n'a pas d'écouteur de chargement :
       // sans ce rappel, elle reste à opacité 0 et le panneau paraît vide.
       mountImages(media);
