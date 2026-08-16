@@ -8,6 +8,11 @@
 
 .form {
   position: relative;
+  /* 820 px au plus. Sans borne, le panneau prenait toute la colonne — des
+     champs de 537 px pour un prénom et un bouton de mille pixels : la
+     largeur d'un formulaire est une mesure de confort, pas de place
+     disponible. */
+  max-width: 820px;
   border: 1px solid var(--line);
   background: linear-gradient(180deg, var(--surface-2), var(--surface));
   overflow: hidden;
@@ -152,6 +157,12 @@
    sur trois lignes. */
 .step__nav { display: flex; align-items: center; gap: 14px; margin-top: 4px; }
 .step__nav .btn { flex: 1; }
+/* Sur large écran le bouton n'a plus besoin de toute la ligne : il garde
+   une cible confortable sans devenir une barre. */
+@media (min-width: 700px) {
+  .step__nav { justify-content: flex-start; }
+  .step__nav .btn { flex: 0 1 auto; min-width: 300px; }
+}
 @media (max-width: 620px) {
   .step__nav { flex-direction: column-reverse; align-items: stretch; gap: 6px; }
   .step__nav .btn { width: 100%; }
