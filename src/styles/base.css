@@ -148,3 +148,33 @@ html.rv-on [data-rv].is-in .mask:nth-of-type(3) > span { transition-delay: 0.18s
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: radial-gradient(118% 82% at 50% 40%, transparent 24%, rgba(3, 5, 11, 0.9) 100%);
 }
+
+/* ============================================================
+   SANS SCRIPT
+   La page entière est montée par script. Ce repli n'essaie pas de
+   la reconstituer : il évite l'écran noir et dit au visiteur ce
+   qu'il est venu chercher.
+   ============================================================ */
+.noscript {
+  max-width: 44ch;
+  margin: 0 auto;
+  padding: clamp(48px, 12vh, 120px) var(--gutter);
+  display: flex; flex-direction: column; gap: 18px;
+}
+.noscript p { color: var(--ink-2); }
+.noscript__eyebrow {
+  font-family: var(--f-mono); font-size: var(--fs-micro);
+  letter-spacing: var(--tr-mono); text-transform: uppercase; color: var(--ink-3);
+}
+.noscript__titre { font-size: clamp(2.4rem, 9vw, 4rem); }
+.noscript__prix {
+  font-family: var(--f-display); font-size: 3rem; line-height: 1;
+  display: flex; align-items: baseline; gap: 14px;
+}
+.noscript__prix s { color: var(--ink-3); font-size: 0.5em; }
+.noscript__prix b { color: var(--rouge); font-weight: 400; }
+.noscript__aide {
+  font-size: var(--fs-sm);
+  padding-top: 16px; border-top: 1px solid var(--line-soft);
+  color: var(--ink-3) !important;
+}

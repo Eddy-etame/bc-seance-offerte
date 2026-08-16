@@ -74,6 +74,24 @@
 
   <main id="app"></main>
 
+  <!-- Toute la page est montée par script : sans lui, il ne reste rien.
+       Ce bloc ne remplace pas la page, il évite l'écran noir et dit au
+       visiteur ce qu'il est venu chercher. -->
+  <noscript>
+    <div class="noscript">
+      <p class="noscript__eyebrow">Boxing Center</p>
+      <h1 class="noscript__titre">Ta séance d'essai est offerte.</h1>
+      <p class="noscript__prix"><s>10 €</s> <b>0 €</b></p>
+      <p>La séance d'essai est à 10 € toute l'année, dans les cinq salles de
+         Toulouse. Sur ce lien, elle t'est offerte.</p>
+      <p>Débutants acceptés · matériel prêté · cours encadré ·
+         sans obligation d'inscription.</p>
+      <p class="noscript__aide">Cette page a besoin de JavaScript pour
+         enregistrer ton inscription. Active-le et recharge, ou présente-toi
+         directement à l'accueil d'une des salles.</p>
+    </div>
+  </noscript>
+
   <!-- Barre collante : +11 à +20,4 % mesurés. 64 % des mobiles ne dépassent pas le 1er écran. -->
   <div class="dock" id="dock">
     <div class="dock__in">
