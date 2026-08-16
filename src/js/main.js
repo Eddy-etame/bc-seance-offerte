@@ -593,7 +593,7 @@ function mountObservers(dir) {
   dockIO && dockIO.disconnect();
   dockFired = false;
 
-  if (dir !== "c") mountLight(document.querySelector(".light"));
+  mountLight(document.querySelector(".light"));
 
   if (dir === "a") {
     const ids = ROUNDS.map((r) => document.getElementById(r.id)).filter(Boolean);

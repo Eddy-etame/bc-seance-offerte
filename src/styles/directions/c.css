@@ -5,7 +5,11 @@
    Chaque chapitre tue une peur nommée par la recherche.
    ============================================================ */
 
-html[data-dir="c"] .light { display: none; }
+/* La poursuite vaut aussi pour C. Elle avait été coupée quand la lumière
+   n'était qu'un ornement ; depuis qu'elle décide de ce qui se lit, la
+   priver d'elle faisait de C la seule direction qui semble inachevée.
+   Elle y est simplement plus discrète : ici c'est la vidéo qui parle. */
+html[data-dir="c"] [data-stage]::before { opacity: calc((1 - var(--lit)) * 0.42); }
 html[data-dir="c"] .rounds { display: none; }
 html[data-dir="c"] #app { padding-left: 0; }
 
@@ -50,11 +54,13 @@ html[data-dir="c"] .hero__kicker { max-width: 60ch; }
   display: grid; gap: 0;
   border-top: 1px solid var(--line-soft);
 }
-@media (min-width: 820px) { .chapter { grid-template-columns: minmax(0, 360px) minmax(0, 1fr); } }
+@media (min-width: 820px) { .chapter { grid-template-columns: minmax(0, 42%) minmax(0, 1fr); } }
+/* 360 px fixes laissaient l'image maigre et un vide à sa droite sur grand
+   écran : la colonne suit maintenant la largeur disponible. */
 .chapter:last-child { border-bottom: 1px solid var(--line-soft); }
 
 .chapter__media { position: relative; overflow: hidden; }
-.chapter__media .ph { width: 100%; height: 100%; min-height: 220px; }
+.chapter__media .ph { width: 100%; height: 100%; min-height: clamp(220px, 26vw, 330px); }
 .chapter__media .ph img { transition: opacity 0.8s var(--ease), transform 1.4s var(--ease); }
 .chapter:hover .chapter__media .ph img { transform: scale(1.04); }
 
