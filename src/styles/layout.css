@@ -25,7 +25,10 @@
 .sect__mark {
   position: absolute; top: calc(var(--sect) * 0.42); left: 0;
   font-family: var(--f-display); font-size: clamp(6rem, 16vw, 15rem);
-  line-height: 0.7; color: rgb(255 255 255 / 0.022);
+  line-height: 0.7;
+  /* À 0,022 le chiffre passait pour une salissure sur le fond. Ou on
+     l'assume comme repère éditorial, ou on le retire. */
+  color: rgb(255 255 255 / 0.045);
   pointer-events: none; user-select: none;
   letter-spacing: -0.02em;
 }

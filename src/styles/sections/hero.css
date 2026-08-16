@@ -255,3 +255,7 @@ html.settled .hero h1 .underline::after { transform: scaleX(1) !important; trans
 @media (max-height: 820px) and (min-width: 761px) {
   .hero__proof { display: none; }
 }
+
+
+/* Mode propre : la mention de source disparaît avec les autres outils. */
+html.nu .hero__src { display: none; }

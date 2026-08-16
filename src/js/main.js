@@ -74,7 +74,11 @@ function heroHTML(dir) {
 
     <div class="hero__top">
       <img class="hero__logo" src="/img/logo-bc-sombre-520.webp" srcset="/img/logo-bc-sombre-260.webp 260w, /img/logo-bc-sombre-520.webp 520w" sizes="(min-width:760px) 186px, 132px" width="3542" height="1683" alt="Boxing Center" />
-      <span class="hero__src">${esc(SOURCE_LABEL)}</span>
+      <!-- La source reste tracée et suit le prospect jusqu'au lead ; elle
+           n'est affichée qu'en mode maquette. « QR FLYER » en haut de page
+           ne dit rien à quelqu'un qui vient de scanner un flyer — c'est de
+           la donnée interne qui fuit dans l'interface. -->
+      <span class="hero__src" data-outil>${esc(SOURCE_LABEL)}</span>
     </div>
 
     <div class="hero__body">
