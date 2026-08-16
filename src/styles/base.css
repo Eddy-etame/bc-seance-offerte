@@ -111,7 +111,12 @@ html.rv-on [data-rv-delay="3"].is-in { transition-delay: 0.24s; }
    pas en fondu. Strictement limité aux masques placés DANS un bloc à
    révélation : sinon cette règle cache aussi le titre du héros, qui n'en
    fait pas partie et se retrouverait poussé hors de sa fenêtre. */
-.mask { display: block; overflow: hidden; }
+/* La fenêtre de révélation rognait les accents : avec une interligne de
+   0,84 le À et le É dépassent la hauteur de capitale, et `overflow: hidden`
+   les coupait net — « ELLE EST A 10 € », « TA SEANCE ». La marge intérieure
+   leur rend la place dans la boîte visible, la marge négative annule le
+   décalage de mise en page. */
+.mask { display: block; overflow: hidden; padding-top: 0.16em; margin-top: -0.16em; }
 .mask > span { display: block; }
 html.rv-on [data-rv] .mask > span { transform: translateY(105%); }
 html.rv-on [data-rv].is-in .mask > span {

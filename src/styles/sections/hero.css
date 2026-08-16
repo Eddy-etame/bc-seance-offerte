@@ -70,6 +70,15 @@
   line-height: 0.84;
   letter-spacing: -0.002em;
 }
+/* Deux lignes de la même taille font deux dalles empilées. La première
+   pose, la seconde frappe : l'écart d'échelle est ce qui donne au titre
+   une intonation au lieu d'un aplat. */
+.hero h1 .mask:first-of-type {
+  font-size: 0.58em;
+  padding-left: 0.02em;
+  color: var(--ink-2);
+}
+.hero h1 .mask:first-of-type > span { letter-spacing: 0.06em; }
 /* Pas de trait sous le titre : il lisait comme un séparateur de section et
    volait le rouge au 0 €. La loi de l'économie des couleurs veut qu'une
    seule chose crie — c'est le prix, pas la typographie. */

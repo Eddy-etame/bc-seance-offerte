@@ -6,22 +6,34 @@
    l'action — et elle double les inscriptions à coût d'acquisition nul.
    ============================================================ */
 
-.duo { display: grid; gap: clamp(28px, 4vw, 56px); align-items: center; }
-@media (min-width: 900px) { .duo { grid-template-columns: 1fr 1fr; } }
+/* Pleine largeur : la photo touche le bord de l'écran. Après quatre
+   sections calées sur la même gouttière, il faut que le cadre casse. */
+.sect--bleed { padding-block: 0; }
+.bleed { width: 100%; }
 
-.duo__media { position: relative; }
-.duo__media .ph { aspect-ratio: 4 / 3; border-radius: var(--r-card); }
+.duo { display: grid; gap: 0; align-items: stretch; }
+@media (min-width: 900px) { .duo { grid-template-columns: 1.05fr 1fr; } }
+
+.duo__media { min-height: clamp(300px, 46vw, 620px); }
+.duo__media .ph { position: absolute; inset: 0; }
+
+.duo__media { position: relative; overflow: hidden; }
 /* le « ×2 » qui déborde sur la photo */
 .duo__x {
-  position: absolute; right: -6px; bottom: -18px; z-index: 2;
+  position: absolute; right: 4%; bottom: 6%; z-index: 2;
   font-family: var(--f-display); font-size: clamp(4.5rem, 11vw, 9rem);
   line-height: 0.7; color: var(--rouge);
   transform: skewX(-7deg);
   text-shadow: 0 18px 40px rgb(0 0 0 / 0.7);
 }
-@media (max-width: 899px) { .duo__x { right: 4px; bottom: -10px; } }
+@media (max-width: 899px) { .duo__x { right: 5%; bottom: 4%; } }
 
-.duo__txt { display: flex; flex-direction: column; gap: 18px; }
+.duo__txt {
+  display: flex; flex-direction: column; gap: 18px; justify-content: center;
+  padding: clamp(40px, 6vw, 92px) var(--gutter);
+  background: var(--surface);
+}
+@media (min-width: 900px) { .duo__txt { padding-right: clamp(40px, 8vw, 130px); } }
  /* Dans une colonne, l'échelle pleine largeur passait sur quatre lignes
     et écrasait la photo. */
 .duo__txt h2 { font-size: clamp(2.3rem, 4.6vw, 3.9rem); }

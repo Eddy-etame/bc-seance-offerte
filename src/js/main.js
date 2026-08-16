@@ -104,16 +104,21 @@ function annonceHTML() {
   return `<div class="announce" aria-hidden="true"><div class="announce__track">${run}${run}</div></div>`;
 }
 
+/* La seule section sans photo, sans carte, sans bouton : un aplat noir et
+   une phrase. Après un héros plein cadre, la page a besoin de se taire une
+   fois — c'est ce silence qui donne du poids à ce qui suit, et c'est là que
+   se joue la seule chose qu'il faut croire : pourquoi celle-ci est offerte. */
 function cadrageHTML() {
   return `
-  <section class="sect sect--tight sect--solo" id="cadrage" data-stage>
-    <div class="shell">
-      <div class="sect__head" data-rv>
-        <span class="eyebrow" data-round="Round 01">${esc(OFFRE.cadrageTitre)}</span>
-        <p class="cadrage__claim">Elle est à 10 € partout.<br>Ici elle est à <span class="tint">0 €</span>.</p>
-        <p class="measure">${esc(OFFRE.cadrage)}</p>
-        <span class="rule"></span>
-      </div>
+  <section class="sect cadrage" id="cadrage" data-stage>
+    <div class="shell cadrage__in">
+      <span class="eyebrow" data-round="Round 01" data-rv>${esc(OFFRE.cadrageTitre)}</span>
+      <p class="cadrage__claim" data-rv>
+        <span class="mask"><span>Elle est à 10 €</span></span>
+        <span class="mask"><span>partout.</span></span>
+        <span class="mask"><span>Ici elle est à <em>0 €</em>.</span></span>
+      </p>
+      <p class="cadrage__dit" data-rv data-rv-delay="1">${esc(OFFRE.cadrage)}</p>
     </div>
   </section>`;
 }
@@ -265,11 +270,11 @@ function posterPic(a, sizes) {
 
 function binomeHTML() {
   return `
-  <section class="sect" id="binome" data-stage>
-    <div class="shell">
+  <section class="sect sect--bleed" id="binome" data-stage>
+    <div class="bleed">
       <div class="duo">
         <div class="duo__media" data-rv>
-          ${pic("cours-groupe", { sizes: "(min-width:900px) 50vw, 100vw", ratio: "4/3" })}
+          ${pic("cours-groupe", { sizes: "(min-width:900px) 52vw, 100vw" })}
           <span class="duo__x" aria-hidden="true">×2</span>
         </div>
         <div class="duo__txt" data-rv>

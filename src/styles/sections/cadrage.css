@@ -1,0 +1,45 @@
+/* ============================================================
+   LE CADRAGE — la section qui se tait
+   Huit sections bâties sur le même gabarit — sur-titre, titre,
+   paragraphe, contenu, bouton — donnent une liste, pas une page.
+   Celle-ci rompt : pas de photo, pas de carte, pas de bouton.
+   Un aplat noir, une phrase énorme, et la seule chose qu'il faut
+   croire : pourquoi cette séance-là est offerte.
+   ============================================================ */
+
+.cadrage {
+  min-height: 78svh;
+  display: flex; align-items: center;
+  padding-block: clamp(72px, 12vw, 150px);
+}
+.cadrage__in {
+  display: flex; flex-direction: column;
+  gap: clamp(22px, 3.4vw, 40px);
+}
+
+.cadrage__claim {
+  font-family: var(--f-display);
+  font-size: clamp(2.9rem, 8.6vw, 7.2rem);
+  line-height: 0.86;
+  letter-spacing: 0.004em;
+  text-transform: uppercase;
+  max-width: 15ch;
+}
+/* Le prix garde l'italique de momentum du brand book — c'est le seul
+   endroit de la section où quelque chose est rouge. */
+.cadrage__claim em {
+  font-style: normal; color: var(--rouge);
+  display: inline-block; transform: skewX(-7deg);
+}
+
+.cadrage__dit {
+  max-width: 54ch;
+  font-size: var(--fs-lede);
+  line-height: 1.6;
+  color: var(--ink-2);
+  padding-left: clamp(0px, 2vw, 26px);
+  border-left: 2px solid var(--rouge);
+}
+@media (max-width: 600px) {
+  .cadrage__dit { padding-left: 16px; }
+}
