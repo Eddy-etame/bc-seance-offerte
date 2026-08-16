@@ -32,8 +32,10 @@
   margin: 0; font-size: clamp(1.0625rem, 2vw, 1.25rem);
   line-height: 1.55; color: var(--ink);
 }
-.quote blockquote::before { content: "«\00a0"; color: var(--ink-4); }
-.quote blockquote::after { content: "\00a0»"; color: var(--ink-4); }
+/* Les guillemets francais faisaient deux points parasites : trop pales,
+   ils se lisaient comme des artefacts plutot que comme de la ponctuation. */
+.quote blockquote::before { content: "«\00a0"; color: var(--ink-3); }
+.quote blockquote::after { content: "\00a0»"; color: var(--ink-3); }
 .quote figcaption {
   margin-top: auto;
   font-family: var(--f-mono); font-size: var(--fs-micro);

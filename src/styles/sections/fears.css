@@ -34,6 +34,10 @@
 
 /* l'objection, en grand, telle qu'elle est dite à l'accueil */
 .fear__q {
+  /* Sans equilibrage, « JE N'AI JAMAIS MIS UN / GANT. » laisse un mot seul
+     sur la seconde ligne, et la rature de cette ligne se reduit a un trait
+     de trois centimetres. */
+  text-wrap: balance;
   display: block;
   font-family: var(--f-display); font-size: var(--fs-line);
   line-height: 0.94; letter-spacing: 0.006em;
