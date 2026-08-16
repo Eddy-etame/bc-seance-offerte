@@ -77,32 +77,6 @@
   .rounds.is-ringing .rounds__bell, .bellflash.is-on { animation: none; opacity: 0; }
 }
 
-/* ---------- l'annonce entre deux rounds ---------- */
-.announce {
-  position: relative; overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  border-block: 1px solid var(--line-soft);
-  padding-block: 11px;
-  background: var(--surface);
-}
-.announce__track {
-  display: flex; width: max-content; gap: 0;
-  animation: slide 46s linear infinite;
-}
-.announce__track > span {
-  display: inline-flex; align-items: center; gap: 40px; padding-right: 40px;
-  font-family: var(--f-mono); font-size: 0.6875rem;
-  letter-spacing: 0.24em; text-transform: uppercase;
-  color: var(--ink-3); white-space: nowrap;
-}
-.announce__track b { color: var(--rouge); font-weight: 400; }
-@keyframes slide { to { transform: translateX(-50%); } }
-.announce:hover .announce__track { animation-play-state: paused; }
-@media (prefers-reduced-motion: reduce) {
-  .announce__track { animation: none; }
-}
-
 /* ============================================================
    LA PANCARTE DU SPEAKER
    Au passage d'un round, elle entre par la gauche, tient une

@@ -7,7 +7,7 @@
 import "../styles/index.css";
 import {
   OFFRE, SALLES, JOURS, PEURS, CHAPITRES, HEROS, HERO_PREUVES,
-  ANNONCE, AVIS, ROUNDS,
+  AVIS, ROUNDS,
 } from "./data.js";
 import AFFICHES from "../plannings-manifest.json";
 import { esc, pic, scrollTo, lignes } from "./ui.js";
@@ -103,15 +103,6 @@ function heroHTML(dir) {
   </header>`;
 }
 
-function annonceHTML() {
-  const run = `<span>${ANNONCE.map((a) => `${esc(a)} <b>·</b>`).join(" ")}</span>`;
-  return `<div class="announce" aria-hidden="true"><div class="announce__track">${run}${run}</div></div>`;
-}
-
-/* La seule section sans photo, sans carte, sans bouton : un aplat noir et
-   une phrase. Après un héros plein cadre, la page a besoin de se taire une
-   fois — c'est ce silence qui donne du poids à ce qui suit, et c'est là que
-   se joue la seule chose qu'il faut croire : pourquoi celle-ci est offerte. */
 function cadrageHTML() {
   return `
   <section class="sect cadrage" id="cadrage" data-stage>
@@ -391,7 +382,6 @@ function render(dir) {
 
   app.innerHTML =
     heroHTML(dir) +
-    annonceHTML() +
     cadrageHTML() +
     (dir === "c" ? chapitresHTML() : peursHTML()) +
     sallesHTML() +

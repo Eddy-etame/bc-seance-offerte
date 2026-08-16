@@ -75,16 +75,6 @@ export const HERO_PREUVES = [
   "Sans obligation d'inscription",
 ];
 
-/* L'annonce entre deux rounds — le speaker du ring. */
-export const ANNONCE = [
-  "Débutants acceptés",
-  "Matériel prêté",
-  "Aucune expérience demandée",
-  "Cinq salles à Toulouse",
-  "Viens à deux, sa séance est offerte aussi",
-  "Sans obligation d'inscription",
-];
-
 /* §6.2 — la réassurance, écrite dans les mots du prospect.
    Chaque réponse est tracée, aucune promesse ajoutée. */
 export const PEURS = [
