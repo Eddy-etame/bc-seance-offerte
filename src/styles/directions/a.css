@@ -28,15 +28,6 @@ html[data-dir="a"] .sect__head .eyebrow::after {
   color: var(--rouge);
 }
 
-/* Le trait de lumière qui longe le bord gauche de chaque section :
-   la lampe du coin éclaire aussi le couloir. */
-html[data-dir="a"] .sect::before {
-  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 1px;
-  background: linear-gradient(to bottom, rgb(var(--light) / 0.22), transparent 46%);
-  pointer-events: none;
-}
-@media (max-width: 1100px) { html[data-dir="a"] .sect::before { display: none; } }
-
 /* Le tabouret : un socle de lumière sous le bloc d'action du héros. */
 html[data-dir="a"] .hero__acts { position: relative; }
 html[data-dir="a"] .hero__acts::before {

@@ -68,7 +68,7 @@ function heroHTML(dir) {
     </p>`;
 
   return `
-  <header class="hero">
+  <header class="hero" data-stage>
     <div class="hero__media">${pic(h.img, { sizes: "100vw", eager: true })}</div>
     <div class="hero__scrim"></div>
 
@@ -106,7 +106,7 @@ function annonceHTML() {
 
 function cadrageHTML() {
   return `
-  <section class="sect sect--tight sect--solo" id="cadrage">
+  <section class="sect sect--tight sect--solo" id="cadrage" data-stage>
     <div class="shell">
       <div class="sect__head" data-rv>
         <span class="eyebrow" data-round="Round 01">${esc(OFFRE.cadrageTitre)}</span>
@@ -120,7 +120,7 @@ function cadrageHTML() {
 
 function peursHTML() {
   return `
-  <section class="sect" id="reassurance">
+  <section class="sect" id="reassurance" data-stage>
     <span class="sect__mark" aria-hidden="true">02</span>
     <div class="shell">
       <div class="sect__head" data-rv>
@@ -152,7 +152,7 @@ function peursHTML() {
 
 function chapitresHTML() {
   return `
-  <section class="sect" id="reassurance">
+  <section class="sect" id="reassurance" data-stage>
     <span class="sect__mark" aria-hidden="true">02</span>
     <div class="shell">
       <div class="sect__head" data-rv>
@@ -186,7 +186,7 @@ function chapitresHTML() {
 
 function sallesHTML() {
   return `
-  <section class="sect" id="salles">
+  <section class="sect" id="salles" data-stage>
     <span class="sect__mark" aria-hidden="true">03</span>
     <div class="shell">
       <div class="sect__head" data-rv>
@@ -219,7 +219,7 @@ function sallesHTML() {
 
 function planningsHTML() {
   return `
-  <section class="sect" id="plannings">
+  <section class="sect" id="plannings" data-stage>
     <span class="sect__mark" aria-hidden="true">04</span>
     <div class="shell">
       <div class="sect__head" data-rv>
@@ -265,7 +265,7 @@ function posterPic(a, sizes) {
 
 function binomeHTML() {
   return `
-  <section class="sect" id="binome">
+  <section class="sect" id="binome" data-stage>
     <div class="shell">
       <div class="duo">
         <div class="duo__media" data-rv>
@@ -294,7 +294,7 @@ function binomeHTML() {
 
 function preuveHTML() {
   return `
-  <section class="sect" id="preuve">
+  <section class="sect" id="preuve" data-stage>
     <div class="shell">
       <div class="sect__head" data-rv>
         <span class="eyebrow">Ce qu'en disent les adhérents</span>
@@ -328,7 +328,7 @@ function preuveHTML() {
 
 function inscriptionHTML(dir) {
   return `
-  <section class="sect" id="inscription">
+  <section class="sect" id="inscription" data-stage>
     <span class="sect__mark" aria-hidden="true">05</span>
     <div class="shell">
       <div class="sect__head" data-rv>

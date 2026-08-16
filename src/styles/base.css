@@ -30,11 +30,17 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Grain cinéma 6–8 % sur tout le visuel — règle photo du brand book */
+/* Grain cinéma 6–8 % sur tout le visuel — règle photo du brand book.
+   Sans `mix-blend-mode` : un plein écran fixe en fusion est recomposé
+   avec son arrière-plan à chaque image de défilement — il coûtait à lui
+   seul la moitié des images par seconde sur un écran 1920. Promu en
+   calque, il est peint une fois et ne bouge plus. */
 body::after {
   content: "";
   position: fixed; inset: 0; z-index: 95; pointer-events: none;
-  opacity: 0.055; mix-blend-mode: overlay;
+  opacity: 0.05;
+  transform: translateZ(0);
+  will-change: transform;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
 }
 
