@@ -13,10 +13,14 @@
 }
 @media (max-width: 620px) { .week { grid-template-columns: repeat(2, 1fr); } }
 
+/* Depuis que les horaires inventés ont sauté, la tuile ne porte plus qu'un
+   nom de jour : une boîte de 104 px de haut pour trois lettres se lisait
+   comme une case vide qu'on aurait oublié de remplir. Elle reprend le
+   poids de ce qu'elle contient réellement. */
 .day {
   position: relative; isolation: isolate;
-  min-height: 104px; padding: 16px 14px 14px;
-  display: flex; flex-direction: column; gap: 3px;
+  min-height: 62px; padding: 12px 14px 10px;
+  display: flex; align-items: baseline; gap: 10px;
   text-align: left; cursor: pointer;
   border: 1px solid var(--line); border-radius: var(--r);
   background: var(--surface);
@@ -35,10 +39,12 @@
   font-family: var(--f-display); font-size: 2rem; line-height: 1; letter-spacing: 0.03em;
 }
 .day__long {
+  margin-right: 26px;
   font-family: var(--f-mono); font-size: var(--fs-micro);
   letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3);
 }
-.day[aria-pressed="true"] .day__long { color: var(--ink-2); }
+.day[aria-pressed="true"] .day__long {
+  margin-right: 26px; color: var(--ink-2); }
 .day__pick {
   position: absolute; top: 12px; right: 12px;
   width: 22px; height: 22px; border-radius: 50%;
