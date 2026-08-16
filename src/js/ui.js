@@ -33,3 +33,14 @@ export const scrollTo = (el) => {
   if (!el) return;
   el.scrollIntoView({ behavior: prefersCalm() ? "auto" : "smooth", block: "start" });
 };
+
+/** Découpe un titre en lignes masquées : chacune monte derrière sa fenêtre
+    au lieu d'apparaître en fondu. Les titres de section se révélaient tous
+    de la même façon que le reste — un fondu uniforme, la texture même du
+    « c'est juste là ». Le texte passé ici doit être déjà échappé. */
+export function lignes(html) {
+  return String(html)
+    .split(/<br\s*\/?>/i)
+    .map((l) => `<span class="mask"><span>${l.trim()}</span></span>`)
+    .join("");
+}
