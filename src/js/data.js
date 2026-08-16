@@ -16,7 +16,7 @@ export const OFFRE = {
      cette page détruit le tarif des cinq salles. */
   cadrageTitre: "Pourquoi celle-ci est offerte",
   cadrage:
-    "La séance d'essai Boxing Center est à 10 € toute l'année, dans les cinq salles. Tu es arrivé ici par un de nos supports : sur ce lien, elle t'est offerte. C'est le seul endroit où elle l'est.",
+    "La séance d'essai Boxing Center est à 10 € toute l'année, dans les cinq salles. Tu es arrivé ici par un flyer, une affiche ou une annonce : sur ce lien, elle t'est offerte. C'est le seul endroit où elle l'est.",
 };
 
 /* §6.3 — les 5 salles. Balma-Gramont est vendue : ne jamais la citer (C3).
@@ -92,7 +92,7 @@ export const PEURS = [
     q: "Je vais me retrouver seul.",
     r: "Tu peux venir accompagné, et la séance de la personne qui vient avec toi est offerte aussi.",
     src: "cahier §6.2 + §8",
-    lien: { href: "#binome", texte: "Amener quelqu'un" },
+    lien: { href: "#binome", texte: "Amène-la avec toi" },
   },
   {
     q: "Je n'ai pas de matériel.",
@@ -121,7 +121,7 @@ export const PEURS = [
   },
   {
     q: "Ce n'est pas près de chez moi.",
-    r: "Cinq salles, cinq quartiers. Tu prends celle qui t'arrange, pas celle qu'on te donne.",
+    r: "Cinq salles dans l'agglomération. Tu prends celle qui t'arrange, pas celle qu'on te donne.",
     src: "cahier §6.3",
   },
 ];
@@ -156,6 +156,8 @@ export const AVIS = {
 };
 
 /* §18.2 — les sources à distinguer, lues depuis ?src= */
+/* Libellés de source — affichés uniquement en mode maquette (voir le
+   commentaire du héros dans main.js). Ils parlent au club, pas au visiteur. */
 export const SOURCES = {
   flyer: "QR flyer",
   affiche: "QR affiche",
