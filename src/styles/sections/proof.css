@@ -4,7 +4,10 @@
    que d'inventer.
    ============================================================ */
 
-.proof { display: grid; gap: clamp(26px, 4vw, 48px); align-items: start; }
+/* La colonne de la note fait 181 px pour 394 px de citations : calée en
+   haut, elle laissait 213 px de vide sous elle et la moitié gauche avait
+   l'air inachevée. Centrée, les deux colonnes se répondent. */
+.proof { display: grid; gap: clamp(26px, 4vw, 48px); align-items: center; }
 @media (min-width: 900px) { .proof { grid-template-columns: 300px minmax(0, 1fr); } }
 
 .score { display: flex; flex-direction: column; gap: 8px; }
@@ -16,6 +19,9 @@
 .score__n small {
   font-size: 0.24em; color: var(--ink-3); letter-spacing: 0.06em;
 }
+/* Étoiles en gris, pas en rouge : la loi de l'économie des couleurs veut
+   qu'une seule chose crie sur l'écran, et c'est le 0 €. Des étoiles rouges
+   lui prendraient sa place. */
 .score__stars { color: var(--ink-2); letter-spacing: 0.28em; font-size: 0.9rem; }
 .score__src {
   font-family: var(--f-mono); font-size: var(--fs-micro);
