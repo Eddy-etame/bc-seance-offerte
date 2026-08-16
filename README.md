@@ -59,9 +59,12 @@ Sources reconnues : `flyer` · `affiche` · `porte` · `print` · `meta` · `sto
 
 **A — Le coin.** Le moment le plus humain de la boxe n'est pas l'affrontement :
 ce sont les soixante secondes entre deux rounds où quelqu'un pose une main sur
-ton épaule. La page est ce coin. Une lumière volumétrique tombe du plafond,
-suit le pointeur, laisse flotter sa poussière ; le rail de gauche découpe la
-page en cinq rounds et sonne la cloche à chaque passage.
+ton épaule. La page est ce coin, et **la lumière y est le mécanisme de lecture**
+— pas un ornement. La flaque descend avec le défilement et se pose sur la
+section qu'on lit, en la devançant légèrement ; le faisceau s'incline pour
+rester pointé dessus ; **une section reste éteinte tant que la lumière ne
+l'atteint pas**. Au passage d'un round, la pancarte du speaker entre par la
+gauche — `ROUND 03 · TA SALLE` — tient une seconde et repart.
 
 **B — Le laissez-passer.** Tout le trafic vient d'un objet qu'on a tenu dans la
 main. La page est ce titre d'accès — papier, guilloche, souche détachable,
@@ -82,6 +85,8 @@ Chaque chapitre tue une peur nommée par la recherche.
 | Plannings | l'affiche officielle de la salle retenue, agrandissable · les jours ne servent qu'au choix, jamais d'horaire inventé |
 | Binôme | section propre — « venir seul » est le frein social documenté n°1 |
 | Un seul rouge | le rouge appartient au 0 € et au bouton principal. Rien d'autre. |
+| Rythme | le cadrage ne porte ni photo ni bouton — un aplat noir et une phrase, pour que la page se taise une fois ; le binôme passe pleine largeur. Huit sections bâties sur le même moule donnent une liste, pas une page. |
+| Les portes | cinq salles pleine hauteur ; celle qu'on survole s'ouvre et prend la place des autres. Le fait ne s'affiche que sur la porte ouverte — à cinq de front, personne n'en lit une seule. |
 
 ## Structure
 
