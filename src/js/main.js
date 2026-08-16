@@ -209,7 +209,7 @@ function sallesHTML() {
             <span class="door__pick" aria-hidden="true">✓</span>
             <span class="door__txt">
               <span class="door__name">${esc(s.nom)}</span>
-              <span class="door__meta">${esc(s.fait)}</span>
+              <span class="door__meta" data-au-survol>${esc(s.fait)}</span>
             </span>
           </button>`
         ).join("")}
