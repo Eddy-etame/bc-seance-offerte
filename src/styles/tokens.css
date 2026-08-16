@@ -33,8 +33,10 @@
   --light-hot: 255 243 222;
 
   /* — Papier du laissez-passer (direction B) — */
-  --paper: #f3efe4;
-  --paper-2: #e2dccc;
+  /* Papier chaud : le bruit en multiply tirait l'ensemble vers un gris de
+     journal. La base part maintenant de plus chaud pour compenser. */
+  --paper: #f7f1e2;
+  --paper-2: #e6dcc4;
   --paper-ink: #10131f;
   --paper-mute: #6d7288;
   --paper-line: #b6ae9b;
