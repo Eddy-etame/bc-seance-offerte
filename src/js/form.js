@@ -10,7 +10,7 @@
 import { SALLES, JOURS } from "./data.js";
 import { track } from "./track.js";
 import { thud } from "./audio.js";
-import { esc, pic } from "./ui.js";
+import { esc, pic, fr } from "./ui.js";
 import { mountImages } from "./reveal.js";
 
 export const state = {
@@ -179,7 +179,7 @@ export function formHTML() {
         (st, i) => `
         <section class="step${i === 0 ? " is-on" : ""}" data-step="${i}" aria-labelledby="q-${i}">
           <h3 class="step__q" id="q-${i}">${esc(st.q)}</h3>
-          ${st.why ? `<p class="step__why">${st.why}</p>` : ""}
+          ${st.why ? `<p class="step__why">${fr(st.why)}</p>` : ""}
           ${stepBody(st)}
           <div class="step__nav">
             ${i > 0 ? `<button type="button" class="back" data-back>← Retour</button>` : ""}
@@ -206,7 +206,7 @@ export function formHTML() {
               <li>Rien d'autre — le matériel est prêté</li>
             </ul>
           </div>
-          <p class="step__why">Maquette : aucune donnée n'est envoyée. En production, cette étape crée la fiche Deciplus, écrit « SEANCE D ESSAI GRATUITE WEB » dans « Info compte / paiement » et déclenche l'email de confirmation.</p>
+          <p class="step__why">${fr("Maquette : aucune donnée n'est envoyée. En production, cette étape crée la fiche Deciplus, écrit « SEANCE D ESSAI GRATUITE WEB » dans « Info compte / paiement » et déclenche l'email de confirmation.")}</p>
         </div>
       </section>
     </form>

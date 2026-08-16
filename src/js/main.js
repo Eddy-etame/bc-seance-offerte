@@ -10,7 +10,7 @@ import {
   AVIS, ROUNDS,
 } from "./data.js";
 import AFFICHES from "../plannings-manifest.json";
-import { esc, pic, scrollTo, lignes } from "./ui.js";
+import { esc, pic, scrollTo, lignes, fr } from "./ui.js";
 import { formHTML, mountForm, skipKnownSteps, state } from "./form.js";
 import { track, SOURCE_LABEL, PASS_NO } from "./track.js";
 import { mountReveal, mountImages } from "./reveal.js";
@@ -126,7 +126,7 @@ function peursHTML() {
       <div class="sect__head" data-rv>
         <span class="eyebrow" data-round="Round 02">Ce qui te retient</span>
         <h2>${lignes("Huit raisons<br>de ne pas venir.")}</h2>
-        <p>On les entend toutes les semaines à l'accueil. Aucune n'est ridicule. Aucune ne tient après une séance.</p>
+        <p>${fr("On les entend toutes les semaines à l'accueil. Aucune n'est ridicule. Aucune ne tient après une séance.")}</p>
       </div>
       <div class="fears">
         ${PEURS.map(
@@ -158,7 +158,7 @@ function chapitresHTML() {
       <div class="sect__head" data-rv>
         <span class="eyebrow">Ta première séance, minute par minute</span>
         <h2>${lignes("Quarante-cinq minutes.<br>Rien d'autre à savoir.")}</h2>
-        <p>On ne te promet pas que c'est accessible — on te montre ce qui se passe, dans l'ordre.</p>
+        <p>${fr("On ne te promet pas que c'est accessible — on te montre ce qui se passe, dans l'ordre.")}</p>
       </div>
       <div class="chapters">
         ${CHAPITRES.map(
@@ -192,7 +192,7 @@ function sallesHTML() {
       <div class="sect__head" data-rv>
         <span class="eyebrow" data-round="Round 03">Cinq salles à Toulouse</span>
         <h2>${lignes("Choisis la tienne.")}</h2>
-        <p>Touche une salle : elle est reprise dans ton inscription, et le planning en dessous s'ouvre dessus. Tu ne tapes rien.</p>
+        <p>${fr("Touche une salle : elle est reprise dans ton inscription, et le planning en dessous s'ouvre dessus. Tu ne tapes rien.")}</p>
       </div>
       <div class="doors" data-rv>
         ${SALLES.map(
@@ -227,7 +227,7 @@ function planningsHTML() {
       <div class="sect__head" data-rv>
         <span class="eyebrow" data-round="Round 04">Plannings officiels</span>
         <h2>${lignes("Quel jour<br>tu peux venir ?")}</h2>
-        <p>Pas besoin de réserver un cours précis : tu indiques un jour, l'équipe t'oriente à l'accueil. Le planning complet de la salle est juste en dessous.</p>
+        <p>${fr("Pas besoin de réserver un cours précis : tu indiques un jour, l'équipe t'oriente à l'accueil. Le planning complet de la salle est juste en dessous.")}</p>
       </div>
 
       <div class="week__for" data-rv>
@@ -336,7 +336,7 @@ function inscriptionHTML(dir) {
       <div class="sect__head" data-rv>
         <span class="eyebrow" data-round="Dernier round">Deux minutes</span>
         <h2>${lignes(dir === "b" ? "Complète<br>ton laissez-passer." : "Prends ta place<br>dans le coin.")}</h2>
-        <p>Six écrans courts. Les deux premiers se touchent — on ne tape rien avant d'avoir dit oui deux fois. Tu peux revenir en arrière à tout moment.</p>
+        <p>${fr("Six écrans courts. Les deux premiers se touchent — on ne tape rien avant d'avoir dit oui deux fois. Tu peux revenir en arrière à tout moment.")}</p>
       </div>
       <div class="form-layout" data-rv>
         ${formHTML()}

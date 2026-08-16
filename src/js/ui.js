@@ -4,8 +4,28 @@
 
 import IMG from "../img-manifest.json";
 
+/* Typographie française : les ponctuations doubles prennent une espace
+   INSÉCABLE avant, sinon le signe part seul en début de ligne au moindre
+   retour — « venir
+? ». L'usage de l'Imprimerie nationale : espace fine
+   insécable devant ; ! ? et le guillemet fermant, espace insécable pleine
+   devant les deux-points.
+   C'est branché dans l'échappement pour que toute copie future soit
+   correcte sans qu'on y pense — 34 textes visibles étaient fautifs. */
+const FINE = " ";   // espace fine insécable
+const NBSP = " ";   // espace insécable
+
+export function fr(t) {
+  return String(t ?? "")
+    // On rend insécable une espace DÉJÀ écrite ; on n'en insère jamais.
+    // Sinon « 19:40 » devient « 19 :40 » et l'heure se casse en deux.
+    .replace(/ +:/g, NBSP + ":")
+    .replace(/ +([;!?»])/g, FINE + "$1")
+    .replace(/« +/g, "«" + FINE);
+}
+
 export const esc = (s) =>
-  String(s ?? "").replace(/[&<>"']/g, (c) =>
+  fr(s).replace(/[&<>"']/g, (c) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
   );
 
@@ -39,7 +59,7 @@ export const scrollTo = (el) => {
     de la même façon que le reste — un fondu uniforme, la texture même du
     « c'est juste là ». Le texte passé ici doit être déjà échappé. */
 export function lignes(html) {
-  return String(html)
+  return fr(html)
     .split(/<br\s*\/?>/i)
     .map((l) => `<span class="mask"><span>${l.trim()}</span></span>`)
     .join("");
