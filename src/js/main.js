@@ -505,18 +505,37 @@ function paintPoster(salleId, index) {
   mountImages(frame);
 }
 
-/* Plein écran : l'affiche est dense, elle doit pouvoir se lire en grand. */
-function openPoster(salleId, index) {
+/* Plein écran : l'affiche est dense, elle doit pouvoir se lire en grand.
+   Une fenêtre modale doit retenir le focus et le rendre en partant : sans
+   ça, la tabulation s'échappe derrière le voile et on navigue à l'aveugle
+   dans une page qu'on ne voit plus. */
+let declencheurAffiche = null;
+let pieger = null;
+
+function openPoster(salleId, index, declencheur) {
   const a = (AFFICHES[salleId] || [])[index];
   if (!a) return;
   const lb = document.getElementById("lightbox");
+  declencheurAffiche = declencheur || document.activeElement;
   lb.innerHTML =
     `<button type="button" class="lightbox__close" aria-label="Fermer">Fermer</button>` +
     posterPic(a, "min(1400px, 96vw)");
   lb.hidden = false;
   document.body.style.overflow = "hidden";
   mountImages(lb);
-  lb.querySelector(".lightbox__close").focus();
+
+  const fermer = lb.querySelector(".lightbox__close");
+  fermer.focus();
+
+  // Le seul élément atteignable est le bouton de fermeture : on y ramène
+  // la tabulation dans les deux sens.
+  pieger = (e) => {
+    if (e.key !== "Tab") return;
+    e.preventDefault();
+    fermer.focus();
+  };
+  document.addEventListener("keydown", pieger, true);
+
   track("planning_agrandi", { salle: salleId });
 }
 
@@ -526,6 +545,10 @@ function closePoster() {
   lb.hidden = true;
   lb.innerHTML = "";
   document.body.style.overflow = "";
+  if (pieger) { document.removeEventListener("keydown", pieger, true); pieger = null; }
+  // On rend le focus là où on l'a pris.
+  if (declencheurAffiche && document.contains(declencheurAffiche)) declencheurAffiche.focus();
+  declencheurAffiche = null;
 }
 
 /* ============================================================
@@ -568,7 +591,7 @@ document.addEventListener("click", (e) => {
   }
 
   const frame = e.target.closest("#poster-frame");
-  if (frame) { openPoster(frame.dataset.posterSalle, Number(frame.dataset.posterIndex)); return; }
+  if (frame) { openPoster(frame.dataset.posterSalle, Number(frame.dataset.posterIndex), frame); return; }
 
   if (e.target.closest(".lightbox__close") || e.target.id === "lightbox") { closePoster(); return; }
 
