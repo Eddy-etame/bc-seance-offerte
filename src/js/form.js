@@ -10,7 +10,7 @@
 import { SALLES, JOURS } from "./data.js";
 import { track } from "./track.js";
 import { thud } from "./audio.js";
-import { esc, pic, fr } from "./ui.js";
+import { esc, pic, fr, prefersCalm } from "./ui.js";
 import { mountImages } from "./reveal.js";
 
 export const state = {
@@ -369,6 +369,15 @@ export function mountForm(root, onChange) {
     if (e.target.closest("[data-next]")) {
       begin();
       if (!validate()) {
+        /* On emmène le visiteur sur la faute. Sans ça, cliquer « Continuer »
+           ne produit rien de visible quand le champ en défaut est plus haut
+           que l'écran — on croit que le bouton est cassé. */
+        const fautif = form.querySelector(".step.is-on .field.is-bad, .step.is-on .consent.is-bad");
+        if (fautif) {
+          const champ = fautif.querySelector("input, select");
+          fautif.scrollIntoView({ block: "center", behavior: prefersCalm() ? "auto" : "smooth" });
+          if (champ) setTimeout(() => champ.focus({ preventScroll: true }), prefersCalm() ? 0 : 320);
+        }
         track("etape_bloquee", { etape: state.step + 1 });
         return;
       }
