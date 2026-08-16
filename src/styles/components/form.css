@@ -53,7 +53,10 @@
 .step.is-on { display: flex; }
 .step__q {
   font-family: var(--f-display); font-size: var(--fs-h3);
-  max-width: 20ch; text-wrap: balance;
+  /* 20ch forçait « QUEL JOUR COMPTES- / TU PASSER ? » : une coupure sur le
+     trait d'union au milieu d'un mot composé. On laisse la place, et
+     l'équilibrage choisit un point de coupe qui a du sens. */
+  max-width: 26ch; text-wrap: balance;
 }
 .step__why {
   font-size: var(--fs-xs); color: var(--ink-3); max-width: 46ch; line-height: 1.6;
