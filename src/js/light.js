@@ -115,16 +115,20 @@ export function mountLight(el) {
 
   /* — un cône : apex étroit en haut, ouverture sur la flaque — */
   function cone(cx, cy, largeur, alpha, incline) {
-    const apexX = cx - incline * cy * 0.5;
-    const g = ctx.createLinearGradient(0, 0, 0, cy);
-    g.addColorStop(0, `rgba(255,243,222,${(0.5 * alpha).toFixed(3)})`);
-    g.addColorStop(0.34, `rgba(255,228,190,${(0.2 * alpha).toFixed(3)})`);
-    g.addColorStop(0.72, `rgba(255,228,190,${(0.07 * alpha).toFixed(3)})`);
+    /* La source est juste HORS CHAMP. Trop bas, l'apex se lit comme un
+       coin découpé collé en haut d'écran ; trop haut, le cône devient
+       parallèle et il ne reste qu'un halo sans direction. */
+    const apex = -H * 0.14;
+    const apexX = cx - incline * (cy - apex) * 0.4;
+    const g = ctx.createLinearGradient(0, apex, 0, cy);
+    g.addColorStop(0, `rgba(255,243,222,${(0.42 * alpha).toFixed(3)})`);
+    g.addColorStop(0.3, `rgba(255,236,206,${(0.3 * alpha).toFixed(3)})`);
+    g.addColorStop(0.62, `rgba(255,228,190,${(0.13 * alpha).toFixed(3)})`);
     g.addColorStop(1, "rgba(255,228,190,0)");
     ctx.fillStyle = g;
     ctx.beginPath();
-    ctx.moveTo(apexX - 3 * ECH, -4);
-    ctx.lineTo(apexX + 3 * ECH, -4);
+    ctx.moveTo(apexX - 2 * ECH, apex);
+    ctx.lineTo(apexX + 2 * ECH, apex);
     ctx.lineTo(cx + largeur, cy);
     ctx.lineTo(cx - largeur, cy);
     ctx.closePath();
@@ -143,7 +147,7 @@ export function mountLight(el) {
     ctx.globalCompositeOperation = "lighter";
 
     // quatre cônes emboîtés : la douceur d'un flou, sans son prix
-    const base = W * 0.17;
+    const base = W * 0.15;
     cone(cx, cy, base * 2.1, 0.1, incline);
     cone(cx, cy, base * 1.6, 0.18, incline);
     cone(cx, cy, base * 1.25, 0.3, incline);

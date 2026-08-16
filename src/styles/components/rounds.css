@@ -24,7 +24,7 @@
   writing-mode: vertical-rl;
   font-family: var(--f-mono); font-size: var(--fs-micro);
   letter-spacing: var(--tr-mono); text-transform: uppercase;
-  color: var(--ink-4); white-space: nowrap;
+  color: var(--ink-3); white-space: nowrap;
 }
 
 .rounds__track { position: relative; width: 1px; background: var(--line); overflow: visible; }
@@ -38,8 +38,8 @@
 
 .rounds__item {
   position: relative;
-  font-family: var(--f-mono); font-size: 0.6875rem; letter-spacing: 0.1em;
-  color: var(--ink-4); font-variant-numeric: tabular-nums;
+  font-family: var(--f-mono); font-size: 0.75rem; letter-spacing: 0.1em;
+  color: var(--ink-3); font-variant-numeric: tabular-nums;
   transition: color var(--t) var(--ease);
 }
 .rounds__item::before {

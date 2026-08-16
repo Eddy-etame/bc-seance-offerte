@@ -64,7 +64,7 @@ function heroHTML(dir) {
     <p class="price">
       <span class="price__old">${OFFRE.prixHabituel}</span>
       <span class="price__new">${OFFRE.prixOffert}</span>
-      <span class="price__note">Séance d'essai habituellement à 10 €. Offerte sur ce lien.</span>
+      <span class="price__note">La séance d'essai,<br>offerte sur ce lien.</span>
     </p>`;
 
   return `

@@ -62,7 +62,7 @@
 .hero__kicker {
   font-family: var(--f-mono); font-size: var(--fs-xs);
   letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-2);
-  max-width: 52ch;
+  max-width: 46ch; text-wrap: balance;
 }
 
 .hero h1 {
