@@ -270,7 +270,11 @@ export function mountLight(el) {
       if (haut > vh + 240 || haut + p.h < -240) continue;
       const centre = haut + Math.min(p.h, vh) * 0.42;
       const d = Math.abs(centre - cibleAbs) / (vh * 0.92);
-      const lit = clamp(1 - d * d, 0.06, 1);
+      /* Plancher à 0,20 et non 0,06 : une section voisine tombait à six
+         pour cent de luminosité, et la page entière virait à la caverne
+         dès qu'on s'arrêtait entre deux blocs. La focalisation vient du
+         contraste, pas de l'extinction totale. */
+      const lit = clamp(1 - d * d, 0.2, 1);
       if (Math.abs(lit - p.lit) > 0.01) {
         p.lit = lit;
         p.el.style.setProperty("--lit", lit.toFixed(3));
