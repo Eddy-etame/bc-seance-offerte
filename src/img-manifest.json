@@ -253,5 +253,19 @@
    1100,
    1537
   ]
+ },
+ "entree": {
+  "alt": "La salle Boxing Center vue depuis l'entrée : le ring, le tapis rouge et les sacs",
+  "w": 1537,
+  "h": 1023,
+  "ratio": 1.5024,
+  "lqip": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAABQBACdASoUAA0APulgp00pJaOiMAgBIB0JYwBUQtwMKTbfn6qLmj3Q14KAAP6C11XKS28dGUj0p/qDmFRESJZRS/3Z9rBsHse3aGxIKzSR3XW9dXHUCl8flvt0qii0SL2HQo75k7H8L31iS+t2zI7ytwFO9PuulW3sASQi4AA=",
+  "src": "/img/entree",
+  "widths": [
+   640,
+   900,
+   1100,
+   1537
+  ]
  }
 }

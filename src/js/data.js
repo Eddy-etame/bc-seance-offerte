@@ -65,10 +65,12 @@ export const HEROS = {
     titre: ["Tu pousses", "la porte."],
     lede:
       "Personne ne se retourne. On te donne des gants, on te montre où poser ton sac. Voilà les quarante-cinq minutes qui suivent.",
-    // Un cours au sol, mixte, sans casque ni affiche de gala : le registre
-    // « permission » exigé ici. Le coach au ring montrait une affiche de
-    // combat professionnel au mur — exactement ce que C2 interdit.
-    img: "groupe-sol",
+    /* Le LIEU, pas une personne. Le titre dit « tu pousses la porte » à
+       19:02 et l'ancienne photo montrait des adhérents en plein effort au
+       sol : l'image démentait l'horodatage. Et les trois directions gagnent
+       à avoir trois sujets — A une personne, B un objet, C un lieu.
+       Registre permission tenu : salle vide, ni casque ni affiche de gala. */
+    img: "entree",
   },
 };
 
