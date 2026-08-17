@@ -5,11 +5,18 @@
   "type": "module",
   "description": "Boxing Center — page séance d'essai offerte. Maquette : 3 directions artistiques, un seul moteur de conversion.",
   "scripts": {
-    "dev": "vite --port 5610 --open",
+    "dev": "node server/dev-api.js --vite",
+    "dev:web": "vite --port 5610 --open",
+    "dev:api": "node server/dev-api.js",
     "build": "vite build",
-    "preview": "vite preview --port 5610"
+    "preview": "vite preview --port 5610",
+    "test": "node --test test/inscription.test.js test/api.test.js",
+    "test:e2e": "playwright test",
+    "test:e2e:vercel": "node scripts/e2e-vercel.js",
+    "smoke:deciplus": "node scripts/smoke-deciplus.js"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.0",
     "vite": "^5.4.10"
   }
 }

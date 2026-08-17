@@ -15,6 +15,17 @@ npm install && npm run dev
 
 <http://localhost:5610>
 
+Front Vite + API `/api/inscrire` (port 5611, proxifié). Page live : https://bc-seance-offerte.vercel.app/
+
+```bash
+npm run build
+npm test
+npm run test:e2e
+npm run test:e2e:vercel
+```
+
+Dry-run : `?test=1`. Smoke Deciplus : `npm run smoke:deciplus` (fiches `TestOfferte`, nettoyage BOXPLUS `npm run cleanup:test`). Copier `.env.example` vers `.env`.
+
 ```bash
 npm run build
 ```

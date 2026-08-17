@@ -230,3 +230,12 @@
 }
 .done__recap dd { margin: 0; font-size: var(--fs-sm); }
 .done__recap dd b { color: var(--rouge); font-weight: 600; }
+
+.form__api-err {
+  display: block;
+  margin: 0 clamp(20px, 3.4vw, 34px) 22px;
+  color: var(--rouge);
+  font-size: var(--fs-sm);
+}
+.form__api-err[hidden] { display: none !important; }
+.btn:disabled { opacity: 0.65; cursor: wait; }

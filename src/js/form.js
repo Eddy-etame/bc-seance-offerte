@@ -8,7 +8,7 @@
    ============================================================ */
 
 import { SALLES, JOURS } from "./data.js";
-import { track } from "./track.js";
+import { SOURCE, track } from "./track.js";
 import { thud } from "./audio.js";
 import { esc, pic, fr, prefersCalm } from "./ui.js";
 import { mountImages } from "./reveal.js";
@@ -98,7 +98,7 @@ const AMI_FIELDS = [
   ["a_nom", "Son nom", "text", "Martin", "nom"],
   ["a_email", "Son email", "email", "alex@exemple.fr", "email"],
   ["a_tel", "Son mobile", "tel", "06 98 76 54 32", "tel"],
-  ["a_naissance", "Sa date de naissance", "date", "", "naissance"],
+  ["a_naissance", "Sa date de naissance (si tu la connais)", "date", "", "naissance_ami"],
 ];
 
 const RX_MAIL = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
@@ -116,8 +116,9 @@ function invalid(rule, val) {
     case "tel":
       return !v ? "Un numéro de mobile, au cas où le planning change."
         : !RX_TEL.test(v) ? "Format attendu : 06 12 34 56 78 ou +33 6 12 34 56 78." : "";
-    case "naissance": {
-      if (!v) return "Date de naissance requise par le club pour la fiche.";
+    case "naissance":
+    case "naissance_ami": {
+      if (!v) return rule === "naissance_ami" ? "" : "Date de naissance requise par le club pour la fiche.";
       const d = new Date(v);
       if (Number.isNaN(+d)) return "Cette date n'est pas lisible.";
       const age = (Date.now() - +d) / 31557600000;
@@ -212,6 +213,7 @@ export function formHTML() {
               <span class="btn__arrow" aria-hidden="true"></span>
             </button>
           </div>
+          ${i === STEPS.length - 1 ? `<p class="field__err form__api-err" id="form-api-err" hidden role="alert"></p>` : ""}
         </section>`
       ).join("")}
 
@@ -230,7 +232,7 @@ export function formHTML() {
               <li>Rien d'autre — le matériel est prêté</li>
             </ul>
           </div>
-          <p class="step__why">${fr("Maquette : aucune donnée n'est envoyée. En production, cette étape crée la fiche Deciplus, écrit « SEANCE D ESSAI GRATUITE WEB » dans « Info compte / paiement » et déclenche l'email de confirmation.")}</p>
+          <p class="step__why">${fr("Un email de confirmation part vers ta boîte. Présente-toi à l'accueil : la séance est offerte, habituellement à 10 €.")}</p>
         </div>
       </section>
     </form>
@@ -356,6 +358,55 @@ export function mountForm(root, onChange) {
     track("formulaire_valide", { salle: state.salle, jour: state.jour, ami: !!state.ami });
   };
 
+  const payloadFromState = () => {
+    const ami =
+      state.ami && typeof state.ami === "object"
+        ? {
+            prenom: state.ami.a_prenom || "",
+            nom: state.ami.a_nom || "",
+            email: state.ami.a_email || "",
+            tel: state.ami.a_tel || "",
+            naissance: state.ami.a_naissance || "",
+            sexe: state.ami.a_sexe || "",
+          }
+        : null;
+    const q = new URLSearchParams(location.search);
+    return {
+      prenom: state.prenom,
+      nom: state.nom,
+      email: state.email,
+      tel: state.tel,
+      naissance: state.naissance,
+      sexe: state.sexe,
+      salle: state.salle,
+      jour: state.jour,
+      src: SOURCE,
+      rgpd: state.rgpd,
+      ami,
+      dry_run: q.get("test") === "1" || q.get("dry_run") === "1",
+    };
+  };
+
+  const showApiErr = (msg) => {
+    const el = form.querySelector("#form-api-err");
+    if (!el) return;
+    el.hidden = !msg;
+    el.textContent = msg || "";
+  };
+
+  const submitInscription = async () => {
+    const res = await fetch("/api/inscrire", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(payloadFromState()),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || !data.ok) {
+      throw new Error(data.error || "Impossible d'enregistrer l'inscription. Réessaie dans un instant.");
+    }
+    return data;
+  };
+
   form.addEventListener("click", (e) => {
     const pick = e.target.closest("[data-pick]");
     if (pick) {
@@ -407,9 +458,30 @@ export function mountForm(root, onChange) {
         return;
       }
       if (state.step === STEPS.length - 1) {
-        state.step = STEPS.length;
-        paint();
-        finish();
+        const btn = e.target.closest("[data-next]");
+        if (btn?.dataset.busy === "1") return;
+        const original = btn ? btn.innerHTML : "";
+        if (btn) {
+          btn.dataset.busy = "1";
+          btn.disabled = true;
+          btn.textContent = "Enregistrement…";
+        }
+        showApiErr("");
+        submitInscription()
+          .then(() => {
+            state.step = STEPS.length;
+            paint();
+            finish();
+          })
+          .catch((err) => {
+            showApiErr(err.message || "Échec de l'enregistrement.");
+            track("etape_bloquee", { etape: state.step + 1, erreur: "api" });
+            if (btn) {
+              btn.disabled = false;
+              btn.innerHTML = original;
+              delete btn.dataset.busy;
+            }
+          });
         return;
       }
       state.step += 1;
