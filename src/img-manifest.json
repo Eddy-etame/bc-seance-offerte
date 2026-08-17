@@ -23,7 +23,18 @@
    640,
    1100,
    1537
-  ]
+  ],
+  "portrait": {
+   "src": "/img/femme-garde-p",
+   "widths": [
+    430,
+    640,
+    767
+   ],
+   "w": 767,
+   "h": 1023,
+   "lqip": "data:image/webp;base64,UklGRuQAAABXRUJQVlA4INgAAACQBQCdASoSABgAPulsrlGpJaQiqAgBIB0JaQAIEDiisCZOfKtaoHX7waDmeNmmdSB/IrPZgAD+qrbRwWYnFy6cqRyMxBnvPcM29AdvGvhwzlG7tjdXZglarhT+LXUIwtbypVvSfmaRoNOX6Tg7mfP5Po0UIomJGIU+TJ6fLKU18+oVwvo6138L2It46hJYp/UwkpFamTGdkrlRHgWjZyFqcTBb7+1X7t59bsB3hSoRHkEfHTC/h8vwnFVKJaivQto9Vf+WRavPEoolX0Vl7W9BRsuPOGnAAAA="
+  }
  },
  "femme-sac": {
   "alt": "Une adhérente frappe le sac lourd, alignée de sacs Boxing Center",
@@ -252,7 +263,18 @@
    900,
    1100,
    1537
-  ]
+  ],
+  "portrait": {
+   "src": "/img/coin-p",
+   "widths": [
+    430,
+    640,
+    767
+   ],
+   "w": 767,
+   "h": 1023,
+   "lqip": "data:image/webp;base64,UklGRuQAAABXRUJQVlA4INgAAABQBQCdASoSABgAPulqrVGpJaQiqAgBIB0JYwC7FQgFP4EWTVgOlmRHiALiMKIkI48SJuwA/vK4T/pMFl+POrkJlNeYFMMBz+h3z2HU5IRFi1eMpu8pgfwvhWG0ul8GWGe7bKe27UgQ0eO1oIM5LUfetDsuatPPH2X4ntsNgceshR/9NnG4WArZl82rQOlTIq+nBJ+lSUkVHNjiQ58TpThX447Mf0jLkoYkmRYTGGYcMy6FwcgzzGGsPDBoybsyGUo2JPau0kWDcM5rf/btkVcXTTsmhawAAAA="
+  }
  },
  "entree": {
   "alt": "La salle Boxing Center vue depuis l'entrée : le ring, le tapis rouge et les sacs",
@@ -266,6 +288,17 @@
    900,
    1100,
    1537
-  ]
+  ],
+  "portrait": {
+   "src": "/img/entree-p",
+   "widths": [
+    430,
+    640,
+    767
+   ],
+   "w": 767,
+   "h": 1023,
+   "lqip": "data:image/webp;base64,UklGRuYAAABXRUJQVlA4INoAAABwBQCdASoSABgAPulkqE8pJaOiKA1RIB0JQBYfv/xvAuGgrSk6x/bvVLAYABjlE3Y7nXgAAP6Dz5FZdFz3RoU3ungw7l/tIZ2kgy9pGigtu1dSHvy8+42kVPlGS8sA/DKaJdUsCWxQ1m87x4Re58+7qIrmaC6eW66c11na1WMoluCI0HXIaZjUrdktqH4kB0h9t8pt7P8JzZ/2ia+WtGjgXe15Q6G7p5WOKoKIXsTjrinKOZy4prUFp90KxFxwo1cmOzqrExbiXqeRl5xBldhNp09DYErAL2AAAA=="
+  }
  }
 }

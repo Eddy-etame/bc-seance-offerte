@@ -47,3 +47,13 @@ html:not(.lit) [data-stage]::before { opacity: 0; }
 @media (prefers-reduced-motion: reduce) {
   [data-stage]::before { opacity: 0; }
 }
+
+
+/* Sur téléphone, la lumière passe au-dessus du voile du héros et rajoute
+   de la clarté DERRIÈRE le texte : mesuré, le sur-titre tombait sous 1:1,
+   c'est-à-dire plus sombre que son fond. Elle y perd aussi sa raison
+   d'être — pas de pointeur à suivre. On la garde comme atmosphère, à
+   intensité réduite. */
+@media (max-width: 700px) {
+  .light { opacity: 0.5; }
+}

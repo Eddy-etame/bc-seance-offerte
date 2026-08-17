@@ -142,6 +142,15 @@ html.rv-on [data-rv].is-in .mask:nth-of-type(3) > span { transition-delay: 0.18s
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; filter: blur(20px); transform: scale(1.1);
 }
+/* Deux aperçus flous quand l'image a une direction artistique par format :
+   celui du cadrage réellement servi, sinon la couleur d'attente ne
+   correspond pas à la photo qui arrive. */
+.ph__lqip--petit { display: none; }
+@media (max-width: 700px) {
+  .ph__lqip--large { display: none; }
+  .ph__lqip--petit { display: block; }
+}
+.ph picture { display: contents; }
 /* Étalonnage cinéma : contraste poussé, ombres bleu-noir, ambre sur les peaux */
 .ph--grade img { filter: contrast(1.1) saturate(1.02) brightness(0.92); }
 .ph--vig::after {

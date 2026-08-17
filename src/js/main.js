@@ -73,7 +73,7 @@ function heroHTML(dir) {
     <div class="hero__scrim"></div>
 
     <div class="hero__top">
-      <img class="hero__logo" src="/img/logo-bc-sombre-520.webp" srcset="/img/logo-bc-sombre-260.webp 260w, /img/logo-bc-sombre-520.webp 520w" sizes="(min-width:760px) 186px, 132px" width="3542" height="1683" alt="Boxing Center" />
+      <img class="hero__logo" src="/img/logo-bc-centre-blanc-520.png" srcset="/img/logo-bc-centre-blanc-260.png 260w, /img/logo-bc-centre-blanc-520.png 520w, /img/logo-bc-centre-blanc-780.png 780w" sizes="(min-width:760px) 186px, 132px" width="3542" height="1683" alt="Boxing Center" />
       <!-- La source reste tracée et suit le prospect jusqu'au lead ; elle
            n'est affichée qu'en mode maquette. « QR FLYER » en haut de page
            ne dit rien à quelqu'un qui vient de scanner un flyer — c'est de
@@ -350,7 +350,7 @@ function footHTML() {
   return `
   <footer class="foot">
     <div class="shell foot__in">
-      <img class="foot__logo" src="/img/logo-bc-sombre-520.webp" srcset="/img/logo-bc-sombre-260.webp 260w, /img/logo-bc-sombre-520.webp 520w" sizes="158px" width="3542" height="1683" alt="Boxing Center" />
+      <img class="foot__logo" src="/img/logo-bc-centre-blanc-520.png" srcset="/img/logo-bc-centre-blanc-260.png 260w, /img/logo-bc-centre-blanc-520.png 520w" sizes="158px" width="3542" height="1683" alt="Boxing Center" />
       <ul class="foot__list">
         <li>Débutants acceptés</li><li>Matériel prêté</li>
         <li>Cours encadrés</li><li>Sans obligation d'inscription</li>

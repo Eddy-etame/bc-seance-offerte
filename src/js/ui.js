@@ -29,20 +29,36 @@ export const esc = (s) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
   );
 
-/** Image responsive : LQIP flou dessous, srcset dessus, jamais de saut de mise en page. */
+/** Image responsive : LQIP flou dessous, srcset dessus, jamais de saut de mise en page.
+ *
+ *  Direction artistique par format quand l'image en a une : un cliché
+ *  paysage servi plein cadre sur un écran de 390x844 est rogné à un
+ *  cinquième de sa largeur — il ne reste ni sujet ni composition, juste une
+ *  bande. Les héros portent donc un cadrage portrait taillé à la main sur
+ *  leur sujet, servi sous 700 px. */
 export function pic(slug, { sizes = "100vw", ratio = "", cls = "", eager = false } = {}) {
   const m = IMG[slug];
   if (!m) {
     if (import.meta.env && import.meta.env.DEV) console.warn("[image] slug inconnu :", slug);
     return "";
   }
-  const srcset = m.widths.map((w) => `${m.src}-${w}.webp ${w}w`).join(", ");
+  const jeu = (o) => o.widths.map((w) => `${o.src}-${w}.webp ${w}w`).join(", ");
   const fallback = `${m.src}-${m.widths[m.widths.length - 1]}.webp`;
+  const p = m.portrait;
+  const source = p
+    ? `<source media="(max-width: 700px)" srcset="${jeu(p)}" sizes="${sizes}" width="${p.w}" height="${p.h}" />`
+    : "";
+  const flou = p
+    ? `<img class="ph__lqip ph__lqip--large" src="${m.lqip}" alt="" aria-hidden="true" />
+       <img class="ph__lqip ph__lqip--petit" src="${p.lqip}" alt="" aria-hidden="true" />`
+    : `<img class="ph__lqip" src="${m.lqip}" alt="" aria-hidden="true" />`;
   return `<div class="ph ph--grade ${cls}"${ratio ? ` style="aspect-ratio:${ratio}"` : ""}>
-    <img class="ph__lqip" src="${m.lqip}" alt="" aria-hidden="true" />
-    <img src="${fallback}" srcset="${srcset}" sizes="${sizes}"
-         width="${m.w}" height="${m.h}" alt="${esc(m.alt)}"
-         ${eager ? 'fetchpriority="high" decoding="sync"' : 'loading="lazy" decoding="async"'} />
+    ${flou}
+    <picture>${source}
+      <img src="${fallback}" srcset="${jeu(m)}" sizes="${sizes}"
+           width="${m.w}" height="${m.h}" alt="${esc(m.alt)}"
+           ${eager ? 'fetchpriority="high" decoding="sync"' : 'loading="lazy" decoding="async"'} />
+    </picture>
   </div>`;
 }
 

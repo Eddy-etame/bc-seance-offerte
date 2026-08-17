@@ -259,3 +259,74 @@ html.settled .hero h1 .underline::after { transform: scaleX(1) !important; trans
 
 /* Mode propre : la mention de source disparaît avec les autres outils. */
 html.nu .hero__src { display: none; }
+
+
+/* ------------------------------------------------------------
+   LE HÉROS SUR TÉLÉPHONE
+   Trois défauts corrigés ensemble :
+   · 260 px de photo vide entre le logo et le premier mot — la photo
+     paysage rognée n'y montrait rien, le cadrage portrait y met le
+     sujet, mais le bloc de texte doit remonter pour le laisser voir ;
+   · le sur-titre en capitales espacées prenait deux lignes et pesait
+     autant que le titre : il redescend d'un cran ;
+   · deux boutons pleine largeur empilés faisaient deux dalles rouges
+     et bleues de 150 px — le second passe en lien souligné, il n'a
+     jamais été qu'un raccourci.
+   ------------------------------------------------------------ */
+@media (max-width: 700px) {
+  /* Le voile du bas doit couvrir TOUT le bloc de texte, pas seulement le
+     pied de l'écran. Mesuré avant : le sur-titre tombait à 0,8:1 sur les
+     zones claires de la photo — le texte y était plus sombre que le fond.
+     Il monte donc jusqu'à 62 % de la hauteur, en opacité pleine sous le
+     premier mot. */
+  .hero__scrim {
+    background:
+      linear-gradient(to top,
+        var(--noir) 0%,
+        rgb(8 8 8 / 0.97) 26%,
+        rgb(8 8 8 / 0.86) 42%,
+        rgb(8 8 8 / 0.5) 58%,
+        rgb(8 8 8 / 0.12) 76%,
+        rgb(8 8 8 / 0.3) 100%),
+      radial-gradient(128% 64% at 50% 30%, transparent 30%, rgb(3 5 11 / 0.72) 100%);
+  }
+
+  .hero__body { padding-bottom: clamp(22px, 3.4vw, 34px); gap: clamp(10px, 2vw, 15px); }
+
+  .hero__kicker {
+    /* 0,16em d'interlettrage sur 30ch faisait encore trois lignes : le
+       sur-titre doit tenir en deux, sinon il redevient un paragraphe.
+       La couleur monte d'un cran et l'ombre le décolle : c'est le seul
+       bloc du héros assez petit pour se perdre dans une zone claire. */
+    font-size: 0.6875rem; letter-spacing: 0.11em; color: var(--ink);
+    max-width: 40ch; text-wrap: balance;
+    /* La plaque, pas l'ombre. Les standards de build sont explicites :
+       « jamais de texte qui joue contre une photo sans scrim ni plaque ».
+       C'est le seul bloc du héros assez petit pour se perdre dans une zone
+       claire, et une ombre portée ne suffisait pas — mesuré à 1,5:1. */
+    background: rgb(3 5 11 / 0.72);
+    backdrop-filter: blur(3px);
+    border-left: 2px solid var(--rouge);
+    padding: 7px 12px 6px 10px;
+    width: fit-content;
+  }
+  .hero h1, .hero__lede { text-shadow: 0 2px 18px rgb(3 5 11 / 0.55); }
+
+  .hero h1 { font-size: min(var(--fs-hero), 17vh); }
+
+  /* Le second appel devient un lien : une seule surface pleine à l'écran. */
+  .hero__acts { gap: 6px; flex-direction: column; align-items: stretch; }
+  .hero__acts .btn--primary { width: 100%; }
+  .hero__acts .btn--ghost {
+    border: 0; background: none; min-height: 44px;
+    padding: 10px 2px 6px; align-self: flex-start;
+    font-size: 1.05rem; letter-spacing: 0.08em; color: var(--ink-2);
+    text-decoration: underline; text-underline-offset: 6px;
+    text-decoration-color: var(--ink-4); text-decoration-thickness: 1px;
+  }
+  .hero__acts .btn--ghost::before { display: none; }
+  .hero__acts .btn--ghost:hover { color: var(--ink); background: none; }
+
+  .hero__proof { gap: 5px 16px; padding-top: 12px; }
+  .hero__proof li { font-size: 0.625rem; letter-spacing: 0.1em; }
+}
